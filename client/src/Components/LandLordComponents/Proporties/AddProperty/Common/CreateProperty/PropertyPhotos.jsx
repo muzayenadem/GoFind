@@ -10,7 +10,6 @@ function PropertyPhotos() {
         fileRef.current.click()
     }
     const onFileSelect = () =>{
-
     }
 
 
