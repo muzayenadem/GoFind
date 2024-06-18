@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.linkli{
+  @apply text-neutral-900 text-base hover:text-indigo-600 duration-300 hover:underline hover:underline-offset-4
+}
+
+.mediaIcon{
+  @apply bg-black h-10 w-10 rounded-full flex justify-center items-center text-white font-bold text-2xl 
+}
+.footerli{
+  @apply text-sm tracking-wider text-neutral-600 hover:text-neutral-950
+}
+.appsIcon{
+  @apply h-10 w-10 rounded-full flex justify-center items-center text-white font-bold text-2xl 
+}
+
+.title{
+  @apply font-bold text-2xl text-neutral-950
+}
+.des{
+  @apply text-sm text-neutral-500
+}
+
+.head1{
+  @apply text-3xl font-bold text-neutral-900
+}
+.title2{
+  @apply text-lg font-medium text-neutral-900
+}
