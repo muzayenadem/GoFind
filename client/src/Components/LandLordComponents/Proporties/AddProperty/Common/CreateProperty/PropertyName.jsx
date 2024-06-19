@@ -5,6 +5,9 @@ import { setName } from '../../../../../../controller/AddProperty/propertyType'
 import countryList from 'react-select-country-list'
 import Select from 'react-select'
 import SearchLocation from '../Maps/SearchLocation'
+import LocationOfProperty from './LocationOfProperty'
+import { setLandlordLocationOpen } from '../../../../../../controller/Buttons/locationForLandlord'
+import { useNavigate } from 'react-router-dom'
 
 
 function PropertyName({page,next,previous}) {
@@ -13,11 +16,18 @@ function PropertyName({page,next,previous}) {
     const [enable,setEnable] = useState(false)
     const [postNumber,setPostNumber] = useState('')
     const [city,setCity] = useState('')
-    
+    const inputRef = useRef()
+    const navigate = useNavigate('')
+    const propertyType = useSelector(state => state.propertyType.subCategory)
+    const openSearch = ()=>{
+        navigate(`/landloard-dashboard/property/types-of-property/${propertyType}/property-location`)
+        // dispatch(setLandlordLocationOpen())
+    }
+
 
     const mapRef = useRef();
     const [markers, setMarkers] = useState([]);
-  
+    const openLocationForLandlord = useSelector(state => state.locationForLandlord.open)
     const handleLocationSelect = (location) => {
     //   const { lat, lon } = location;
     //   mapRef.current.setView([lat, lon], 13);
@@ -29,7 +39,6 @@ function PropertyName({page,next,previous}) {
         dispatch(next())
         console.log({maaliif:PropertyName})
     }
-    const propertyType = useSelector(state => state.propertyType.subCategory)
     const options = useMemo(() => countryList().getData(), [])
     const changeHandler = async value => {
        await enableHandler()
@@ -72,7 +81,12 @@ function PropertyName({page,next,previous}) {
                     </div>
                     <div className="flex  flex-col gap-1">
                         <p className='des'>Street name and house number</p>
-                      <SearchLocation/>
+                        <input
+                            type="text"
+                            onInput={openSearch}
+                            className='px-6 py-2 border-[1px]  border-neutral-400 focus:outline-none '
+                            placeholder="Search by country, state, or zip code"
+                            />
                     </div>
                 </div>
                 <div className="flex w-full justify-normal gap-5 flex-wrap" >
@@ -107,6 +121,11 @@ function PropertyName({page,next,previous}) {
         </div>
         </div>
         </div> 
+        <dialog open={openLocationForLandlord}>
+            <div className='w-[80%] h-[73vh] overflow-hidden z-10 fixed top-[20%] left-[10%] p-2 bg-white rounded-md shadow-lg shadow-black'>
+                <LocationOfProperty/>
+            </div>
+        </dialog>
     </>
   )
 }

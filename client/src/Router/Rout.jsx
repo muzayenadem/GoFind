@@ -21,7 +21,10 @@ import Hotels from '../Components/LandLordComponents/Proporties/AddProperty/Hote
 import Homes from '../Components/LandLordComponents/Proporties/AddProperty/Homes/Homes'
 import Map3 from '../Components/LandLordComponents/Proporties/AddProperty/Common/Maps/Map3'
 import Map4 from '../Components/LandLordComponents/Proporties/AddProperty/Common/Maps/Map'
+import LocationOfProperty from '../Components/LandLordComponents/Proporties/AddProperty/Common/CreateProperty/LocationOfProperty'
+import { useSelector } from 'react-redux'
 function Rout() {
+  const propertyType = useSelector(state => state.propertyType.subCategory)
   return (
     <Router>
         <Routes>
@@ -48,6 +51,7 @@ function Rout() {
               <Route path='property/types-of-property/homes' element={<Homes/>}/>
               <Route path='property/types-of-property/hotels' element={<Hotels/>}/>
               <Route path='property/types-of-property/alternative' element={<Others/>}/>
+              <Route path={`property/types-of-property/${propertyType}/property-location`} element={<Map4/>}/>
             </Route>
         </Routes>
     </Router>

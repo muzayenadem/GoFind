@@ -19,7 +19,12 @@ const initailState ={
         dssIncome:true,
         onlyStudent:true
     },
+    location:{
+        name:'',
+        marker:null
+    },
 
+    images:[],
 
     amenities:{
         kitchen:true,
@@ -66,6 +71,15 @@ const propertyType = createSlice({
         setName:(state, action)=>{
             state.name = action.payload
         },
+
+        //disatchers for locations
+        setLocationName:(state,action)=>{
+            state.location.name = action.payload
+        },
+        setLongitudeAndLatitudeOFProperty:(state,action) =>{
+            state.location.marker = action.payload
+        },
+
 
         //dispatchers for permissions
         setSmoking:(state) =>{
@@ -204,6 +218,15 @@ const propertyType = createSlice({
             state.amenities.terrace = false
             state.amenities.all = false
         },
+
+        setImages:(state,action)=>{
+           for (let  i = 0; i <= action.payload.length-1; i++ ){
+            state.images.push(action.payload[i])
+           }
+        },
+        removeImage:(state,action)=>{
+            state.images.splice(action.payload,1)
+        }
     },
 })
 
@@ -214,13 +237,17 @@ export const {
     // permission function
     setSmoking,setChildren,setDssIncome,
     setFamily,setStudents,setPets,setOnlyStudent,
+    //locations
+    setLocationName,setLongitudeAndLatitudeOFProperty,
     // amenities function
     setpetFriendly,setKitchen,setWashingMachines,
     setPool,setWifi,setTv,setParking,setBalcony,
     setAirCondition,setChimney,setElectricVehicleCharge,
     setSwimming,setMinibar,setGarden,setTerrace,
     //to select and dis select all amenities
-    setAllAmenities,setNotAllAmenities
+    setAllAmenities,setNotAllAmenities,
+    // to delete and store images
+    setImages,removeImage
 } = propertyType.actions
 
 

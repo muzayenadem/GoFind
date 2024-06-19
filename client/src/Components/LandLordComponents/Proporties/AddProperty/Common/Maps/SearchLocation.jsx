@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setLandlordLocationOpen } from '../../../../../../controller/Buttons/locationForLandlord';
 
 const SearchForLandlord = ({ onLocationSelect }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [location,setLocation] = useState('')
-
+ 
+  const dispatch = useDispatch()
   const handleSearch = async (e) => {
     e.preventDefault();
     try {

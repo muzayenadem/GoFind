@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLocationName } from '../../../../../../controller/AddProperty/propertyType';
 
 const SearchLocation = ({ onLocationSelect }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
+
+  const dispatch = useDispatch()
+  const propertyLocation = useSelector(state => state.propertyType.location)
+  console.log(propertyLocation)
   const handleSearch = async (e) => {
     e.preventDefault();
+    dispatch(setLocationName(query))
     try {
       const response = await axios.get(`https://nominatim.openstreetmap.org/search`, {
         params: {
@@ -22,7 +29,7 @@ const SearchLocation = ({ onLocationSelect }) => {
   };
 
   return (
-    <div className='absolute top-7 lef-4 z-10 '>
+    <div className=' sticky top-7 lef-4 z-10 '>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -37,7 +44,7 @@ const SearchLocation = ({ onLocationSelect }) => {
       <div className='py-5 px-3 bg-white shadow-md shadow-neutral-700'>
       <ul>
         {results.map((result) => (
-          <li key={result.place_id} className='text-lg text-neutral-700 mt-2' onClick={() => onLocationSelect(result)}>
+          <li key={result.place_id} className='text-lg text-neutral-700 mt-2' onClick={()=>onLocationSelect(result) & dispatch(setLocationName(result.display_name))  & setResults([]) & setQuery(result.display_name)} >
             {result.display_name}
           </li>
         ))}

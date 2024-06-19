@@ -16,7 +16,6 @@ function PropertyPermition({page,next,previous}) {
     console.log({smokingPermision})
     const clickHndler = () =>{
         dispatch(next())
-        Continue
     }   
     const dispatch = useDispatch()
     const permissions =[

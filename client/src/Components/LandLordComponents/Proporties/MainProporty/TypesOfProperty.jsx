@@ -27,9 +27,9 @@ function TypesOfProperty() {
     console.log(property)
     const dispatch = useDispatch()
 
-    const clickHandler = (type)=>{
+    const clickHandler = (type,link)=>{
       dispatch(setSubCategory(type))
-      dispatch(setCategory(type))
+      dispatch(setCategory(link))
     }
   return (
     <div className='md:container md:mx-auto py-20 md:px-40'>
@@ -45,7 +45,7 @@ function TypesOfProperty() {
                   return(
                     <Link   key={i}  to={link}>
                            <div
-                  onClick={()=> clickHandler(type)}
+                  onClick={()=> clickHandler(type,link)}
                    className='bg-white shadow-lg rounded-lg p-5 gap-4  '>
                     <div className='flex justify-center items-center gap-4 flex-col w-60'>
                         <span className='text-6xl text-fuchsia-800 font-bold'>
@@ -109,7 +109,7 @@ const propertyType = [
     link:'homes'
   },
   {
-    type:'Hotel,B&Bs,and more',
+    type:'Hotel,B&Bs,and More',
     des:'Properties like hotels, B&Bs, guest houses, hostels, aparthotels, etc.',
     icon:<RiHotelFill/>,
     link:'hotels'

@@ -10,6 +10,7 @@ import renterProfileButtons from "../Buttons/renterProfileButtons.js";
 import landlordToggle from "../Buttons/landlordToggle.js";
 import propertyType from "../AddProperty/propertyType.js";
 import NextPrev from "../AddProperty/NextPrev.js";
+import locationForLandlord from "../Buttons/locationForLandlord.js";
 const store = configureStore({
     reducer:{
         homesReducer:homeSlice,
@@ -19,6 +20,8 @@ const store = configureStore({
         renterProfileButtons,
         landlordProfileButtons,
         landlordToggle,
+        locationForLandlord,
+
 
         renterNum:Renters,
         landlord:landlord,
