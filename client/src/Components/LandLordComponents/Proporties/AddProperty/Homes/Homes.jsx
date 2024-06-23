@@ -5,7 +5,7 @@ import Multiple from '../Common/Multiple'
 import One from '../Common/One'
 import Map1 from '../Common/Map1'
 import PropertyName from '../Common/CreateProperty/PropertyName'
-import { EntiresubCategories, PrivatesubCategories } from '../Categories'
+import { EntiresubCategories, PrivatesubCategories } from '../Common/Categories'
 import PlaceCategory from '../Common/PlaceCategory'
 import QuantityOfPropertyAndPlace from '../Common/QuantityOfPropertyAndPlace'
 import MultipleOrPrivatePage from '../Common/MultipleOrPrivatePage'
@@ -18,8 +18,10 @@ import PropertyPermition from '../Common/CreateProperty/PropertyPermition'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { Radio, RadioGroup } from '@headlessui/react'
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
-import TricProgress from './TricProgress'
+import TricProgress from '../Common/TricProgress'
 import PropertyPhotos from '../Common/CreateProperty/PropertyPhotos'
+import PriceSystem from '../Common/CreateProperty/PriceSystem'
+import SubmittingPropertyPage from '../Common/CreateProperty/SubmittingPropertyPage'
 
 function Homes() {
   const homePage = useSelector(state => state.NextPrev.homePage)
@@ -33,7 +35,7 @@ function Homes() {
     <div className='flex gap-2 justify-start flex-wrap-reverse md:flex-nowrap'>
 
       <div className='md:w-[90%] '>
-      {homePage == 0 && <MultipleOrPrivatePage page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
+    {homePage == 0 && <MultipleOrPrivatePage page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
     {homePage == 1 && propertyType.type == 'Entire place' && <PlaceCategory page={homePage} subCategories={EntiresubCategories} next={homeNextpage} previous={homePreviousPage}/>}
     {homePage == 1 && propertyType.type == 'A private room' &&  <PlaceCategory page={homePage} subCategories={PrivatesubCategories} next={homeNextpage} previous={homePreviousPage}/>}
     {homePage == 2 && propertyType.type == 'Entire place' && <QuantityOfPropertyAndPlace page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
@@ -44,8 +46,8 @@ function Homes() {
     {homePage == 5 && <PropertyDetails page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
     {homePage == 6 && <PropertyPermition page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
     {homePage == 7 && <PropertyPhotos page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
-    {homePage == 8 && <PropertyDetails page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
-    {homePage == 9 && <PropertyDetails page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
+    {homePage == 8 && <PriceSystem page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
+    {homePage == 9 && <SubmittingPropertyPage page={homePage} next={homeNextpage} previous={homePreviousPage}/>}
       </div>
       <div className="w-25%">
       <TricProgress page={homePage}/>

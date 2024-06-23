@@ -1,8 +1,17 @@
 import React from 'react'
 import { IoCheckmarkDoneCircle } from 'react-icons/io5'
-
+import { useSelector } from 'react-redux'
 function TricProgress({page}) {
-    const homePage = page
+  const category = useSelector(state => state.propertyType.category)
+  console.log({category})
+  let homePage = 0
+  if(category == 'apartment'){
+   homePage = page + 2
+  }else if (category == 'hotels'){
+   homePage = page + 1
+  }else{
+   homePage = page
+  }
   return (
    <div className='container'>
     <div className='mt-10 flex-col  md:flex-row flex md:py-20 md:px-10 px-5 md:h-[100vh] sticky left-0 top-0 '>

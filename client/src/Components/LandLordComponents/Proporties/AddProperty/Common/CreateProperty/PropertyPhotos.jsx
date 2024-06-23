@@ -1,8 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { removeImage, setImages } from '../../../../../../controller/AddProperty/propertyType'
+import { FaChevronLeft } from 'react-icons/fa'
 
-function PropertyPhotos() {
+function PropertyPhotos({page,previous,next}) {
      const [photos, setPhotos] = useState([])
     const [isDraging, setIsDraging] = useState(false)
     const fileRef = useRef()
@@ -52,8 +53,14 @@ function PropertyPhotos() {
                         })
                     }
                 </div>
-                <button className='w-[100%] bg-blue-600 rounded-md py-2 text-white font-semibold hover:bg-blue-900'>Upload</button> 
+                <button onClick={()=> dispatch(next())} className='w-[100%] bg-blue-600 rounded-md py-2 text-white font-semibold hover:bg-blue-900'>Upload</button> 
             </div>
+            <div className='flex gap-2 '>
+                <div  onClick={()=> dispatch(previous())} className='w-[25%] flex justify-center items-center py-3 bg-white border-[1px] border-fuchsia-200  '>
+                    <span className='font-bold text-2xl text-fuchsia-700 '><FaChevronLeft/></span>
+                </div>
+                <button  onClick={()=> dispatch(next())} className={`w-[73%]   bg-fuchsia-700  py-3 font-bold text-white text-center`}>Continue</button>
+           </div>
         </div>
     </div>
   )

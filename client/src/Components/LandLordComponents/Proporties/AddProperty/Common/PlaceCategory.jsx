@@ -28,7 +28,7 @@ function PlaceCategory({subCategories,page,next,previous}) {
         <h1 className='head1 text-center'>From the list below, which property category is most similar to your place?</h1>
         <div className="flex">
         <RadioGroup by="subCategory" value={selected} onChange={setSelected} aria-label="Server size" className="space-y-2">
-            <div className="grid grid-cols-1   gap-4 md:grid-cols-3">
+            <div className="grid grid-cols-1   gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {subCategories.map((sub,i) => (
             <Radio
               key={sub.subCategory}

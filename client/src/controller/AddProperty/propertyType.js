@@ -43,7 +43,10 @@ const initailState ={
         electricVehicleCharge:false,
         pool:false,
         all:false,
-    }
+    },
+    pricing:{
+        price:null
+    },
 }
 
 const propertyType = createSlice({
