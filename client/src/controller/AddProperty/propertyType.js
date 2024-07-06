@@ -21,9 +21,26 @@ const initailState ={
     },
     location:{
         name:'',
-        marker:null
+        country:'',
+        city:'',
+        postCode:'',
     },
 
+    locationWithName:{
+        name:'',
+        marker:null
+        
+    },
+    details:{
+        bedroom:'',
+        bathroom:'',
+        livingRoom:'',
+        guestCapability:'',
+    },
+    area: {
+        min:null,
+        max:null
+    },
     images:[],
 
     amenities:{
@@ -44,9 +61,8 @@ const initailState ={
         pool:false,
         all:false,
     },
-    pricing:{
-        price:null
-    },
+    price:null,
+
 }
 
 const propertyType = createSlice({
@@ -74,16 +90,31 @@ const propertyType = createSlice({
         setName:(state, action)=>{
             state.name = action.payload
         },
-
+        // details
+        setDetails : (state, action) =>{
+            state.details.bathroom = action.payload.bathroom
+            state.details.bedroom = action.payload.bedroom
+            state.details.livingRoom = action.payload.livingRoom
+            state.details.guestCapability = action.payload.guestCapability
+        },
+        //area of property
+        setArea:(state, action)=>{
+            state.area.max = action.payload.max
+            state.area.min = action.payload.min
+        },
         //disatchers for locations
         setLocationName:(state,action)=>{
-            state.location.name = action.payload
+            state.locationWithName.name = action.payload
         },
         setLongitudeAndLatitudeOFProperty:(state,action) =>{
-            state.location.marker = action.payload
+            state.locationWithName.marker = action.payload
         },
-
-
+        setLocation:(state,action)=>{
+            state.location.country = action.payload.country
+            state.location.city = action.payload.city
+            state.location.postCode = action.payload.postCode
+            state.location.name = action.payload.name
+        },
         //dispatchers for permissions
         setSmoking:(state) =>{
             state.permissions.smoking = !state.permissions.smoking
@@ -229,6 +260,10 @@ const propertyType = createSlice({
         },
         removeImage:(state,action)=>{
             state.images.splice(action.payload,1)
+        },
+        // pricing dispatcher
+        setPrice:(state,action)=>{
+            state.price = action.payload
         }
     },
 })
@@ -237,11 +272,14 @@ export const {
     setType,setQuantity,notTheSamePlace,
     setCategory,setSubCategory,setMultiple,
     setName,
+    //details and area
+    setDetails,setArea,
     // permission function
     setSmoking,setChildren,setDssIncome,
     setFamily,setStudents,setPets,setOnlyStudent,
     //locations
     setLocationName,setLongitudeAndLatitudeOFProperty,
+    setLocation,
     // amenities function
     setpetFriendly,setKitchen,setWashingMachines,
     setPool,setWifi,setTv,setParking,setBalcony,
@@ -250,7 +288,9 @@ export const {
     //to select and dis select all amenities
     setAllAmenities,setNotAllAmenities,
     // to delete and store images
-    setImages,removeImage
+    setImages,removeImage,
+    // price dispather
+    setPrice,
 } = propertyType.actions
 
 

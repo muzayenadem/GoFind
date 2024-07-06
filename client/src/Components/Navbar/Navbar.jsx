@@ -12,7 +12,7 @@ import { MdOutlineClear } from "react-icons/md";
 
 function Navbar() {
     const [renterToken,setUserToken] = useState(false)
-    const [landlordToken,setLandlordToken] = useState(true)
+    const [landlordToken,setLandlordToken] = useState(false)
     const [loginOpen,setLoginOPen] = useState(false)
     const [signUpOpen,setSignUpOPen] = useState(false)
     
@@ -80,7 +80,9 @@ function Navbar() {
                                  <div onMouseLeave={()=>setLoginOPen(false)} className={`w-32 h-32 bg-gray-800 mt-4  rounded-md absolute ${!loginOpen && "hidden"}`}>
                                 <div className='w-5 h-5 rotate-45 -mt-2 bg-gray-800 ml-[10%]'></div>
                                 <div className='flex flex-col p-5 gap-3 2'>
-                                 <h3 onClick={()=> alert('jde')} className='font-semibold text-gray-200 hover:text-gray-400'>Landlords</h3>
+                                  <Link to='/landlord-login'>
+                                  <h3  className='font-semibold text-gray-200 hover:text-gray-400'>Landlords</h3>
+                                  </Link>
                                 <hr/>
                                 <Link to='/renter-login'>
                                 <h3 className=' text-gray-200 font-semibold hover:text-gray-400'>Rentrs</h3>
@@ -95,7 +97,9 @@ function Navbar() {
                                  <div onMouseLeave={()=> setSignUpOPen(false)} className={`w-32 h-32 bg-gray-800 mt-4 -ml-16 rounded-md absolute ${!signUpOpen && "hidden"}`}>
                             <div className='w-5 h-5 rotate-45 -mt-2 bg-gray-800 ml-[70%]'></div>
                                <div className='flex flex-col p-5 gap-3 2'>
-                                 <h3 onClick={()=> alert('jde')} className='font-semibold text-gray-200 hover:text-gray-400'>Landlords</h3>
+                                <Link to='/landlord-signup'>
+                                <h3 className='font-semibold text-gray-200 hover:text-gray-400'>Landlords</h3>
+                                </Link>
                                 <hr/>
                                 <Link to='/renter-signup'>
                                 <h3 className=' text-gray-200 font-semibold hover:text-gray-400'>Rentrs</h3>

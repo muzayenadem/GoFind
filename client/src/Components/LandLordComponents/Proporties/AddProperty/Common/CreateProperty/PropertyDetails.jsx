@@ -1,15 +1,33 @@
 import React, { useState } from 'react'
 import { FaChevronLeft, FaRegMinusSquare, FaRegPlusSquare } from 'react-icons/fa'
 import { useSelector,useDispatch } from 'react-redux'
+import { setArea, setDetails } from '../../../../../../controller/AddProperty/propertyType'
 
 function PropertyDetails({next,page,previous}) {
-    const [value,setValue] = useState(0)
+    const details = useSelector(state => state.propertyType.details)
+    const area = useSelector(state => state.propertyType.area)
+    const [bedroom, setBedRoom] = useState(details.bedroom == ''  ?  1 : details.bedroom)
+    const [bathroom, setBathroom] = useState(details.bathroom =='' ? 1 : details.bathroom)
+    const [livingRoom, setLivingroom] = useState(details.livingRoom == '' ? 1 : details.livingRoom)  
+    const [guestCapability ,setGuestCapability] = useState(details.guestCapability == '' ? 1 : details.guestCapability)
+    const [minArea, setMinArea] = useState(area.min)
+    const [maxArea, setMaxArea] = useState(area.max)
+    
     const propertyType = useSelector(state => state.propertyType.subCategory)
     const clickHndler = () =>{
+        const detail = {
+            bedroom,bathroom,livingRoom,guestCapability
+        }
+        const areas = {
+            min:minArea,
+            max:maxArea,
+        }
+        dispatch(setDetails(detail))
+        dispatch(setArea(areas))
         dispatch(next())
     }
     const dispatch = useDispatch()
-    
+    console.log({area})
   return (
     <div className='container mx-auto md:mx-20 m-[2%] w-[96%] py-10 justify-center items-center'>
     <div className='  gap-6 flex flex-col md:w-[90%] '>
@@ -26,11 +44,11 @@ function PropertyDetails({next,page,previous}) {
                     <div className='flex gap-2'>
                     <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
+                        setLivingroom(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{value >= 0 ? value : 1}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{livingRoom >= 0 ? livingRoom : 1}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setLivingroom(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
                    </div>
                     </div>
@@ -40,11 +58,11 @@ function PropertyDetails({next,page,previous}) {
                     <div className='flex gap-2'>
                     <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
+                        setBathroom(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{value >= 0 ? value : 1}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{bathroom}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setBathroom(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
                    </div>
                     </div>
@@ -54,11 +72,11 @@ function PropertyDetails({next,page,previous}) {
                     <div className='flex gap-2'>
                     <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
+                        setGuestCapability(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{value >= 0 ? value : 1}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{guestCapability >= 0 ? guestCapability : 1}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setGuestCapability(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
                    </div>
                     </div>
@@ -68,11 +86,11 @@ function PropertyDetails({next,page,previous}) {
                     <div className='flex gap-2'>
                     <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
+                        setBedRoom(prev =>  prev >= 0 ? prev = prev - 1 : prev = 0)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{value >= 0 ? value : 1}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{bedroom >= 0 ? bedroom : 1}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setBedRoom(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
                    </div>
                     </div>
@@ -107,13 +125,13 @@ function PropertyDetails({next,page,previous}) {
             <div className='w-[40%]'>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Minimum area </h2>
-                <input type='number' placeholder='Min' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
+                <input type='number' onChange={(e)=> setMinArea(e.target.value)} defaultValue={area.min} placeholder='Min' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
             </div>
             </div>
             <div className='w-[40%]'>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Maximum area</h2>
-                <input type='number' placeholder='Max' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
+                <input type='number' onChange={(e) => setMaxArea(e.target.value)} defaultValue={area.max} placeholder='Max' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
             </div>
             </div>
          </div>

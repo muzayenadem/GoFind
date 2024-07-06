@@ -25,7 +25,7 @@ const SearchForLandlord = ({ onLocationSelect }) => {
     }
   };
 
-console.log({location})
+
 
   return (
     <>

@@ -4,7 +4,7 @@ import Renters from "../Real/Renters.js";
 import landlord from "../Real/landlord.js";
 import SearchedHome from "../data/SearchedHome/SearchedHome.js";
 import landlordProfileButtons from "../Buttons/landlordProfileButtons.js";
-
+import renterSignupSlice from "../RenterSignup/renterSignupSlice.js";
 //buttons
 import renterProfileButtons from "../Buttons/renterProfileButtons.js";
 import landlordToggle from "../Buttons/landlordToggle.js";
@@ -23,6 +23,8 @@ const store = configureStore({
         locationForLandlord,
 
 
+        // login and sign up
+        renterSignup:renterSignupSlice,
         renterNum:Renters,
         landlord:landlord,
 

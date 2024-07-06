@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { FaChevronLeft } from 'react-icons/fa'
 import { useSelector,useDispatch } from 'react-redux'
-import { setName } from '../../../../../../controller/AddProperty/propertyType'
+import { setLocation, setName } from '../../../../../../controller/AddProperty/propertyType'
 import countryList from 'react-select-country-list'
 import Select from 'react-select'
 import SearchLocation from '../Maps/SearchLocation'
@@ -11,11 +11,14 @@ import { useNavigate } from 'react-router-dom'
 
 
 function PropertyName({page,next,previous}) {
-    const [PropertyName,setPropertyName] = useState('')
-    const [country,setCountry] = useState('')
+    const location = useSelector(state => state.propertyType.location)
+    const locationStreat = useSelector(state => state.propertyType.locationWithName.name)
+    const [PropertyName,setPropertyName] = useState(location.name)
+    const [locationName, setLocationName] = useState(locationStreat)
+    const [country,setCountry] = useState(location.country)
     const [enable,setEnable] = useState(false)
-    const [postNumber,setPostNumber] = useState('')
-    const [city,setCity] = useState('')
+    const [postNumber,setPostNumber] = useState(location.postCode)
+    const [city,setCity] = useState(location.city)
     const inputRef = useRef()
     const navigate = useNavigate('')
     const propertyType = useSelector(state => state.propertyType.subCategory)
@@ -34,28 +37,33 @@ function PropertyName({page,next,previous}) {
     //   setMarkers([...markers, { lat: parseFloat(lat), lon: parseFloat(lon) }]);
     };
     const dispatch = useDispatch()
-    const clickHndler = () =>{
+
+    const sender = () =>{
+        const locat = {
+            name:PropertyName,country,city,postCode:postNumber
+        }
+        dispatch(setLocation(locat))
         dispatch(setName(PropertyName))
+    }
+    const clickHndler = () =>{
+        sender()
         dispatch(next())
-        console.log({maaliif:PropertyName})
     }
     const options = useMemo(() => countryList().getData(), [])
     const changeHandler = async value => {
        await enableHandler()
-        setCountry(value)
+        setCountry(value.label)
+        console.log(country)
       }
        
 
       const enableHandler = () =>{
-        if(propertyType != '' && postNumber != '' && country != '' && city != ''){
+        if(PropertyName != '' && postNumber != '' && country != '' && city != '' && locationName != ''){
             setEnable(true)
         }
         console.log({postNumber})  
       }
-      console.log({country})
-      console.log({postNumber})
-      console.log({PropertyName})
-
+      console.log({location})
   return (
     <>
        <div className=' mx-auto items-center justify-center md:mx-20 w-[96%] m-[2%] py-20 '>
@@ -66,7 +74,7 @@ function PropertyName({page,next,previous}) {
             <div className="flex flex-col gap-6 border-b-[1px] border-b-neutral-300 py-3">
             <h1 className='title2'>What is the name of your {propertyType} ?</h1>
             <p className='des'>Property name</p>
-            <input onInput={enableHandler} onChange={(e)=> setPropertyName(e.target.value)} className='border-[1px] md:w-[40%] rounded-sm border-neutral-500 py-2 px-6 focus:outline-none '/>
+            <input onInput={enableHandler & sender }  defaultValue={location.name} onChange={(e)=> setPropertyName(e.target.value)} className='border-[1px] md:w-[40%] rounded-sm border-neutral-500 py-2 px-6 focus:outline-none '/>
             </div>
 
 
@@ -77,13 +85,15 @@ function PropertyName({page,next,previous}) {
                 <div className="flex w-full justify-normal gap-5 flex-wrap" >
                     <div className="flex w-full md:w-[40%] flex-col gap-1">
                         <p className='des'>Country</p>
-                    <Select options={options} value={country} onChange={changeHandler} className=''/>
+                    <Select options={options} onInput={enableHandler & sender} defaultInputValue={location.country}  onChange={changeHandler} className=''/>
                     </div>
                     <div className="flex  flex-col gap-1">
                         <p className='des'>Street name and house number</p>
                         <input
                             type="text"
                             onInput={openSearch}
+                            onChange={(e)=> setLocationName(e.target.value) }
+                            defaultValue={locationStreat}
                             className='px-6 py-2 border-[1px]  border-neutral-400 focus:outline-none '
                             placeholder="Search by country, state, or zip code"
                             />
@@ -92,11 +102,11 @@ function PropertyName({page,next,previous}) {
                 <div className="flex w-full justify-normal gap-5 flex-wrap" >
                     <div className="flex md:w-[40%] flex-col gap-1">
                         <p className='des'>Post code</p>
-                        <input onInput={enableHandler} onChange={(e)=> setPostNumber(e.target.value)} placeholder='eg, 1000' className='px-4 py-2 border-[1px] w-40 border-neutral-400 focus:outline-none' />
+                        <input onInput={enableHandler & sender} defaultValue={location.postCode}  onChange={(e)=> setPostNumber(e.target.value)} placeholder='eg, 1000' className='px-4 py-2 border-[1px] w-40 border-neutral-400 focus:outline-none' />
                     </div>
                     <div className="flex md:w-[40%] flex-col gap-1">
                         <p className='des'>city</p>
-                        <input onInput={enableHandler} onChange={(e)=> setCity(e.target.value)}  placeholder='City' className='px-4 py-2 border-[1px] border-neutral-400 focus:outline-none' />
+                        <input onInput={enableHandler & sender} defaultValue={location.city} onChange={(e)=> setCity(e.target.value)} type='text'  placeholder='City' className='px-4 py-2 border-[1px] border-neutral-400 focus:outline-none' />
                     </div>
                 </div>
             </div>

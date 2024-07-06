@@ -2,32 +2,37 @@ import React, { useState } from 'react'
 import { FaChevronLeft } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import PriceDialouge from './PriceDialouge'
+import { setPrice } from '../../../../../../controller/AddProperty/propertyType'
 
 function PriceSystem({page,next,previous}) {
-    const [value,setValue] = useState(0)
+    let price = useSelector(state => state.propertyType.price)
+    price = parseInt(price)
+    const [value,setValue] = useState(price)
     const [open, setOpen] = useState(false)
-    const [enable,setEnable] = useState(true)
+    const [enable,setEnable] = useState(price <= 0 ? true : false)
     const propertyType = useSelector(state => state.propertyType.subCategory)
     const dispatch = useDispatch()
     const clickHndler = () =>{
        // dispatch(next())
        setOpen(true)
     }
-  const  enableHandler = () =>{
-   if (value > 0){
-    setEnable(false)
-   }else{
-    setEnable(true)
-   }
-   console.log(value)
-  }
+
   const changeHandler = (e) =>{
     e.preventDefault()
     setValue(e.target.value)
+    dispatch(setPrice(e.target.value))
   }
+  const  enableHandler = () =>{
+    if (price == '' & price <= 0){
+     setEnable(true)
+    }else{
+     setEnable(false)
+    }
+    console.log(value)
+   }
 
 
-
+console.log({price})
   return (
     <>
     <div className='container mx-auto md:mx-20 m-[2%] w-[96%] py-10 justify-center items-center'>
@@ -41,6 +46,7 @@ function PriceSystem({page,next,previous}) {
                         <input 
                         className='w-70 h-10 border-[1px] border-neutral-400 px-5 py-2 focus:outline-none rounded-sm'
                         type='number' 
+                        value={value !== price ? value || ` ${price}` : price}
                         onInput={enableHandler}
                         onChange={(e)=>changeHandler(e)}
                         placeholder='$'/>

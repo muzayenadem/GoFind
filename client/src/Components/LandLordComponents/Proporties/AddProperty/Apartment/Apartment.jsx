@@ -29,7 +29,6 @@ function Apartment() {
    {apartmentPage == 1 && multiple === false && <One page={apartmentPage} next={apartmentNextpage} previous={apartmentPreviousPage}/> }
    {apartmentPage == 1 && multiple === true && <Multiple page={apartmentPage} next={apartmentNextpage} previous={apartmentPreviousPage}/>}
    {apartmentPage == 2 && <PropertyName page={apartmentPage} next={apartmentNextpage} previous={apartmentPreviousPage}/>}
-   {apartmentPage == 2 && <PropertyEmenities page={apartmentPage} next={apartmentNextpage} previous={apartmentPreviousPage}/>}
    {apartmentPage == 3 && <PropertyDetails page={apartmentPage} next={apartmentNextpage} previous={apartmentPreviousPage}/>}
    {apartmentPage == 4 && <PropertyPermition page={apartmentPage} next={apartmentNextpage} previous={apartmentPreviousPage}/>}
    {apartmentPage == 5 && <PropertyPhotos page={apartmentPage} next={apartmentNextpage} previous={apartmentPreviousPage}/>}

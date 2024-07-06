@@ -23,6 +23,8 @@ import Map3 from '../Components/LandLordComponents/Proporties/AddProperty/Common
 import Map4 from '../Components/LandLordComponents/Proporties/AddProperty/Common/Maps/Map'
 import LocationOfProperty from '../Components/LandLordComponents/Proporties/AddProperty/Common/CreateProperty/LocationOfProperty'
 import { useSelector } from 'react-redux'
+import LandLordLogin from '../Components/Login/LandLordLogin'
+import LandlordSignup from '../Components/Signup/LanLordSignup'
 function Rout() {
   const propertyType = useSelector(state => state.propertyType.subCategory)
   return (
@@ -33,6 +35,8 @@ function Rout() {
               <Route path='' element={<Home/>}/>
               <Route path='renter-signup' element={<RenterSignup/>}/>
               <Route path='renter-login' element={<RenterLogin/>}/>
+              <Route path='landlord-login' element={<LandLordLogin/>}/>
+              <Route path='landlord-signup' element={<LandlordSignup/>}/>
               <Route path='renter-dashboard' element={<RenterDashbord/>}>
                     <Route path='' element={<RenterProfileEdiit/>}/>
                     <Route path='change-password' element={<ChangePassword/>}/>

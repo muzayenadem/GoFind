@@ -6,6 +6,7 @@ import { FaChevronLeft } from 'react-icons/fa'
 function PropertyPhotos({page,previous,next}) {
      const [photos, setPhotos] = useState([])
     const [isDraging, setIsDraging] = useState(false)
+    const [enable,setEnable] = useState(true)
     const fileRef = useRef()
 
     const dispatch = useDispatch()
@@ -18,8 +19,12 @@ function PropertyPhotos({page,previous,next}) {
       dispatch(setImages(e.target.files))      
     }
 
-
-
+    
+   useEffect(()=>{
+    if(images.length > 0){
+        setEnable(false)
+    }
+   },[images])
 
 
     console.log({photos})
@@ -53,13 +58,13 @@ function PropertyPhotos({page,previous,next}) {
                         })
                     }
                 </div>
-                <button onClick={()=> dispatch(next())} className='w-[100%] bg-blue-600 rounded-md py-2 text-white font-semibold hover:bg-blue-900'>Upload</button> 
+                <button onClick={()=> dispatch(next())} disabled={enable}  className={`w-[100%] ${!enable ?  'bg-blue-700 ': 'bg-neutral-400 hover:bg-neutral-500'} rounded-md py-2 text-white font-semibold hover:bg-blue-900`}>Upload</button> 
             </div>
             <div className='flex gap-2 '>
                 <div  onClick={()=> dispatch(previous())} className='w-[25%] flex justify-center items-center py-3 bg-white border-[1px] border-fuchsia-200  '>
                     <span className='font-bold text-2xl text-fuchsia-700 '><FaChevronLeft/></span>
                 </div>
-                <button  onClick={()=> dispatch(next())} className={`w-[73%]   bg-fuchsia-700  py-3 font-bold text-white text-center`}>Continue</button>
+                <button  onClick={()=> dispatch(next())} disabled={enable} className={`w-[73%]  ${!enable ?  'bg-fuchsia-700 ': 'bg-neutral-400 hover:bg-neutral-500'}  py-3 font-bold text-white text-center`}>Continue</button>
            </div>
         </div>
     </div>
