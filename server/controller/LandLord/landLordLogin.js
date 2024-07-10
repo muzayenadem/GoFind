@@ -18,7 +18,13 @@ const landLordLogin = async (req,res) =>{
        return res.status(401).send('wrong password')
 
        const token = jwt.sign({landLordId:ifLandLordBefore._id},process.env.LANDLORDPASSWORD)
-       res.cookie('landLordToken',token,{httpOnly:true}).send()
+       res.cookie('landLordToken', token, {
+        maxAge: 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        path: '/'
+    }).send('successfully logined!')
    } catch (error) {
        res.status(500).send(error.message)
    }

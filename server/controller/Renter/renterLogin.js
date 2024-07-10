@@ -18,7 +18,13 @@
         return res.status(403).send('wrong password')
 
         const token = jwt.sign({renterId:ifRenterBefore._id},process.env.RENTERPASSWORD)
-        res.cookie('renterToken',token,{httpOnly:true}).send('successfully logined!')
+        res.cookie('renterToken', token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            path: '/'
+        }).send('successfully logined!')
         console.log({token})
     } catch (error) {
         res.status(500).send(error.message)

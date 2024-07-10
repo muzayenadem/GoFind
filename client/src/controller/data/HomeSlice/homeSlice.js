@@ -1,5 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { mainLink } from "../../commonLink/mainLInk";
 const initailState = {
     loading:false,
     homes:[],
@@ -7,7 +8,7 @@ const initailState = {
 }
 
 export const fetchHomes = createAsyncThunk('home/fetchHomes',(value)=>{
-    return axios.get('http://localhost:3500/all-homes'+value)
+    return axios.get(`${mainLink}/all-homes`+value)
     .then(result =>{
         return result.data
     })

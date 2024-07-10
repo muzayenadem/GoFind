@@ -17,7 +17,7 @@ const renterProfile = async(req,res)=>{
         if(!renter)
         return res.status(404).send('there is no user with this token')
 
-        res.status(200).send(renter)
+        res.status(200).send(renter[0])
     } catch (error) {
         res.status(500).send(error.message)
     }

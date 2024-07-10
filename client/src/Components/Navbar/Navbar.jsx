@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import prof from './br1.jpg'
 import { Link } from 'react-router-dom'
 import RenterPopUp from './RenterPopUp'
@@ -9,16 +9,25 @@ import { useDispatch,useSelector} from 'react-redux'
 import LandlordPopUp from './LandlordPopUp'
 import { BsBlockquoteRight } from "react-icons/bs"
 import { MdOutlineClear } from "react-icons/md";
-
+import { renterTokenReducer } from '../../controller/tokens/renterToken'
+import renterProfileData from '../componentsData/renterProfileData'
+import { landlordTokenReducer } from '../../controller/tokens/landlordToken'
 function Navbar() {
-    const [renterToken,setUserToken] = useState(false)
-    const [landlordToken,setLandlordToken] = useState(false)
+    const [landlordTokee,setLandlordToken] = useState(false)
     const [loginOpen,setLoginOPen] = useState(false)
     const [signUpOpen,setSignUpOPen] = useState(false)
-    
     const state = useSelector(state => state.landlordToggle.open)
     // for buttons 
    const dispatch = useDispatch()
+   useEffect(()=>{
+    dispatch(renterTokenReducer())
+    dispatch(landlordTokenReducer())
+   },[])
+   const renterToken = useSelector(state => state.renterToken.token)
+   const landlordToken = useSelector(state => state.landlordToken.token)
+   const {fname} = renterProfileData()
+   console.log({landlordToken})
+   console.log({renterToken})
   return (
     <>
     {/* <dialog open={open} className='w-[90%] h-[50vh] bg-slate-700'>
@@ -49,13 +58,13 @@ function Navbar() {
             <div>
                 {
                     renterToken | landlordToken ?
-                    renterToken ? 
+                    renterToken == true ? 
                     <div>
                     <div onMouseOver={()=> dispatch(openForRenter())}  className='flex justify-start items-center gap-4'>
                    <img src={prof} className='w-12 h-12 rounded-full'/>
                    <div className="flex flex-col">
                     <p className='text-sm text-neutral-400'>@Renter</p>
-                     <h3 className='text-lg font-semibold '>Muzyn</h3>
+                     <h3 className='text-lg font-semibold '>{fname}</h3>
                    </div>
                </div>
                <RenterPopUp/>                   

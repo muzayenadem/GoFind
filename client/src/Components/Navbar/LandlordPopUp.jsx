@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom'
 import prof from './br1.jpg'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeForLandlord } from '../../controller/Buttons/landlordProfileButtons'
+import axios from 'axios'
+import { mainLink } from '../../controller/commonLink/mainLInk'
 function LandlordPopUp({}) {
     const landlordButton = useSelector(state => state.landlordProfileButtons.open)
     const dispatch = useDispatch()
     const close = () =>{
         dispatch(closeForLandlord())
+    }
+    const landlordLogout = async () =>{
+      await axios.get(`${mainLink}/logout-landlord`)
+      window.location.href = ''
     }
   return (
     <div onMouseLeave={close} className={`w-80 right-0 bg-white mt-1 shadow-lg shadow-neutral-800  rounded-md absolute ${!landlordButton && "hidden"}`}>
@@ -27,7 +33,7 @@ function LandlordPopUp({}) {
                                 <h3 className=' text-gray-700 font-semibold hover:text-gray-900'>Help</h3>
                                 </Link>
                                 <hr/>
-                                <Link to='/' onClick={close}>
+                                <Link to='/' onClick={landlordLogout}>
                                 <h3 className=' text-gray-700 font-semibold hover:text-gray-900'>Logout</h3>
                                 </Link>
                                 </div>

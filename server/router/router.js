@@ -1,4 +1,8 @@
 const allHomes = require('../controller/Admin/allHomes')
+const isLandlordLoggenned = require('../controller/AsureLoggined/isLandlordLoggened')
+const isRenterLoggenned = require('../controller/AsureLoggined/isRenterLginned')
+const logoutLandlord = require('../controller/AsureLoggined/logoutLandlord')
+const logoutRenter = require('../controller/AsureLoggined/logoutRenter')
 const searchedHome = require('../controller/Homes/searchedHome')
 const AddHome = require('../controller/LandLord/AddHome')
 const landLordProfile = require('../controller/LandLord/LandLordProfile')
@@ -16,6 +20,13 @@ router.route('/all-homes:id').get(allHomes)
 router.route('/api-renter-profile').get(renterAuthanticate,renterProfile)
 router.route('/api-landlord-profile').get(landLordAuthanticate,landLordProfile)
 router.route('/searched-home:id').get(searchedHome)
+//loginned asure api
+router.route('/isrenterloggined').get(isRenterLoggenned)
+router.route('/islandlordloggined').get(isLandlordLoggenned)
+
+// logout api
+router.route('/logout-renter').get(logoutRenter)
+router.route('/logout-landlord').get(logoutLandlord)
 
 // post method
 router.route('/api-renter-signup').post(renterSignup)

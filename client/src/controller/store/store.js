@@ -4,13 +4,16 @@ import Renters from "../Real/Renters.js";
 import landlord from "../Real/landlord.js";
 import SearchedHome from "../data/SearchedHome/SearchedHome.js";
 import landlordProfileButtons from "../Buttons/landlordProfileButtons.js";
-import renterSignupSlice from "../RenterSignup/renterSignupSlice.js";
 //buttons
 import renterProfileButtons from "../Buttons/renterProfileButtons.js";
 import landlordToggle from "../Buttons/landlordToggle.js";
 import propertyType from "../AddProperty/propertyType.js";
 import NextPrev from "../AddProperty/NextPrev.js";
 import locationForLandlord from "../Buttons/locationForLandlord.js";
+import renterToken from "../tokens/renterToken.js";
+import renterProfileSlice from "../data/RenterSlice/renterProfileSlice.js";
+import landlordProfileSlice from "../data/LandLordSlice/landlordProfileSlice.js";
+import landlordToken from "../tokens/landlordToken.js";
 const store = configureStore({
     reducer:{
         homesReducer:homeSlice,
@@ -24,16 +27,22 @@ const store = configureStore({
 
 
         // login and sign up
-        renterSignup:renterSignupSlice,
         renterNum:Renters,
         landlord:landlord,
 
+        // tokens reducer
+        renterToken,
+        landlordToken,
 
         //addition property states
         propertyType,
 
         //for next and previous page
-        NextPrev
+        NextPrev,
+
+        // profiles data
+        renterProfile:renterProfileSlice,
+        landlordProfile:landlordProfileSlice,
     }
 })
 export default store

@@ -7,6 +7,7 @@ import { TbPasswordUser } from "react-icons/tb";
 import { FaFacebookF, FaGoogle, FaMessage,FaPerson,FaPhone } from 'react-icons/fa6'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { mainLink } from '../../controller/commonLink/mainLInk';
 function LandlordSignup() {
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastname] = useState('')
@@ -16,6 +17,9 @@ function LandlordSignup() {
   const [confirmPassword,setConfirmPassword] = useState('')
   const [Message, setMessage] = useState("")
   const [errMessage, setErrMessage] = useState('')
+
+
+
   const loginHandler = (e) =>{
     e.preventDefault()
     if(firstName == ""){
@@ -40,17 +44,35 @@ function LandlordSignup() {
       setErrMessage('password must be matched')
     }
     else{
-      setErrMessage("Your message has been sent successfully")
+      // dispatch(landlordSignupReducer({firstName,lastName,email,phone,password,confirmPassword}))
+        
+     signupHandler()
       setEmail('')
       setFirstName('')
       setPhone('')
       setPassword('')
       setConfirmPassword('')
       setTimeout(() => {
-        setErrMessage("")
+       //dispatch(setClear())
       }, 3000);
      // axios.post()
     }
+  }
+
+
+  const signupHandler = async () =>{
+
+    const response = await axios.post(`${mainLink}/api-landlord-signup`,{firstName,lastName,email,phone,password,confirmPassword})
+    .then(res =>{
+     return res.data
+    })
+    .catch(err => {
+      return err.response.data
+    })
+    setErrMessage(response)
+    setTimeout(() => {
+      setErrMessage('')
+    }, 2000);
   }
   return ( 
     <div className='container py:10 md:py-20 mx-auto'>
@@ -62,7 +84,7 @@ function LandlordSignup() {
         <div className=''>
           <form className='md:w-2/3 flex gap-8 flex-col'>
           {
-          errMessage && <p className={`py-3 bg-neutral-100 shadow-lg shadow-slate-700 text-center animate-bounce ${errMessage == 'Your message has been sent successfully' ? 'text-green-900':' text-orange-700'} text-base mb-4 `}>{errMessage}</p>
+          errMessage && <p className={`py-3 bg-neutral-100 shadow-lg shadow-slate-700 text-center animate-bounce ${errMessage == 'your account successfully created' ? 'text-green-900':' text-orange-700'} text-base mb-4 `}>{errMessage}</p>
           } 
               <div className="flex  border-blue-300 border-b-[2px] ">
                 <span className='w-[15%] flex text-center items-center justify-center'><IoMdPerson/></span>

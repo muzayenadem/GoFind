@@ -4,16 +4,11 @@ import { IoMdPerson } from "react-icons/io";
 import { LuMailQuestion } from "react-icons/lu";
 import { FiPhoneForwarded } from "react-icons/fi";
 import { TbPasswordUser } from "react-icons/tb";
-import {useSelector, useDispatch} from 'react-redux'
 import { FaFacebookF, FaGoogle, FaMessage,FaPerson,FaPhone } from 'react-icons/fa6'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { renterSignupReducer } from '../../controller/RenterSignup/renterSignupSlice';
+import { mainLink } from '../../controller/commonLink/mainLInk';
 function RenterSignup() {
-  const error =  useSelector(state => state.renterSignup.error)
-  console.log({error})
-  const succed =  useSelector(state => state.renterSignup.succed)
-  console.log({succed})
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastname] = useState('')
   const [email,setEmail] = useState('')
@@ -22,8 +17,6 @@ function RenterSignup() {
   const [confirmPassword,setConfirmPassword] = useState('')
   const [Message, setMessage] = useState("")
   const [errMessage, setErrMessage] = useState('')
-  const dispatch = useDispatch()
-
 
   const loginHandler = (e) =>{
     e.preventDefault()
@@ -49,8 +42,8 @@ function RenterSignup() {
       setErrMessage('password must be matched')
     }
     else{
-      dispatch(renterSignupReducer({firstName,lastName,email,phone,password,confirmPassword}))
-      setErrMessage(succed)
+      
+      signupHandler()
       setEmail('')
       setFirstName('')
       setPhone('')
@@ -62,6 +55,20 @@ function RenterSignup() {
      // axios.post()
     }
   }
+  const signupHandler = async () =>{
+
+    const response = await axios.post(`${mainLink}/api-renter-signup`,{firstName,lastName,email,phone,password,confirmPassword})
+    .then(res =>{
+     return res.data
+    })
+    .catch(err => {
+      return err.response.data
+    })
+    setErrMessage(response)
+    setTimeout(() => {
+      setErrMessage('')
+    }, 2000);
+  }
   return ( 
     <div className='container py:10 md:py-20 mx-auto'>
          <div className="flex justify-center items-center border-b-[1px] border-b-neutral-300 py-6">
@@ -72,7 +79,7 @@ function RenterSignup() {
         <div className=''>
           <form className='md:w-2/3 flex gap-8 flex-col'>
           {
-          errMessage && <p className={`py-3 bg-neutral-100 shadow-lg shadow-slate-700 text-center animate-bounce ${errMessage == succed ? 'text-green-900':' text-orange-700'} text-base mb-4 `}>{errMessage}</p>
+          errMessage && <p className={`py-3 bg-neutral-100 shadow-lg shadow-slate-700 text-center animate-bounce ${errMessage == 'your account successfully created' ? 'text-green-900':' text-orange-700'} text-base mb-4 `}>{errMessage}</p>
           }
               <div className="flex  border-blue-300 border-b-[2px] ">
                 <span className='w-[15%] flex text-center items-center justify-center'><IoMdPerson/></span>

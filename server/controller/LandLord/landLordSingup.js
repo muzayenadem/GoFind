@@ -4,18 +4,18 @@ const jwt = require('jsonwebtoken')
 const landLordSignup = async (req,res) =>{
     
     try {
-        const {firstName,lastName,email,phone,password,confirmpassword} = req.body
+        const {firstName,lastName,email,phone,password,confirmPassword} = req.body
 
-        if(!firstName || !lastName || !email || !phone || !password || !confirmpassword)
-        return res.status(404).send('you need to fill all place')
+        if(!firstName || !lastName || !email || !phone || !password || !confirmPassword)
+        return res.status(401).send('you need to fill all place')
 
         const ifUserExistBefore = await landLordModel.findOne({email})
         
         if(ifUserExistBefore)
-        return res.status(404).send("this email is already exist")
+        return res.status(402).send("this email is already exist")
 
-        if(password !== confirmpassword)
-        return res.status(404).send('password is not matched')
+        if(password !== confirmPassword)
+        return res.status(403).send('password is not matched')
 
 
         const salt = await bcrypt.genSalt(10)
@@ -34,11 +34,16 @@ const landLordSignup = async (req,res) =>{
         console.log(savedLandLord)
       
         const token = jwt.sign({landLordId:savedLandLord._id},process.env.LANDLORDPASSWORD)
-        res.cookie('landLordToken',token,{
-            httpOnly: true
-         }).send()
+        res.cookie('landLordToken', token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            path: '/'
+        }).send('your account successfully created')
 
     } catch (error) {
+        console.log({error:error.message})
         res.status(500).send(error.message)
     }
  }

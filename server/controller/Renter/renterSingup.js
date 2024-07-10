@@ -34,10 +34,13 @@ const renterSignup = async (req,res) =>{
         console.log(savedRenter)
       
         const token = jwt.sign({renterId:savedRenter._id},process.env.RENTERPASSWORD)
-        res.cookie('renterToken',token,{
-            httpOnly: true
-         })
-         res.status(200).send('your account successfully created')
+        res.cookie('renterToken', token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            path: '/'
+        }).send('your account successfully created')
     } catch (error) {
         console.log({error:error.message})
         res.status(500).send(error.message)
