@@ -16,7 +16,7 @@ function PropertyName({page,next,previous}) {
     const [PropertyName,setPropertyName] = useState(location.name)
     const [locationName, setLocationName] = useState(locationStreat)
     const [country,setCountry] = useState(location.country)
-    const [enable,setEnable] = useState(false)
+    const [enable,setEnable] = useState(true)
     const [postNumber,setPostNumber] = useState(location.postCode)
     const [city,setCity] = useState(location.city)
     const inputRef = useRef()

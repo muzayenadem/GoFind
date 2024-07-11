@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react'
 import Select from 'react-select'
 import countryList from 'react-select-country-list'
 import { Link } from "react-router-dom";
+import PropertyList from "./PropertyList";
 function MainProperty() {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState('')
@@ -24,7 +25,7 @@ function MainProperty() {
     }
   return (
     <>
-      <div className='container w-full  md:mx-auto py-20 md:px-40'>
+      <div className='container w-full   md:mx-auto py-20 md:px-20'>
         <div className="flex flex-wrap  justify-between w-[100%]">
             <div>
                 <h1>Group Homepage</h1>
@@ -33,6 +34,7 @@ function MainProperty() {
                 <button onClick={()=> setOpen(true)} className='text-center py-2 px-6 w-52 bg-blue-600 text-white boreder-[1px] border-white hover:bg-blue-900 '>Add Property</button>
             </div>
         </div>
+     <PropertyList/>
     </div>
     <dialog open={open}>
     <div className='fixed left-[5%] w-[90%] top-[15%] md:left-[33%] md:w-[30%]  p-8 bg-white rounded-2xl shadow-lg '>

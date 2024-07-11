@@ -12,6 +12,8 @@ import { MdOutlineClear } from "react-icons/md";
 import { renterTokenReducer } from '../../controller/tokens/renterToken'
 import renterProfileData from '../componentsData/renterProfileData'
 import { landlordTokenReducer } from '../../controller/tokens/landlordToken'
+import axios from 'axios'
+import { mainLink } from '../../controller/commonLink/mainLInk'
 function Navbar() {
     const [landlordTokee,setLandlordToken] = useState(false)
     const [loginOpen,setLoginOPen] = useState(false)
@@ -28,6 +30,9 @@ function Navbar() {
    const {fname} = renterProfileData()
    console.log({landlordToken})
    console.log({renterToken})
+
+
+ 
   return (
     <>
     {/* <dialog open={open} className='w-[90%] h-[50vh] bg-slate-700'>
