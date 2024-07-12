@@ -30,7 +30,7 @@ function SubmittingPropertyPage({page,next , previous}) {
                <h1 className='title2'>Before submitting your listing, please review all the details to ensure accuracy. Would you like to review your listing one more time, or are you ready to submit it now? </h1>
                 <div className="flex justify-end pt-10 self-end gap-5 px-5 items-end">
                   <button onClick={() => dispatch(previous())} className=' bg-fuchsia-700 hover:bg-fuchsia-900 text-white font-semibold text-center px-6 rounded-md py-2'>Review</button>   
-                  <button onClick={submitHandeler} className='bg-green-700 hover:bg-green-900 text-white font-semibold text-center px-10 rounded-md py-2'>Submitt</button>                    
+                  <button onClick={()=> submitHandeler() &   navigate('/landloard-dashboard/property')} className='bg-green-700 hover:bg-green-900 text-white font-semibold text-center px-10 rounded-md py-2'>Submitt</button>                    
                 </div>
             </div>   
         </div>

@@ -5,7 +5,7 @@ import { landlordProfileReducer } from '../../controller/data/LandLordSlice/land
 function landlordProfileData() {
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(landlordProfileReducer)
+        dispatch(landlordProfileReducer())
     },[])
     const profile = useSelector(state => state.landlordProfile.data)
   return {

@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 
 const listLandlordProperty = async (req,res) =>{
     try {
+        
         const landlordToken = req.cookies.landLordToken
         
         const verified = jwt.verify(landlordToken,process.env.LANDLORDPASSWORD)

@@ -16,12 +16,21 @@ import { MdOutlineUnpublished } from "react-icons/md";
 import { TbCreditCardPay } from "react-icons/tb";
 import { RiDeleteBinLine } from "react-icons/ri";
 import DeletePopup from './popupsOfPropertyList/DeletePopup';
+import UnPublishPopup from './popupsOfPropertyList/UnPublishPopup';
+import EmptyPage from './EmptyPage';
 
 function PropertyList() {
-   const listOfProperty = landlordProperty()
+   const list = landlordProperty()
+   const [listOfProperty, setListOfProperty] = useState(list)
    const [isOpen, setIsOpen] = useState(false)
    const [openDelete,setOpenDelete] = useState(false)
+   const [openPublish,setOpenPublish] = useState(false)
    const [openId,setOpenId] = useState('')
+   const [all,setAll] = useState(true)
+   const [apartment,setApartment] = useState(false)
+   const [home,setHome] = useState(false)
+   const [hotel, setHotel] = useState(false)
+   const [other, setOther] = useState(false)
    console.log({listOfProperty})
    console.log({isOpen})
    const openHandler = (id) =>{
@@ -40,23 +49,97 @@ function PropertyList() {
     console.log({dd:'dddddddd'})
    }
 
+   const ForAll = () =>{ 
+    setListOfProperty(list)
+    setApartment(false)
+    setHome(false)
+    setHotel(false)
+    setOther(false)
+    setAll(true)
+   }
+   const ForApartment = () =>{
+    const onlyApartmants = list.filter(single => single.property.category == 'apartment')
+    setListOfProperty(onlyApartmants)
+    setApartment(true)
+    setHome(false)
+    setHotel(false)
+    setOther(false)
+    setAll(false)
+   }
+   const ForHome = () =>{
+    const onlyHome = list.filter(single => single.property.category == 'homes')
+    setListOfProperty(onlyHome)
+    setApartment(false)
+    setHome(true)
+    setHotel(false)
+    setOther(false)
+    setAll(false)
+   }
+   const ForHotels = () =>{
+    const onlyHotels = list.filter(single => single.property.category == 'hotels')
+    setListOfProperty(onlyHotels)
+    setApartment(false)
+    setHome(false)
+    setHotel(true)
+    setOther(false)
+    setAll(false)
+   }
+   const ForOther = () =>{
+    const onlyOthers = list.filter(single => single.property.category == 'alternative')
+    setListOfProperty(onlyOthers)
+    setApartment(false)
+    setHome(false)
+    setHotel(false)
+    setOther(true)
+    setAll(false)
+   }
+
+
    const clicks = [
     {title:'Calander',icon:<CgCalendarDates/>,func:deletep},
     {title:'Preview',icon:<MdOutlinePreview/>,func:()=>alert('preview')},
     {title:'Edit',icon:<CiEdit/>},
     {title:'Duplicate',icon:<HiOutlineDuplicate/>},
-    {title:'Unpublish',icon:<MdOutlineUnpublished/>},
+    {title:'Unpublish',icon:<MdOutlineUnpublished/>, func:()=>{
+        setIsOpen(false)
+        setOpenDelete(false)
+        setOpenPublish(true)
+    }},
     {title:'Payment and tax',icon:<TbCreditCardPay/>},
-    {title:'Delete',icon:<RiDeleteBinLine/>,func:()=> setOpenDelete(true)},
+    {title:'Delete',icon:<RiDeleteBinLine/>,func:()=> {
+        setIsOpen(false)
+        setOpenPublish(false)
+        setOpenDelete(true)
+    }},
    ]
+
+   if(listOfProperty.length == 0){
+    listOfProperty == list
+   }
+   
+   let homes = []
+   listOfProperty.length != 0 ? homes = listOfProperty : all == true ?  homes =  list : homes = []
+  console.log({homes})
   return (
-    <div className='py-10 px-5 w-100 h-auto '>
+    <div className='py-10 px-5 w-100 h-auto'>
+        <div className="flex gap-2 p-2">
+            <div onClick={ForAll} className={` ${all==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>All</div>
+            <div onClick={ForApartment} className={` ${apartment==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Apartmant</div>
+            <div onClick={ForHome} className={` ${home==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Homes</div>
+            <div onClick={ForHotels} className={` ${hotel==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Hotel</div>
+            <div onClick={ForOther} className={` ${other==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Other</div>
+        </div>
         <dialog open={openDelete}>
-            <DeletePopup openDelete={setOpenDelete}/>
+            <DeletePopup openDelete={setOpenDelete} id={openId}/>
         </dialog>
+        <dialog open={openPublish}>
+            <UnPublishPopup setOpenPublish={setOpenPublish} id={openId}/>
+        </dialog>
+        {
+            homes.length ?
         <div>
             {
-                listOfProperty.map((single,i)=>{
+                homes.map((single,i)=>{
                     const name = single.property.name
                     const price = single.property.price
                     const id = single._id
@@ -76,11 +159,11 @@ function PropertyList() {
                                             <p className='text-base text-neutral-500'>5 peymantes</p>
                                         </div>
                                         <div onClick={()=> openHandler(id)} className="flex text-2xl w-10 h-10 justify-center items-center border-[1px] border-neutral-500 rounded-xl"><IoMdMore/></div>
-                                        <div onMouseLeave={()=> setIsOpen(!isOpen)} className={` shadow-lg shadow-neutral-500 rounded-md absolute z-10 top-16    w-48  bg-white ${isOpen == true & id == openId  ? '':'hidden'} `}>
+                                        <div onMouseLeave={()=> setIsOpen(false)} className={` shadow-lg shadow-neutral-500 rounded-md absolute z-10 top-16    w-48  bg-white ${isOpen == true & id == openId  ? '':'hidden'} `}>
                                             {
                                                 clicks.map((single,i)=>{
                                                     return (
-                                                        <div key={i} onClick={single.func} className='w-full h-10 p-3 flex gap-2 text-start hover:bg-slate-200'>
+                                                        <div key={i} onClick={()=> single.func() } className='w-full h-10 p-3 flex gap-2 text-start hover:bg-slate-200'>
                                                             <span className='text-xl mt-1'>{single.icon}</span>{single.title}
                                                         </div>
                                                     )
@@ -105,11 +188,11 @@ function PropertyList() {
                                             <p className='text-base text-neutral-500'>5 peymantes</p>
                                         </div>
                                         <div onClick={()=> openHandler(id)} className="flex text-2xl w-10 h-10 justify-center items-center border-[1px] border-neutral-500 rounded-xl"><IoMdMore/></div>
-                                        <div onMouseLeave={()=> setIsOpen(!isOpen)} className={` shadow-lg shadow-neutral-500 rounded-md absolute z-10 top-16    w-48  bg-white ${isOpen == true & id == openId  ? '':'hidden'} `}>
+                                        <div onMouseLeave={()=> setIsOpen(false)} className={` shadow-lg shadow-neutral-500 rounded-md absolute z-10 top-16    w-48  bg-white ${isOpen == true & id == openId  ? '':'hidden'} `}>
                                             {
                                                 clicks.map((single,i)=>{
                                                     return (
-                                                        <div key={i} onClick={single.func} className='w-full h-10 p-3 flex gap-2 text-start hover:bg-slate-200'>
+                                                        <div key={i} onClick={()=> single.func()} className='w-full h-10 p-3 flex gap-2 text-start hover:bg-slate-200'>
                                                             <span className='text-xl mt-1'>{single.icon}</span>{single.title}
                                                         </div>
                                                     )
@@ -157,6 +240,9 @@ function PropertyList() {
                 })
             }
         </div>
+        :
+        <EmptyPage/>
+}
     </div>
   )
 }

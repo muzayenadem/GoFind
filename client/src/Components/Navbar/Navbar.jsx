@@ -14,6 +14,7 @@ import renterProfileData from '../componentsData/renterProfileData'
 import { landlordTokenReducer } from '../../controller/tokens/landlordToken'
 import axios from 'axios'
 import { mainLink } from '../../controller/commonLink/mainLInk'
+import landlordProfileData from '../componentsData/landlordProfileData'
 function Navbar() {
     const [landlordTokee,setLandlordToken] = useState(false)
     const [loginOpen,setLoginOPen] = useState(false)
@@ -28,6 +29,7 @@ function Navbar() {
    const renterToken = useSelector(state => state.renterToken.token)
    const landlordToken = useSelector(state => state.landlordToken.token)
    const {fname} = renterProfileData()
+   const landlordName = landlordProfileData().fname
    console.log({landlordToken})
    console.log({renterToken})
 
@@ -79,7 +81,7 @@ function Navbar() {
                    <img src={prof} className='w-12 h-12 rounded-full'/>
                    <div className="flex flex-col">
                     <p className='text-sm text-neutral-400'>@Landlord</p>
-                     <h3 className='text-lg font-semibold '>Muzyn</h3>
+                     <h3 className='text-lg font-semibold '>{landlordName}</h3>
                    </div>
                </div>
                <LandlordPopUp/>                   

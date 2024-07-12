@@ -7,6 +7,7 @@ const searchedHome = require('../controller/Homes/searchedHome')
 const AddHome = require('../controller/LandLord/AddHome')
 const addProperty = require('../controller/LandLord/AddProperty')
 const landLordProfile = require('../controller/LandLord/LandLordProfile')
+const deleteProperty = require('../controller/LandLord/deleteProperty')
 const landLordLogin = require('../controller/LandLord/landLordLogin')
 const landLordSignup = require('../controller/LandLord/landLordSingup')
 const listLandlordProperty = require('../controller/LandLord/listLandlordProperty')
@@ -37,6 +38,8 @@ router.route('/api-renter-login').post(renterLogin)
 router.route('/api-landlord-signup').post(landLordSignup)
 router.route('/api-landlord-login').post(landLordLogin)
 router.route('/api-landlord-add-property').post(landLordAuthanticate,addProperty)
+router.route('/api-delete-property').post(landLordAuthanticate,deleteProperty)
+
 //examle
 router.route('/add-home').post(AddHome)
 

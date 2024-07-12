@@ -6,8 +6,10 @@ import { IoBag } from "react-icons/io5";
 import { SiStagetimer } from "react-icons/si";
 import GainsChart from './GainsChart';
 import RentStatusChart from './RentStatusChart';
+import landlordProfileData from '../../componentsData/landlordProfileData';
 
 function LandLordMainDashboard() {
+    const {fname} = landlordProfileData()
     const data = [
         { month: 'January', gain: 1000 },
         { month: 'February', gain: 1200 },
@@ -36,7 +38,7 @@ function LandLordMainDashboard() {
     <div className='w-full md:container md:mx-auto md:px-20  p-6  gap-10'>
         <div className="md:container md:mx-auto bg-neutral-100 md:px-20 py-6 w-full h-full">
             <div className="grid grid-cols-1 md:grid-cols-2">
-                <h1 className='text-center text-gray-950 font-bold text-3xl py-2'>Hello Muzayen</h1>
+                <h1 className='text-center text-gray-950 font-bold text-3xl py-2'>Hello {fname}</h1>
                 <div className='grid grid-cols-2 md:grid-cols-4 gap-2  '>
                     <div className='w-40 bg-neutral-200 h-12 text-center py-2 flex justify-center items-center gap-6'>
                         <span >Reciever</span>
