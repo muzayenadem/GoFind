@@ -122,9 +122,9 @@ function PropertyList() {
   console.log({homes})
   return (
     <div className='py-10 px-5 w-100 h-auto'>
-        <div className="flex gap-2 p-2">
+        <div className="grid grid-cols-3 lg:grid-cols-5 gap-2 p-2">
             <div onClick={ForAll} className={` ${all==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>All</div>
-            <div onClick={ForApartment} className={` ${apartment==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Apartmant</div>
+            <div onClick={ForApartment} className={` ${apartment==true ? ' bg-fuchsia-700 text-white':''} overflow-hidden flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Apartmant</div>
             <div onClick={ForHome} className={` ${home==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Homes</div>
             <div onClick={ForHotels} className={` ${hotel==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Hotel</div>
             <div onClick={ForOther} className={` ${other==true ? ' bg-fuchsia-700 text-white':''} flex px-5 py-1 border-[1px] border-neutral-500 rounded-md`}>Other</div>
