@@ -14,8 +14,10 @@ function LandLordDashboard() {
     return (
         <div className=' bg-neutral-100 m-0 '>
             <Navbar/>
-            <div className="flex justify-start gap-5" >
+            <div className="flex relative justify-start gap-5" >
+                <div className="flex fixed top-0 md:top-0 z-10 left-0">
                 <LandlordSidebar/>
+                </div>
                 {/* <Outlet/> */}
                 {/* <MainProperty/> */}
                 {/* <LandLordMainDashboard/> */}

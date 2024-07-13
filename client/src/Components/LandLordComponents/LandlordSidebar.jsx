@@ -18,16 +18,18 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 
 ////
 import { FaFacebook,FaGoogle,FaYoutube,FaX, FaQuora,FaGithub,FaReddit,FaChartArea,FaTiktok,FaInstagram ,FaArrowDown,FaArrowUp,FaLinkedin} from 'react-icons/fa6';
-import { MdSpaceDashboard } from "react-icons/md";
+import { MdClear, MdSpaceDashboard } from "react-icons/md";
 
 import { useState } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeLandlordSidebarToggle } from '../../controller/Buttons/landlordToggle';
 
 function LandlordSidebar() {
     const [collapsed, setCollapsed] = useState(false); // Example of managing collapsed state
     const [toggled, setToggled] = useState(false); // Example of managing toggled state
 
+    const dispatch = useDispatch()
     const state = useSelector(state => state.landlordToggle.open)
     console.log({state})
 
@@ -43,6 +45,9 @@ function LandlordSidebar() {
       const toggleSidebar = () => {
         setToggled(true);
       };
+      const close = ()=>{
+        dispatch(closeLandlordSidebarToggle())
+      }
   console.log({toggled})
   const responsive = () =>{
     setOpen(true)
@@ -51,14 +56,17 @@ function LandlordSidebar() {
     // <Select 
     // className='w-[98%] ml-[1%] md:hidden mb-2'
     // options={butn2}/>
-    <div className={` py-14 md:py-0 absolute md:sticky bg-white top-0 left-0  ${!state && 'hidden md:block'}`}>
-            <Sidebar className={`h-[100vh] sticky top-0 left-0 md:py-3 `} 
+    <div className={` py-1 md:py-0 sticky md:sticky bg-white top-0 left-0  ${!state && 'hidden md:block'}`}>
+            <Sidebar className={`h-[100vh] sticky top-2  left-0 md:py-3 `} 
                collapsed={collapsed}
                toggled={toggled}
                breakPoint={''} // Example breakpoint
                rtl={false} // Example RTL setting
                >
-                  <div className='flex flex-col justify-end items-end pr-6 py-5'>
+                <div onClick={close} className="flex md:hidden flex-col justify-end items-end px-6 py-2">
+                  <span className='text-2xl font-bold'><MdClear/></span>
+                </div>
+                  <div className='flex flex-col justify-end items-end px-6 py-5'>
                     <button>
                         {
                             collapsed ?
@@ -69,12 +77,12 @@ function LandlordSidebar() {
                     </button>
                   </div>
     <Menu>
-    <MenuItem icon={<MdSpaceDashboard/>} component={<Link to=''/>}> Dashboard </MenuItem>
+    <MenuItem icon={<MdSpaceDashboard/>} onClick={close} component={<Link to=''/>}> Dashboard </MenuItem>
       <SubMenu icon={<FaArrowDown/> && <FaArrowUp/>} label="Payments">
         <MenuItem icon={<FaGithub/>}> Pie chart </MenuItem>
         <MenuItem icon={<FaLinkedin/>}> Line charts </MenuItem>
       </SubMenu>
-      <MenuItem icon={<IoHome/>} component={<Link to='property'/>}>Property </MenuItem>
+      <MenuItem icon={<IoHome/>} onClick={close} component={<Link to='property'/>}>Property </MenuItem>
       <MenuItem icon={<IoIosBed/>}> Listing </MenuItem>
       <MenuItem icon={<FaTiktok/>}> Tiktok </MenuItem>
       <MenuItem icon={<FaReddit/>}> Reddit </MenuItem>
