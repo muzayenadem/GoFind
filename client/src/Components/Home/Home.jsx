@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom'
 function Home() {
   return (
     <section className='pb-10'>
-     <div className='grid grid-cols-1'>
+     <div className='grid grid-cols-1 m-0'>
       <div>
       <div>
         <HomeTop/>

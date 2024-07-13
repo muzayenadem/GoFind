@@ -4,7 +4,7 @@ import { FaAppStore, FaApple, FaCopyright, FaFacebook, FaGooglePlay, FaInstagram
 function Footer() {
   return (
     <div className=' w-full h-uto bg-neutral-100 flex flex-col'>
-        <div className='container mx-auto py-10 px-52 gap-10 grid grid-cols-1 md:grid-cols-4 border-b-[1px] border-b-neutral-300'>
+        <div className='container mx-auto py-10 px-5 md:px-10 lg:px-48 xl:px-52 gap-10 grid grid-cols-1 md:grid-cols-4 border-b-[1px] border-b-neutral-300'>
           <div className='flex flex-col gap-5'>
             <h2 className='font-bold text-neutral-600'>GoFind</h2>
             <ul className='flex flex-col gap-4'> 

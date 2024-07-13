@@ -46,7 +46,7 @@ function HomeTop() {
     console.log(searchedHome)
   return (
     <>
-    <div className=' py-3 border-b-[1px]'>
+    <div className=' py-3 px-2 border-b-[1px]'>
             <div className='container mx-auto py-15  flex flex-col gap-5 border-b-black '>
             <h1 className=' text-2xl text-neutral-300 font-bold '> FIND YOUR NEXT HOME</h1>
            <h2 className=' text-2xl font-bold '>Rent a place, stay safe</h2>
@@ -244,11 +244,11 @@ function HomeTop() {
                            setFilter(true)
                            setLivingArea(false)
                            setRoom(false)
-                      }} className='flex gap-2 border-[1px] border-neutral-200 items-start w-32 pt-3 justify-center h-14'>
+                      }} className='flex gap-2 border-[1px] border-neutral-200 items-start md:w-32 pt-3 justify-center h-14'>
                          <span onClick={searchHandler} className=' from-neutral-500 text-2xl items-center justify-center flex text-center py-auto'>
                          <GiSettingsKnobs/>
                      </span>
-                        <h1>Filters</h1>
+                        <h1 className='hidden md:block'>Filters</h1>
                       </div>
                      </div>
                  </div>
