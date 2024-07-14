@@ -11,7 +11,7 @@ const listLandlordProperty = async (req,res) =>{
         const properties = await propertyModel.find({landLordId:verified.landLordId})
 
         res.status(200).send(properties)
-        console.log({properties})
+        //console.log({properties})
     } catch (error) {
         console.log({error:error.message})
     }

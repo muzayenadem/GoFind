@@ -18,17 +18,15 @@ const router = require('./router/router')
 const app = express()
 app.use(cors({
     origin:['https://gofind.vercel.app','http://localhost:5173','https://gofind-git-ecommerce-muzayen.vercel.app'],
-    //
      credentials:true,
      methods: 'GET,POST,PUT,DELETE',
      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
    }))
 
-   app.options('/sendmessage', cors()); // enable pre-flight requests
+  // app.options('/sendmessage', cors()); // enable pre-flight requests
 
 app.use(express.json())
 app.use(bodyParser.json())
-app.use(express.static('Files'))
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 

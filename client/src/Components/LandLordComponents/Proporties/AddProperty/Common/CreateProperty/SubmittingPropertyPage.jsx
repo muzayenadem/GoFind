@@ -12,7 +12,7 @@ function SubmittingPropertyPage({page,next , previous}) {
   const property = useSelector(state => state.propertyType)
   console.log({property})
   const submitHandeler = async ()=>{
-    const response = await axios.post(`${mainLink}/api-landlord-add-property`,property)
+    const response = await axios.post(`${mainLink}/api-landlord-add-property`,{property})
     .then( res => {
       return res.data
     })

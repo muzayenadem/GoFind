@@ -3,7 +3,8 @@ const propertyModel = require('../../models/propertyModel')
 
 const addProperty = async (req,res) =>{
     try {
-        const property = req.body
+        const {property} = req.body
+        console.log({property})
         const landlord = req.cookies.landLordToken
         if(!landlord)
         return res.status(404).send('not logginned')
