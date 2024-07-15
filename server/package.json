@@ -4,8 +4,8 @@
   "description": "house for rental",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server",
-    "start": "nodemon server.js"
+    "dev": "nodemon index",
+    "start": "nodemon index.js"
   },
   "author": "Muzayen Adem",
   "license": "ISC",

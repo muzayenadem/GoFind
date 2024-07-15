@@ -17,7 +17,6 @@
     "chakra": "^0.0.3",
     "chart.js": "^4.4.3",
     "dotenv": "^16.4.5",
-    "firebase": "^10.12.3",
     "jest": "^29.7.0",
     "leaflet": "^1.9.4",
     "leaflet-geosearch": "^4.0.0",
