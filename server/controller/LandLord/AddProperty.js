@@ -48,7 +48,7 @@ const addProperty = async (req,res) =>{
             property
         })
         const savedProperty = await addedProperty.save()
-        console.log({savedFile:savedProperty})
+        console.log({savedFile:savedProperty.images})
     } catch (error) {
         console.log({error:error.message})
     }
