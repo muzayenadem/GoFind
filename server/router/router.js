@@ -1,3 +1,6 @@
+const multer = require('multer')
+
+
 const allHomes = require('../controller/Admin/allHomes')
 const isLandlordLoggenned = require('../controller/AsureLoggined/isLandlordLoggened')
 const isRenterLoggenned = require('../controller/AsureLoggined/isRenterLginned')
@@ -18,6 +21,11 @@ const landLordAuthanticate = require('../middleware/landLordAuthanticate')
 const renterAuthanticate = require('../middleware/renterAuthanticate')
 
 const  router = require('express').Router()
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+
 //get method
 router.route('/all-homes:id').get(allHomes)
 router.route('/api-renter-profile').get(renterAuthanticate,renterProfile)
@@ -37,7 +45,7 @@ router.route('/api-renter-signup').post(renterSignup)
 router.route('/api-renter-login').post(renterLogin)
 router.route('/api-landlord-signup').post(landLordSignup)
 router.route('/api-landlord-login').post(landLordLogin)
-router.route('/api-landlord-add-property').post(landLordAuthanticate,addProperty)
+router.route('/api-landlord-add-property').post(landLordAuthanticate, upload.array('files'),addProperty)
 router.route('/api-delete-property').post(landLordAuthanticate,deleteProperty)
 
 //examle

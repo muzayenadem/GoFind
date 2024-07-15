@@ -6,6 +6,11 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config({path:'./config.env'})
+const fs = require('fs');
+const path = require('path');
+
+// Load environment variables
+require('dotenv').config();
 mongoose.connect(process.env.DATABASE)
 .then(()=>{
     console.log('database successfully connected')
@@ -27,6 +32,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
