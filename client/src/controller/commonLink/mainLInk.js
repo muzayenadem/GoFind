@@ -1,5 +1,6 @@
-export const mainLink = 'https://gofind-49r2.onrender.com'
-//'http://localhost:3500'
+export const mainLink = 'http://localhost:3500'
+// 'https://gofind-49r2.onrender.com'
+
 
 
 
