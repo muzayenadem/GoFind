@@ -10,6 +10,7 @@ lerna-debug.log*
 
 node_modules
 configu
+
 dist
 dist-ssr
 *.local
@@ -20,7 +21,7 @@ dist-ssr
 .idea
 
 .DS_Store
-
+.configu
 *.suo
 *.ntvs*
 *.njsproj
