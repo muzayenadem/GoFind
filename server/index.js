@@ -22,7 +22,7 @@ mongoose.connect(process.env.DATABASE)
 const router = require('./router/router')
 
 const app = express()
-app.use(cors({
+app.use(cors({ 
     origin:['https://gofind.vercel.app','http://localhost:5173','https://gofind-git-ecommerce-muzayen.vercel.app'],
      credentials:true,
      methods: 'GET,POST,PUT,DELETE',
