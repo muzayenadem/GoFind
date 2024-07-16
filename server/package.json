@@ -4,7 +4,7 @@
   "description": "house for rental",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "dev": "nodemon index.js"
   },
   "author": "Muzayen Adem",
@@ -28,5 +28,5 @@
   },
   "engines": {
     "node": "20.15.1"
-  }  
+  }
 }

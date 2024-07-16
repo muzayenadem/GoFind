@@ -4,14 +4,14 @@ const admin = require('../../firebase/admin')
 
 const addProperty = async (req,res) =>{
     try {
-        const landlord = req.cookies.landLordToken
-        if(!landlord)
-        return res.status(404).send('not logginned')
+        // const landlord = req.cookies.landLordToken
+        // if(!landlord)
+        // return res.status(404).send('not logginned')
 
-        const verified = jwt.verify(landlord,process.env.LANDLORDPASSWORD )
+        // const verified = jwt.verify(landlord,process.env.LANDLORDPASSWORD )
 
-        if(!verified)
-        return res.status(403).send('not authanticated')
+        // if(!verified)
+        // return res.status(403).send('not authanticated')
 
         let {property} = req.body
         const files = req.files
@@ -42,7 +42,7 @@ const addProperty = async (req,res) =>{
           const imagesUrl = await Promise.all(uploadPromises);
           property.images = imagesUrl
         const addedProperty = new propertyModel({
-            landLordId:verified.landLordId,
+            landLordId:'mmmm',
             property
         })
         const savedProperty = await addedProperty.save()
