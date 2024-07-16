@@ -9,8 +9,6 @@ lerna-debug.log*
 
 
 node_modules
-/configu
-configu
 dist
 dist-ssr
 *.local
@@ -19,7 +17,6 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.configu
 .DS_Store
 .configu
 *.suo
