@@ -6,8 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-configu
 
+configu
 node_modules
 dist
 dist-ssr
@@ -19,7 +19,7 @@ dist-ssr
 .idea
 
 .DS_Store
-.configu
+
 *.suo
 *.ntvs*
 *.njsproj
