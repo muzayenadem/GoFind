@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken')
-const {getStorage,uploadBytesResumable,getDownloadURL,ref} = require('firebase/storage')
 const propertyModel = require('../../models/propertyModel')
-const app = require('../../firebase/firebaseConfig')
 const admin = require('../../firebase/admin')
 
 const addProperty = async (req,res) =>{
