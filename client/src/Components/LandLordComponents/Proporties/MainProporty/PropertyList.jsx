@@ -143,6 +143,7 @@ function PropertyList() {
                     const name = single.property.name
                     const price = single.property.price
                     const id = single._id
+                    const images = single.property.images
                     return(
                         <div key={i} className='bg-white mt-2 relative flex-wrap xl:flex-nowrap flex gap-5 rounded-md p-2 w-full'>
                              <div className="flex justify-between w-full  lg:hidden">
@@ -172,7 +173,7 @@ function PropertyList() {
                                         </div>
                                     </div>
                                 </div>
-                            <div className="flex"><img src={bg6} className=' sm:h-auto sm-w-full lg:w-48 lg:h-36 rounded-md'></img></div>
+                            <div className="flex"><img src={images[2]} className=' sm:h-auto sm-w-full lg:w-48 lg:h-36 rounded-md'></img></div>
                             <div className="flex flex-col w-full p-3">
                                 <div className=" hidden  lg:flex justify-between w-full flex-wrap">
                                     <div className="flex flex-col gap-1">
@@ -205,7 +206,7 @@ function PropertyList() {
                                     <div className="flex gap-5">
                                         <span className='text-2xl mt-5'><FaRegHeart/></span>
                                         <div className="flex flex-col gap-2">
-                                            <p className='text-base text-neutral-400'>xomething</p>
+                                            <p className='text-base text-neutral-400'>something</p>
                                             <h2 className='text-xl underline text-blue-400 '>54 visitors</h2>
                                         </div>
                                     </div>
