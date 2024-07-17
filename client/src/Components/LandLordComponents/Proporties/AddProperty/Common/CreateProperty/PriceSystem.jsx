@@ -63,7 +63,7 @@ console.log({price})
            </div>
         </div>
     </div>
-    <dialog open={open} className='fixed z-10 bg-white rounded-md shadow-lg shadow-neutral-950 w-[96%] -left-[16%] lg:-left-[30%] top-[20%] md:w-[40%]  p-6'>
+    <dialog open={open} className='fixed z-10 bg-white rounded-md shadow-lg shadow-neutral-950 w-[96%]  left-[1/2%]  lg:-left-[30%] top-[22%] md:w-[48%]  p-6'>
         <PriceDialouge value={value} next={next} previous={previous} page={page} state={setOpen}/>
     </dialog>
     </>

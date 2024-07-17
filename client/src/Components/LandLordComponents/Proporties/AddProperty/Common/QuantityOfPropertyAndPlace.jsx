@@ -52,9 +52,9 @@ function QuantityOfPropertyAndPlace({page,next,previous}) {
       }  
     const propertyType = useSelector(state => state.propertyType.subCategory)
   return (
-    <div className=' mx-auto md:px-20 py-20'>
+    <div className=' mx-auto md:px-20 py-20   m-[2%] w-[96%]'>
         <div className='  gap-6 flex flex-col  '>
-        <div className="flex flex-col gap-5 bg-white justify-center items-center py-12 px-8 ">
+        <div className="flex flex-col gap-5 bg-white justify-center shadow-md shadow-neutral-500 items-center py-12 px-8 ">
             <h1 className='head1'>How many {propertyType} are you listing?</h1>
 
             <div className="w-full px-4">

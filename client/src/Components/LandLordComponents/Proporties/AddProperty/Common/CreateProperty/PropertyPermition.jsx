@@ -85,7 +85,7 @@ function PropertyPermition({page,next,previous}) {
     ]
     
   return (
-    <div className='container md:w-[1000px] mx-auto md:mx-20 py-10 justify-center items-center'>
+    <div className='container md:w-[1000px]  m-[2%] w-[96%] mx-auto md:mx-20 py-10 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
             <div className='bg-white py-10 px-6 gap-3 rounded-md shadow-md shadow-neutral-700 flex flex-col '>

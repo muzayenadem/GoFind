@@ -32,12 +32,12 @@ function PropertyPhotos({page,previous,next}) {
     const propertyType = useSelector(state => state.propertyType.subCategory)
     console.log(images)
   return (
-    <div className='container md:w-[1000px] mx-auto md:mx-20 py-10 justify-center items-center'>
+    <div className='container md:w-[1000px] mx-auto md:mx-20 m-[2%] w-[96%] py-10 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
-            <div className='bg-white py-10 px-6 gap-3 rounded-md shadow-md shadow-neutral-700 flex flex-col '>
+            <div className='bg-white py-10 px-6 gap-3 rounded-md shadow-md shadow-neutral-500 flex flex-col '>
                 <h1 className='title'>Leave the picture of your {propertyType} </h1>
-                <div className="flex gap-10 py-10 content-center items-center justify-center w-full  border-dashed font-bold border-blue-800 border-[2px] text-center">
+                <div className="flex gap-10 py-10 content-center items-center px-5 justify-center w-full  border-dashed font-bold border-blue-800 border-[2px] text-center">
                     <p className=''>Drop your {propertyType} images here</p>
                     <label>
                     <p className='text-blue-700 ' role='button' >Browse</p>
@@ -48,7 +48,7 @@ function PropertyPhotos({page,previous,next}) {
                     {
                         images.map((img,i)=>{
                             return (
-                                <div key={i} className='relative w-[150px] h-[150px] mb-4 ml-4'>
+                                <div key={i} className='relative w-[130px] h-[130px] mb-4 ml-4'>
                                 <div className="flex justify-center items-center p-1 w-6 h-6 absolute top-1 right-1 bg-white rounded-full">
                                 <span className='  text-xl font-bold   p-1  text-black rounded-full'  onClick={()=> dispatch(removeImage(images.indexOf(img))) & console.log({index:images.indexof(img)})}>&times;</span>
                                 </div>

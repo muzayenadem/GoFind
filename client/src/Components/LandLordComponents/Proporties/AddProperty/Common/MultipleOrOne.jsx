@@ -47,10 +47,10 @@ function MultipleOrOne({page,next,previous}) {
     console.log({dat:propertyType})
      console.log({selected}) 
   return (
-    <div className='container mx-auto  py-20'>
+    <div className='container mx-auto md:mx-20 m-[2%] w-[96%]  py-20'>
         <div className='  gap-6 flex flex-col  '>
-        <div className="flex flex-col gap-5 bg-white justify-center items-center py-12 px-8 ">
-            <h1 className='head1'>How many {propertyType} kkk are you listing?</h1>
+        <div className="flex flex-col gap-5 bg-white justify-center shadow-md shadow-neutral-500 items-center py-12 px-8 ">
+            <h1 className='head1 text-center'>How many {propertyType}  are you listing?</h1>
 
             <div className="w-full px-4">
       <div className="mx-auto text-black w-full ">

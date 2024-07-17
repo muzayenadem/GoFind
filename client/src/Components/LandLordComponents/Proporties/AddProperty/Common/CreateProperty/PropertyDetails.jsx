@@ -104,16 +104,16 @@ function PropertyDetails({next,page,previous}) {
 
 
 
-            <div className='flex flex-col gap-5 justify-between px-20 py-5 border-b-[1px] border-b-neutral-300 '>
+            <div className='flex flex-col gap-5 justify-between px-5 md:px-20 py-5 border-b-[1px] border-b-neutral-300 '>
             <h2 className='text-xl font-bold '>Price Range</h2>
-         <div className='flex py-2 px-5 justify-normal gap-11'>
-            <div className='w-[40%]'>
+         <div className='flex flex-col md:flex-row py-2 px-5 justify-normal gap-2'>
+            <div className='w-full'>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Minimum price</h2>
                 <input type='number' placeholder='Min' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
             </div>
             </div>
-            <div className='w-[40%]'>
+            <div className='w-full'>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Maximum price</h2>
                 <input type='number' placeholder='Max' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
@@ -121,14 +121,14 @@ function PropertyDetails({next,page,previous}) {
             </div>
          </div>
          <h2 className='text-xl font-bold '>Available area meter squeare</h2>
-         <div className='flex py-2 px-5 justify-normal gap-11'>
-            <div className='w-[40%]'>
+         <div className='flex flex-col md:flex-row py-2 px-5 justify-normal gap-2'>
+            <div className=' w-full '>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Minimum area </h2>
                 <input type='number' onChange={(e)=> setMinArea(e.target.value)} defaultValue={area.min} placeholder='Min' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
             </div>
             </div>
-            <div className='w-[40%]'>
+            <div className=' w-full md'>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Maximum area</h2>
                 <input type='number' onChange={(e) => setMaxArea(e.target.value)} defaultValue={area.max} placeholder='Max' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>

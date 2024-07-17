@@ -31,9 +31,9 @@ function MultipleOrPrivatePage({page,next,previous}) {
         }
       }    
   return (
-    <div className='container mx-auto md:px-2 py-20'>
-        <div className='  gap-6 flex flex-col w-[96%] m-[2%] '>
-        <div className="flex flex-col gap-5 bg-white justify-center items-center py-12 px-8 ">
+    <div className='container mx-auto  md:mx-20 m-[2%] w-[96%] py-20'>
+        <div className='  gap-6 flex flex-col  '>
+        <div className="flex flex-col gap-5 bg-white justify-center shadow-md shadow-neutral-500 items-center py-12  ">
             <h1 className='head1'>What can guests book?</h1>
 
             <div className="w-full px-4">

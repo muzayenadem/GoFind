@@ -17,13 +17,15 @@ function LandLordDashboard() {
             <div className="flex relative justify-start gap-5" >
                 <div className="flex fixed top-0 md:top-0 z-10 left-0">
                 <LandlordSidebar/>
-                </div>
+                </div >
                 {/* <Outlet/> */}
                 {/* <MainProperty/> */}
                 {/* <LandLordMainDashboard/> */}
                 {/* <ListingMain/> */}
 
+                <div className="md:ml-10">
                 <Outlet/>
+                </div>
             </div>
         </div>
       )

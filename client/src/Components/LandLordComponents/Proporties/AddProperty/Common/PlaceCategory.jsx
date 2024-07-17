@@ -23,8 +23,8 @@ function PlaceCategory({subCategories,page,next,previous}) {
         }
       }  
   return (
-  <div className="container py-20 md:px-20">
-    <div className="flex flex-col gap-8 w-[96%] m-[2%] ">
+  <div className="container py-20 md:px-20 ">
+    <div className="flex flex-col gap-8 w-[98%] ml-[1%]  ">
         <h1 className='head1 text-center'>From the list below, which property category is most similar to your place?</h1>
         <div className="flex">
         <RadioGroup by="subCategory" value={selected} onChange={setSelected} aria-label="Server size" className="space-y-2">
