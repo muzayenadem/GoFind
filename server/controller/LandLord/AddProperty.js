@@ -3,6 +3,7 @@ const propertyModel = require('../../models/propertyModel')
 const admin = require('../../firebase/admin')
 
 const addProperty = async (req,res) =>{
+  const bucket = admin.storage().bucket(); 
     try {
         const landlord = req.cookies.landLordToken
         if(!landlord)
@@ -16,7 +17,7 @@ const addProperty = async (req,res) =>{
         let {property} = req.body
         const files = req.files
         property = JSON.parse(property)   
-        const bucket = admin.storage().bucket();    
+          
         const uploadPromises = files.map(async (file) => {
             const fileName = `${Date.now()}-${file.originalname}`;
             const fileRef = bucket.file(`proportyImages/${fileName}`);
