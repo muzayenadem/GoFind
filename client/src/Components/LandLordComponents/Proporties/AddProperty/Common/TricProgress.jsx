@@ -14,7 +14,7 @@ function TricProgress({page}) {
   }
   return (
    <div className='container'>
-    <div className='mt-10 flex-col  md:flex-row flex md:py-20 md:px-10 px-5 md:h-[100vh] sticky left-0 top-0 '>
+    <div className='mt-10 flex-col  md:flex-row flex md:py-20 md:px-10 px-5 md:h-[100vh] sticky md:fixed right-0 top-0 '>
     <div className='md:h-auto md:w-[2px] hidden md:block w-auto h-[3px] bg-neutral-400 rounded-md'></div>
     <div className='flex md:block'>
     <div  className='w-full h-1/6 flex group '>

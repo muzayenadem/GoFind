@@ -85,7 +85,7 @@ function PropertyPermition({page,next,previous}) {
     ]
     
   return (
-    <div className='container md:w-[1000px]  m-[2%] w-[96%] mx-auto md:mx-20 py-10 justify-center items-center'>
+    <section className='   w-[96%] md:w-[78%] md:ml-[7%] lg:w-[95%]min-h-screen xl:w-[125%] 2xl:w-[143%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
             <div className='bg-white py-10 px-6 gap-3 rounded-md shadow-md shadow-neutral-700 flex flex-col '>
@@ -113,7 +113,7 @@ function PropertyPermition({page,next,previous}) {
             <button  onClick={clickHndler} className={`w-[73%]  bg-fuchsia-700  py-3 font-bold text-white text-center`}>Continue</button>
         </div>
         </div>
-    </div>
+    </section>
   )
 }
 

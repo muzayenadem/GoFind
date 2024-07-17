@@ -29,7 +29,7 @@ function PropertyDetails({next,page,previous}) {
     const dispatch = useDispatch()
     console.log({area})
   return (
-    <div className='container mx-auto md:mx-20 m-[2%] w-[96%] py-10 justify-center items-center'>
+    <section className='min-h-screen   w-[96%] md:w-[78%] md:ml-[7%] lg:w-[100%] xl:w-[130%] 2xl:w-[150%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
     <div className='  gap-6 flex flex-col md:w-[90%] '>
         <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
 
@@ -149,7 +149,7 @@ function PropertyDetails({next,page,previous}) {
         <button  onClick={clickHndler} className={`w-[73%]   bg-fuchsia-700  py-3 font-bold text-white text-center`}>Continue</button>
     </div>
     </div>
-    </div>
+    </section>
   )
 }
 

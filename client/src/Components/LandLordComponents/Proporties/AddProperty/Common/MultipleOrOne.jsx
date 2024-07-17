@@ -47,7 +47,7 @@ function MultipleOrOne({page,next,previous}) {
     console.log({dat:propertyType})
      console.log({selected}) 
   return (
-    <div className='container mx-auto md:mx-20 m-[2%] w-[96%]  py-20'>
+    <section className='  min-h-screen w-[96%] md:w-[75%] md:ml-[7%] lg:w-[100%] xl:w-[125%] 2xl:w-[143%] lg:ml-[20%] xl:ml-[30%] 2xl:ml-[40%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col  '>
         <div className="flex flex-col gap-5 bg-white justify-center shadow-md shadow-neutral-500 items-center py-12 px-8 ">
             <h1 className='head1 text-center'>How many {propertyType}  are you listing?</h1>
@@ -65,10 +65,8 @@ function MultipleOrOne({page,next,previous}) {
                 <div className="text-sm/6 flex gap-6 py-10">
                 <span className='text-5xl text-fuchsia-700'>{plan.icon}</span>
                   <p className="font-semibold text-center ">{plan.name}</p>
-                
-                
                 </div>
-                <CheckCircleIcon className="size-6 fill-blue-700 opacity-0 transition group-data-[checked]:opacity-100" />
+                <CheckCircleIcon className="size-10  md:size-6 -mt-10 -mr-5 md:mt-0 md:mr-0   fill-blue-700 opacity-0 transition group-data-[checked]:opacity-100" />
               </div>
             </Radio>
           ))}
@@ -92,7 +90,7 @@ function MultipleOrOne({page,next,previous}) {
         </div>
         </div>
      
-        </div>
+        </section>
         
   )
 }

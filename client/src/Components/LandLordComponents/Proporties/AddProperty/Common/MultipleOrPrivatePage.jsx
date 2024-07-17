@@ -31,7 +31,7 @@ function MultipleOrPrivatePage({page,next,previous}) {
         }
       }    
   return (
-    <div className='container mx-auto  md:mx-20 m-[2%] w-[96%] py-20'>
+    <section className=' min-h-screen md:w-[60%] xl:w-[80%] 2xl:w-[96%] w-[96%] md:ml-[10%] lg:ml-[20%] xl:ml-[15%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col  '>
         <div className="flex flex-col gap-5 bg-white justify-center shadow-md shadow-neutral-500 items-center py-12  ">
             <h1 className='head1'>What can guests book?</h1>
@@ -43,12 +43,12 @@ function MultipleOrPrivatePage({page,next,previous}) {
             <Radio
               key={plan.name}
               value={plan}
-              className="group relative flex cursor-pointer rounded-lg bg-white/5 py-4 px-5  shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-neutral-400 data-[checked]:bg-white/10"
+              className="group justify-between relative gap-3 flex cursor-pointer rounded-lg bg-white/5 py-4 px-2  shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-neutral-400 data-[checked]:bg-white/10"
             >
-              <div className="flex w-full items-center justify-between">
+              {/* <div className="flex w-full items-center justify-between">
                 <div className="text-sm/6 flex gap-6">
+                   <span className='text-5xl text-fuchsia-700'>{plan.icon}</span>
                 <div>
-                    <span className='text-5xl text-fuchsia-700'>{plan.icon}</span>
                   </div>
                   <div className='flex flex-col gap-1 '>
                   <p className="font-semibold ">{plan.name}</p>
@@ -56,7 +56,13 @@ function MultipleOrPrivatePage({page,next,previous}) {
                   </div>
                 </div>
                 <CheckCircleIcon className="size-6 fill-blue-700 opacity-0 transition group-data-[checked]:opacity-100" />
-              </div>
+              </div> */}
+              <span className='text-5xl text-fuchsia-700'>{plan.icon}</span>
+              <div className='flex flex-col gap-1 '>
+                  <p className="font-semibold ">{plan.name}</p>
+                  <p className='title2'>{plan.des}</p>
+                  </div>
+                  <CheckCircleIcon className="size-20 md:size-6 -mt-10 md:mt-0 fill-blue-700 opacity-0 transition group-data-[checked]:opacity-100" />
             </Radio>
           ))}
         </RadioGroup>
@@ -71,7 +77,7 @@ function MultipleOrPrivatePage({page,next,previous}) {
         </div>
         </div>
      
-        </div>
+        </section>
         
   )
 }

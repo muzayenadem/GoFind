@@ -35,7 +35,7 @@ function PriceSystem({page,next,previous}) {
 console.log({price})
   return (
     <>
-    <div className='container mx-auto md:mx-20 m-[2%] w-[96%] py-10 justify-center items-center'>
+    <section className='  min-h-[110vh] w-[96%] md:w-[80%] md:ml-[10%] lg:w-[100%] xl:w-[125%] 2xl:w-[143%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[96%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
             <div className=''>
@@ -62,8 +62,8 @@ console.log({price})
                 <button disabled={enable} onClick={clickHndler} className={`w-[73%]   ${enable ? ' bg-neutral-400' : 'bg-fuchsia-700'}  py-3 font-bold text-white text-center`}>Continue</button>
            </div>
         </div>
-    </div>
-    <dialog open={open} className='fixed z-10 bg-white rounded-md shadow-lg shadow-neutral-950 w-[96%]  left-[1/2%]  lg:-left-[30%] top-[22%] md:w-[48%]  p-6'>
+    </section>
+    <dialog open={open} className=' z-10 bg-white rounded-md shadow-lg shadow-neutral-950 w-[96%]  left-[1/2%]  lg:-left-[30%] top-[22%] md:w-[48%]  p-6'>
         <PriceDialouge value={value} next={next} previous={previous} page={page} state={setOpen}/>
     </dialog>
     </>

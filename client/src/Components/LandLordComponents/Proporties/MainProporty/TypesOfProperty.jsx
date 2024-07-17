@@ -32,7 +32,7 @@ function TypesOfProperty() {
       dispatch(setCategory(link))
     }
   return (
-    <div className='md:container md:mx-auto py-20 md:px-40'>
+    <div className=' min-h-screen md:container md:mx-auto py-20 md:px-40'>
         <div className='flex flex-col gap-6'>
             <div className="flex gap-4 flex-col">
                 <h1 className='head1 text-center'>List your property on Booking.com and start welcoming guests in no time!</h1>
@@ -63,32 +63,6 @@ function TypesOfProperty() {
               }
             </div>
         </div>  
-        {/* <TEAlert staticAlert open={true} color="bg-success-100 text-success-700">
-        A simple success alert—check it out!
-      </TEAlert>   */}
-     
-    {/* <RadioGroup value={selected} onChange={setSelected} aria-label="Server size">
-      {plans.map((plan) => (
-        <Field key={plan.name} disabled={!plan.available} className="flex items-center gap-2">
-          <Radio as={Fragment} value={plan}>
-            {({ checked, disabled }) => (
-              <span
-                className={clsx(
-                  'group flex size-5 items-center justify-center rounded-full border',
-                  checked ? 'bg-blue-400' : 'bg-white',
-                  disabled && 'bg-gray-100'
-                )}
-              >
-                {checked && <span className="size-2 rounded-full bg-white" />}
-              </span>
-            )}
-          </Radio>
-          <Label as={Fragment}>
-            {({ disabled }) => <label className={disabled && 'opacity-50'}>{plan.name}</label>}
-          </Label>
-        </Field>
-      ))}
-    </RadioGroup> */}
     </div>
   )
 }

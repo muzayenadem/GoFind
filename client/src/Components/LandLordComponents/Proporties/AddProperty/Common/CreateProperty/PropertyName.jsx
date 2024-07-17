@@ -66,7 +66,7 @@ function PropertyName({page,next,previous}) {
       console.log({location})
   return (
     <>
-       <div className=' mx-auto items-center justify-center md:mx-20 w-[96%] m-[2%] py-20 '>
+       <section className='  min-h-screen w-[96%] md:w-[90%] md:ml-[10%] lg:w-[120%] xl:w-[160%] 2xl:w-[200%] lg:ml-[25%] xl:ml-[35%] 2xl:ml-[50%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
         <div className=''>
@@ -130,7 +130,7 @@ function PropertyName({page,next,previous}) {
             <button disabled={!enable} onClick={clickHndler} className={`w-[73%] ${enable ?  'bg-fuchsia-700 ': 'bg-neutral-300'} py-3 font-bold text-white text-center`}>Continue</button>
         </div>
         </div>
-        </div> 
+        </section> 
         <dialog open={openLocationForLandlord}>
             <div className='w-[80%] h-[73vh] overflow-hidden z-10 fixed top-[20%] left-[10%] p-2 bg-white rounded-md shadow-lg shadow-black'>
                 <LocationOfProperty/>

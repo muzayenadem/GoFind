@@ -7,7 +7,7 @@ const [checked,setChecked] = useState(false)
  const realValue = value - persantage
     const dispatch = useDispatch()
   return (
-    <div className="flex flex-col px-3">
+    <div className="flex flex-col ">
       <div className="flex flex-col">
         <p className='title'>We charge a 10% fee for the services we render.</p>
        <div className="flex flex-col gap-2 py-5  px-6 border-b-[1px] border-b-neutral-200">
@@ -42,7 +42,7 @@ const [checked,setChecked] = useState(false)
           <span className='label-text'>Do you agree to the 10% service fee for the services we are offering?</span>
         </label>
       </div>
-      <div className="flex justify-end items-end self-end py-5 gap-2">
+      <div className="flex justify-end items-end self-end  py-5 gap-2">
         <button onClick={()=> state(false)} className={`w-20 h-10 ${!checked ? 'bg-fuchsia-700 rounded-md  hover:bg-fuchsia-900' : ' bg-blue-700' }  text-white font-bold text-center`}>Cancel</button>
         <button disabled={!checked} onClick={()=> dispatch(next())} className={`w-56 h-10 ${checked ? 'bg-fuchsia-700 rounded-md  hover:bg-fuchsia-900' : ' bg-neutral-400' }  text-white font-bold text-center`}>Continue</button>
       </div>

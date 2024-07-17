@@ -33,10 +33,9 @@ function SubmittingPropertyPage({page,next , previous}) {
     console.log({response})
   }
   return (
-    <div className='container md:w-[1000px] mx-auto md:mx-20 py-10 justify-center items-center'>
+    <section className=' min-h-screen w-[96%] md:w-[75%] md:ml-[8%]   lg:ml-[10%] xl:ml-[15%] 2xl:ml-[20%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Almost done!!!</h1>
-            <input type='text' onChange={(e) => setName(e.target.value)} placeholder='enter your name here'/> 
             <div className='bg-white py-10 px-6 gap-3 rounded-md shadow-md shadow-neutral-700 flex flex-col '>
                <h1 className='title'>You have done all the steps of listing {propertyCategory}! </h1>
                <h1 className='title2'>Before submitting your listing, please review all the details to ensure accuracy. Would you like to review your listing one more time, or are you ready to submit it now? </h1>
@@ -46,7 +45,7 @@ function SubmittingPropertyPage({page,next , previous}) {
                 </div>
             </div>   
         </div>
-    </div>
+    </section>
   )
 }
 

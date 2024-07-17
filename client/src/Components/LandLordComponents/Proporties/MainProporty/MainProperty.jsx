@@ -25,7 +25,7 @@ function MainProperty() {
     }
   return (
     <>
-      <div className='container w-full   md:mx-auto py-20 md:px-20'>
+      <div className='container w-full    md:mx-auto py-20 md:px-20'>
         <div className="flex flex-wrap px-6 justify-between w-[100%]">
             <div>
                 <h1>Group Homepage</h1>

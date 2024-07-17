@@ -6,7 +6,7 @@ function Multiple({page,next,previous}) {
     const dispatch = useDispatch()
     const propertyType = useSelector(state => state.propertyType.subCategory)
   return (
-    <div className='container mx-auto md:mx-20 py-20 justify-center m-[2%] w-[96%] items-center'>
+    <section className=' min-h-screen w-[96%] md:w-[130%] md:ml-[10%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
       <div className='bg-white py-10 px-6 gap-12 rounded-md shadow-md shadow-neutral-500 md:w-[50%]  flex flex-col '>
         <div className='flex flex-col justify-center items-center gap-6'>
         <h2>Your're listing</h2>
@@ -19,7 +19,7 @@ function Multiple({page,next,previous}) {
           <button onClick={()=> dispatch(previous())} className='w-full  bg-white text-fuchsia-700 border-[1px] border-fuchsia-600 text-center font-bold py-3'>No. I need to make change </button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

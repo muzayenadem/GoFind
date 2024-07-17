@@ -23,7 +23,7 @@ function PlaceCategory({subCategories,page,next,previous}) {
         }
       }  
   return (
-  <div className="container py-20 md:px-20 ">
+    <section className=' min-h-screen md:w-[80%] w-[96%] md:ml-[7%]  ml-[2%] md:px-20 py-20 justify-center items-center'>
     <div className="flex flex-col gap-8 w-[98%] ml-[1%]  ">
         <h1 className='head1 text-center'>From the list below, which property category is most similar to your place?</h1>
         <div className="flex">
@@ -56,7 +56,7 @@ function PlaceCategory({subCategories,page,next,previous}) {
             <div onClick={clickHandler} className='w-[73%] bg-fuchsia-700 py-3 font-bold text-white text-center'>Continue</div>
         </div>
     </div>
-  </div>
+  </section>
   )
 }
 
