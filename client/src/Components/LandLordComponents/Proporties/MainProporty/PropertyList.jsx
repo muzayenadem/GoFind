@@ -173,7 +173,7 @@ function PropertyList() {
                                         </div>
                                     </div>
                                 </div>
-                            <div className="flex"><img src={images[2]} className=' sm:h-auto sm-w-full lg:w-48 lg:h-36 rounded-md'></img></div>
+                            <div className="flex"><img src={images[0]} className=' sm:h-auto sm-w-full lg:w-48 lg:h-36 rounded-md'></img></div>
                             <div className="flex flex-col w-full p-3">
                                 <div className=" hidden  lg:flex justify-between w-full flex-wrap">
                                     <div className="flex flex-col gap-1">
