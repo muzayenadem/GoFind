@@ -10,4 +10,6 @@ import bg5 from './bg5.jpeg'
 import bg6 from './bg6.jpg'
 import bg7 from './bg7.png'
 import br1 from './br1.jpg'
-export {img1,img2,img3,bg,bg1,log,bg3,bg4,bg5,bg6,bg7,br1}
+import samp1 from './samp1.jpg'
+import samp2 from './samp2.jpg'
+export {img1,img2,img3,bg,bg1,log,bg3,bg4,bg5,bg6,bg7,br1,samp1,samp2}

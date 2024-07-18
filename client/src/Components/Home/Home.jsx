@@ -3,6 +3,7 @@ import { img1, img3 } from '../Data/Images'
 import RentalHousesCard from './RentalHousesCard'
 import HomeTop from './HomeTop'
 import { Outlet } from 'react-router-dom'
+import Crousel from './Crousel'
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       </div>
             <div>
                 <RentalHousesCard/>
+                {/* <Crousel/> */}
             </div>
       </div>
      </div>

@@ -5,6 +5,7 @@ import { FaAngleLeft,FaAngleRight } from "react-icons/fa6";
 import Pagination from './Pagination';
 import { fetchHomes } from '../../controller/data/HomeSlice/homeSlice';
 import { useSelector,useDispatch } from 'react-redux';
+import ImageSlider from './ImageSlider';
 function RentalHousesCard() {
      const [homeData, setHomeData] = useState([])
      const [dotActive, setDotActive] = useState()
@@ -105,10 +106,11 @@ function RentalHousesCard() {
         <div className='container mx-auto py-20'>
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
     {
-        homes.map(({title,des,price},i) => {
+        homes.map(({name,price,images,category},i) => {
+          
             return (
-                <div key={i} className='w-full h-auto mt-2 bg-white shadow-lg   shadow-neutral-300'>
-                  <Slider {...settings} className=' overflow-hidden '>
+                <div style={{width:"100%" ,height:'auto'}} key={i} className=' h-auto mt-2 bg-white shadow-lg   shadow-neutral-300'>
+                  {/* <Slider {...settings} className=' overflow-hidden '>
                           <div>
                       <img src={img1} className='w-full object-cover '></img>
                       </div>
@@ -118,11 +120,14 @@ function RentalHousesCard() {
                          <div>
                           <img src={img3} className='w-full'></img>
                           </div>
-                  </Slider>
+                  </Slider> */}
+                  <div style={{width:'100%', height:'auto' , height:'250px' ,margin:''}}>
+                  <ImageSlider slide={images}/>
+                  </div>
                           <div className='flex flex-col gap-1 p-5'>
-                            <h2 className=' text-neutral-400 font-medium text-xl'>{price}$</h2>
+                            <h2 className=' text-neutral-400 font-medium text-xl'>{name}</h2>
                             <h2 className=' text-neutral-400 font-medium text-xl'>2 bed, 3ba {price}$</h2>
-                            <h2 className=' text-neutral-400 font-medium text-xl'>{des}</h2>
+                            <h2 className=' text-neutral-400 font-medium text-xl'>{category}</h2>
                           </div>
                           <div className='flex justify-between p-5'>
                             <div className='w-[48%] bg-purple-400 px-4 items-center py-2'>

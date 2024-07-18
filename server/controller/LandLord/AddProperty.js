@@ -44,7 +44,7 @@ const addProperty = async (req,res) =>{
           property.images = imagesUrl
         const addedProperty = new propertyModel({
             landLordId:verified.landLordId,
-            property
+            ...property
         })
         const savedProperty = await addedProperty.save()
         console.log({savedProperty})
