@@ -32,7 +32,7 @@ function PropertyPhotos({page,previous,next}) {
     const propertyType = useSelector(state => state.propertyType.subCategory)
     console.log(images)
   return (
-    <section className=' min-h-screen  w-[96%] md:w-[90%] md:ml-[15%] lg:w-[120%] xl:w-[145%] 2xl:w-[170%] lg:ml-[25%] xl:ml-[45%] 2xl:ml-[60%] ml-[2%] py-20 justify-center items-center'>
+    <section className=' min-h-screen ipad:ml-[20%] tablet:w-[115%] tablet:ml-[20%] w-[96%] md:w-[90%] md:ml-[15%] lg:w-[120%] xl:w-[145%] 2xl:w-[170%] lg:ml-[25%] xl:ml-[45%] 2xl:ml-[60%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
             <div className='bg-white py-10 px-6 gap-3 rounded-md shadow-md shadow-neutral-500 flex flex-col '>

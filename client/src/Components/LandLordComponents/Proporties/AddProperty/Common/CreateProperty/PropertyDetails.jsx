@@ -29,7 +29,7 @@ function PropertyDetails({next,page,previous}) {
     const dispatch = useDispatch()
     console.log({area})
   return (
-    <section className='min-h-screen   w-[96%] md:w-[78%] md:ml-[7%] lg:w-[100%] xl:w-[130%] 2xl:w-[150%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
+    <section className='min-h-screen   w-[96%] md:w-[78%] md:ml-[7%] ipad:w-[70%] ipad:ml-[15%] tablet:w-[80%] tablet:ml-[20%] lg:w-[100%] xl:w-[130%] 2xl:w-[150%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
     <div className='  gap-6 flex flex-col md:w-[90%] '>
         <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
 

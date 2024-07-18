@@ -35,7 +35,7 @@ function PriceSystem({page,next,previous}) {
 console.log({price})
   return (
     <>
-    <section className='  min-h-[110vh] w-[96%] md:w-[80%] md:ml-[10%] lg:w-[100%] xl:w-[125%] 2xl:w-[143%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
+    <section className='  min-h-[110vh] w-[96%] md:w-[80%] ipad:w-[85%] ipad:ml-[15%] tablet:w-[108%] tablet:ml-[18%] md:ml-[10%] lg:w-[100%] xl:w-[125%] 2xl:w-[143%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[96%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
             <div className=''>

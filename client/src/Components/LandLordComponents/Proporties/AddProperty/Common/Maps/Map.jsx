@@ -40,7 +40,7 @@ const Map4 = () => {
   }
   console.log({markers})
   return (
-    <div className='py-20 px-10 gap-2 flex flex-col relative'>
+    <div className='py-20 ipad:ml-[20%] tablet:ml-[25%] px-10 gap-2 flex flex-col relative'>
       <SearchForLandlord onLocationSelect={handleLocationSelect} />
       <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "65vh", width: "100%", zIndex:'1'}} ref={mapRef}>
         <TileLayer

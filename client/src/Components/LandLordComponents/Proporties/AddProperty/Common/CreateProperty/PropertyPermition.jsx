@@ -50,9 +50,9 @@ function PropertyPermition({page,next,previous}) {
             open: <Switch
             checked={onlyStudentPermision}
             onChange={()=> dispatch(setOnlyStudent())}
-            className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-[checked]:bg-blue-600"
+            className="group inline-flex h-6 w-11   items-center rounded-full bg-gray-200 transition data-[checked]:bg-blue-600"
           >
-            <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
+            <span className="size-4  translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
           </Switch>
         },
         {title:'DSS Income Accepted',
@@ -85,12 +85,12 @@ function PropertyPermition({page,next,previous}) {
     ]
     
   return (
-    <section className='   w-[96%] md:w-[78%] md:ml-[7%] lg:w-[95%]min-h-screen xl:w-[125%] 2xl:w-[143%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
+    <section className='   w-[96%] md:w-[85%] ipad:ml-[18%] ipad:w-[80%] tablet:w-[100%] tablet:ml-[18%]  md:ml-[15%] lg:w-[95%] xl:w-[125%] 2xl:w-[150%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
             <div className='bg-white py-10 px-6 gap-3 rounded-md shadow-md shadow-neutral-700 flex flex-col '>
                 <h1 className='title2 '>Permitions</h1>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-b-[1px] border-b-neutral-300 py-10">
+              <div className="grid grid-cols-1  lg:grid-cols-3 gap-6 border-b-[1px] border-b-neutral-300 py-10">
               {
                     permissions.map(({title,open},i) =>{
                         return (

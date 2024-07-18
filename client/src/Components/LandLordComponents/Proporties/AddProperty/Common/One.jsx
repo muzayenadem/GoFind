@@ -7,7 +7,7 @@ function One({page,next,previous}) {
   const propertyType = useSelector(state => state.propertyType.subCategory)
   const dispatch = useDispatch()
   return (
-    <section className=' min-h-screen md:w-[56%] lg:w-[70%] xl:w-[100%] 2xl:w-[120%] w-[96%]  lg:ml-[20%] xl:ml-[15%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
+    <section className=' min-h-screen ipad:ml-[8%] tablet:w-[70%]  md:w-[56%] lg:w-[70%] xl:w-[100%] 2xl:w-[120%] w-[96%]  lg:ml-[20%] xl:ml-[15%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
       <div className='bg-white py-10 px-6 gap-12 rounded-md shadow-md shadow-neutral-700 md:w-[140%] md:ml-[20%]  flex flex-col '>
         <div className='flex flex-col justify-center items-center gap-6'>
         <h2>Your're listing</h2>

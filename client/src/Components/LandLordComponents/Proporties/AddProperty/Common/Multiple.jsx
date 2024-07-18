@@ -6,7 +6,7 @@ function Multiple({page,next,previous}) {
     const dispatch = useDispatch()
     const propertyType = useSelector(state => state.propertyType.subCategory)
   return (
-    <section className=' min-h-screen w-[96%] md:w-[130%] md:ml-[10%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
+    <section className=' min-h-screen ipad:ml-[13%] w-[96%] md:w-[130%] md:ml-[10%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
       <div className='bg-white py-10 px-6 gap-12 rounded-md shadow-md shadow-neutral-500 md:w-[50%]  flex flex-col '>
         <div className='flex flex-col justify-center items-center gap-6'>
         <h2>Your're listing</h2>

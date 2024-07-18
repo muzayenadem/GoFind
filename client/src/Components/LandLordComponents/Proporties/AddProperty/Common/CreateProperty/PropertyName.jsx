@@ -66,7 +66,7 @@ function PropertyName({page,next,previous}) {
       console.log({location})
   return (
     <>
-       <section className='  min-h-screen w-[96%] md:w-[90%] md:ml-[10%] lg:w-[120%] xl:w-[160%] 2xl:w-[200%] lg:ml-[25%] xl:ml-[35%] 2xl:ml-[50%] ml-[2%] py-20 justify-center items-center'>
+       <section className='  min-h-screen w-[96%] md:w-[90%] ipad:w-[96%] ipad:ml-[15%] tablet:ml-[20%] md:ml-[10%] tablet:w-[110%] lg:w-[120%] xl:w-[160%] 2xl:w-[200%] lg:ml-[25%] xl:ml-[35%] 2xl:ml-[50%] ml-[2%] py-20 justify-center items-center'>
         <div className='  gap-6 flex flex-col md:w-[90%] '>
             <h1 className='head1 text-center'>Fill all steps carefully for your {propertyType}</h1>
         <div className=''>
