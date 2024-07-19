@@ -11,11 +11,13 @@ function ImageSlider({slide}) {
     const isLastIndex = currentIndex === slide.length - 1
     const newIndex = isLastIndex ? 0 : currentIndex + 1
     setCurrentIdex(newIndex)
+    setActive(newIndex)
   }
   const previous = () =>{
     const isCurrentIndex = currentIndex === 0
     const newIndex = isCurrentIndex ? slide.length - 1 : currentIndex - 1
     setCurrentIdex(newIndex)
+    setActive(newIndex)
   }
   const onSlide = (i) =>{
     setCurrentIdex(i)
@@ -33,7 +35,7 @@ function ImageSlider({slide}) {
         (
           slide.map((slide,i) =>{
             return(
-              <div onClick={() =>onSlide(i)} key={i} className={`font-bold text-xl ${i === active ? 'text-fuchsia-500':'text-neutral-300'}`}>
+              <div onClick={() =>onSlide(i)} key={i} className={`font-bold  ${i === active ? 'text-fuchsia-500 text-3xl':'text-neutral-300 text-xl'}`}>
                 <GoDotFill/>
               </div>
             )

@@ -3,138 +3,56 @@ import Slider from 'react-slick'
 import { img1,img2,img3 } from '../Data/Images';
 import { FaAngleLeft,FaAngleRight } from "react-icons/fa6";
 import Pagination from './Pagination';
-import { fetchHomes } from '../../controller/data/HomeSlice/homeSlice';
 import { useSelector,useDispatch } from 'react-redux';
 import ImageSlider from './ImageSlider';
+import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice';
 function RentalHousesCard() {
      const [homeData, setHomeData] = useState([])
      const [dotActive, setDotActive] = useState()
      const dispatch = useDispatch()
      useEffect(()=>{
-      dispatch(fetchHomes('default'))
+      dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
      },[])
-     const houses = useSelector((state)=> state.homesReducer.homes)
+     const houses = useSelector((state)=> state.allProperties.properties)
      const searchedHome = useSelector(state => state.searchedHomeReducer.searched)
      let homes = []
      searchedHome.length != 0 ? homes = searchedHome : homes =  houses
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
-         beforeChange: (prev,next) =>{
-          setDotActive(next)
-        },
-         appendDots: dots => (
-       <div
-            style={{
-              borderRadius: "10px",
-              padding: "10px",
-              position:"absolute",
-              bottom:"10%",
-              left:"35%"
-            }}
-          >
-            <ul style={{
-              display:"flex",
-              marginTop:"20px",
-              gap:"15px",
-              justifyContent:"center"
-             }}> {dots} </ul>
-          </div>
-    ),
-    customPaging: i => (
-      <div
-            style={
-              dotActive == i ? {
-                width: "12px",
-                height:"12px",
-                cursor:"pointer",
-                color: "blue",
-                background:"#ff014f",
-                borderRadius:"50%",
-                border: "1px blue solid"
-              } : {
-                width: "12px",
-                height:"12px",
-                cursor:"pointer",
-                color: "blue",
-                background:"gray",
-                borderRadius:"50%",
-                border: "1px blue solid"
-              }
-            }
-          >
-          </div>
-    )
-      };
-
-      function SampleNextArrow(props) {
-        const { onClick } = props;
-        return (
-          <div
-         
-           className='w-14 h-12  rounded-full bg-neutral-400 text-2xl flex justify-center absolute top-[30%] -left-9  cursor-pointer'
-            onClick={onClick}
-          >
-            <span className='ml-[55%] mt-[25%] text-2xl text-black font-bold'><FaAngleLeft/></span>
-          </div>
-        );
-      }
-
-      function SamplePrevArrow(props) {
-        const {  onClick } = props;
-        return (
-         <div
-         
-           className='w-14 h-12  rounded-full bg-neutral-400 text-2xl flex justify-center absolute top-[30%] -right-9   cursor-pointer'
-            onClick={onClick}
-          >
-            <span className='mr-[55%] mt-[25%] text-2xl text-black font-bold'><FaAngleRight/></span>
-          </div>
-        );
-      }
-      
   return (
     <>
     {
       
         <div className='container mx-auto py-20'>
-    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
-    {
-        homes.map(({name,price,images,category},i) => {
-          
+    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4'>
+    {   
+     homes.length < 0  ? 
+     [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
+          return   <div key={i} className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
+          <div className="h-48 rounded-t dark:bg-gray-300"></div>
+          <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
+            <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+            <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+            <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
+          </div>
+        </div>
+        }) :
+        homes.map(({name,price,subCategory,images,category,details},i) => {    
             return (
                 <div style={{width:"100%" ,height:'auto'}} key={i} className=' h-auto mt-2 bg-white shadow-lg   shadow-neutral-300'>
-                  {/* <Slider {...settings} className=' overflow-hidden '>
-                          <div>
-                      <img src={img1} className='w-full object-cover '></img>
-                      </div>
-                       <div>
-                        <img src={img2} className='w-full '></img>
-                         </div>
-                         <div>
-                          <img src={img3} className='w-full'></img>
-                          </div>
-                  </Slider> */}
+              
                   <div style={{width:'100%', height:'auto' , height:'250px' ,margin:''}}>
                   <ImageSlider slide={images}/>
                   </div>
-                          <div className='flex flex-col gap-1 p-5'>
-                            <h2 className=' text-neutral-400 font-medium text-xl'>{name}</h2>
-                            <h2 className=' text-neutral-400 font-medium text-xl'>2 bed, 3ba {price}$</h2>
-                            <h2 className=' text-neutral-400 font-medium text-xl'>{category}</h2>
+                          <div className='flex flex-col gap-1 px-5 py-2'>
+                            <h2 className=' text-neutral-700 font-medium text-xl'>{name}</h2>
+                            <h2 className=' text-neutral-600 font-medium text-sm'>{details.bedroom} bed, {details.bathroom}ba {price}$ per M</h2>
+                            <h2 className=' text-neutral-900 font-medium text-md'>{subCategory}</h2>
                           </div>
-                          <div className='flex justify-between p-5'>
-                            <div className='w-[48%] bg-purple-400 px-4 items-center py-2'>
+                          <div className='flex justify-end px-5 py-2'>
+                            {/* <div className='w-[48%] bg-purple-400 px-4 items-center py-2'>
                              <p className='text-white font-bold text-lg text-center'>Email Property</p>
-                            </div>
-                              <div className='w-[48%] bg-neutral-400 px-4 items-center py-2'>
-                             <p className='text-white font-bold text-lg text-center'>Detail</p>
+                            </div> */}
+                              <div className='w-[48%] bg-fuchsia-700 px-3 hover:bg-fuchsia-900 rounded-md items-center py-2'>
+                             <p className='text-white font-bold text-sm text-center'>Detail</p>
                             </div>
                           </div>
                 </div>

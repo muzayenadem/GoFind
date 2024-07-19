@@ -10,7 +10,6 @@ import { bg3, bg4, bg5, bg6, bg7 } from '../Data/Images'
 import { CiLocationOn } from "react-icons/ci";
 import { useSelector,useDispatch } from 'react-redux';
 import { addition,substr } from '../../controller/Real/Renters';
-import { fetchHomes } from '../../controller/data/HomeSlice/homeSlice';
 
 
 //components
@@ -20,6 +19,9 @@ import Amenities from './TopHomeComponents/Amenities';
 import AccomodationTypes from './TopHomeComponents/AccomodationTypes';
 import LocationFilter from './TopHomeComponents/LocationFilter';
 import SortByFilter from './TopHomeComponents/SortByFilter';
+import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice';
+import AreaFilter from './TopHomeComponents/AreaFilter';
+import CategoryFilter from './TopHomeComponents/CategoryFilter';
 function HomeTop() {
     const [searchValue, setSearchValue] = useState("")
     const [type, setType] = useState(false)
@@ -37,13 +39,11 @@ function HomeTop() {
         e.preventDefault()
         console.log(searchValue)
         if(searchValue){
-        dispatch(fetchHomes(searchValue))
+        dispatch(fetchAllProperties(JSON.stringify({value:searchValue})))
         }
     }
-
-    const renter = useSelector(state => state.renterNum.num)
     const searchedHome = useSelector(state => state.searchedHomeReducer.searched)
-    console.log(searchedHome)
+    //console.log(searchedHome)
   return (
     <>
     <div className=' py-3 px-2 border-b-[1px]'>
@@ -77,6 +77,7 @@ function HomeTop() {
                          <CiLocationOn/>
                      </span>
                      <input
+                     onInput={searchHandler}
                      className='bg-white focus:outline-none'
                      placeholder='Search by, Zip code , Country '
                      type='search'
@@ -98,14 +99,7 @@ function HomeTop() {
                         <h1>Type</h1>
                         <span className='text-2xl'>{ type ? <MdArrowDropUp/> : <MdOutlineArrowDropDown/>}</span>
                       </div>
-                      <div onMouseLeave={()=>setType(false)} className={`w-40 h-36 bg-neutral-700 shadow-md shadow-black  ${!type && 'hidden'} rounded-md mt-4 z-10 absolute `}>
-                      <div className='w-5 h-5 rotate-45 -mt-2 bg-neutral-700 ml-[10%]'></div>
-                      <div className='py-4 flex flex-col gap-2 items-center justify-center text-white'>
-                        <h2 className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Appartment</h2>
-                        <h2 className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Home</h2>
-                        <h2 className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Land</h2>
-                      </div>
-                      </div>
+                      <CategoryFilter setType={setType} type={type}/>
                      </div>
                      
                      <div className='w-32  hidden md:block '>
@@ -150,23 +144,7 @@ function HomeTop() {
                         <h1>Price</h1>
                         <span className='text-2xl'>{ price ? <MdArrowDropUp/> : <MdOutlineArrowDropDown/>}</span>
                       </div>
-                      <div onMouseLeave={()=>setPrice(false)} className={`w-80 h-52 bg-neutral-700 shadow-md shadow-black  ${!price && 'hidden'} rounded-md mt-4 z-10 absolute `}>
-                      <div className='w-5 h-5 rotate-45 -mt-2  bg-neutral-700 ml-[10%]'></div>
-                      <div className='flex justify-center items-start flex-col border-b-[2px] border-b-orange-400 p-2'>
-                        <h1 className=' text-white text-center ml-[30%] font-bold'>Price Range</h1>
-                      </div>
-                      <div className='flex gap-5 py-5 px-auto items-center justify-between px-6 '>
-                        <div className='flex flex-col gap-1'>
-                          <h2 className='font-bold text-white'>Minimum</h2>
-                          <input type='number' placeholder='Min' className='w-24 px-4 text-white font-bold h-10 focus:outline-none bg-neutral-700 border-[1px] border-orange-200'/>
-                        </div>
-                        <div className='flex flex-col gap-1'>
-                          <h2 className='font-bold text-white'>Maximum</h2>
-                          <input type='number' placeholder='Max' className='w-24 px-4 text-white font-bold h-10 focus:outline-none bg-neutral-700 border-[1px] border-orange-200'/>
-                        </div>
-                      </div>
-                      <div className='w-full h-10 mt-1.5 bg-pink-800 text-center text-white font-bold py-2'>Apply</div>
-                      </div>
+                      <PriceFilter setPrice={setPrice} price={price}/>
                      </div>
 
                      <div className='w-32  hidden md:block'>
@@ -182,29 +160,7 @@ function HomeTop() {
                         <h1>Living area</h1>
                         <span className='text-2xl'>{ livingArea ? <MdArrowDropUp/> : <MdOutlineArrowDropDown/>}</span>
                       </div>
-                      <div onMouseLeave={()=>setLivingArea(false)} className={`w-80 h-52  bg-neutral-700 shadow-md shadow-black  ${!livingArea && 'hidden'} rounded-md mt-4 z-10 absolute `}>
-                      <div className='w-5 h-5 rotate-45 -mt-2  bg-neutral-700 ml-[10%]'></div>
-                      <div className='flex justify-center items-start flex-col border-b-[2px] border-b-orange-400 p-2'>
-                        <h1 className=' text-white text-center ml-[30%] font-bold'>meter squere</h1>
-                      </div>
-                      <div className='flex gap-5 py-5 px-auto items-center justify-between px-6 '>
-                        <div className='flex flex-col gap-1'>
-                          <h2 className='font-bold text-white'>Min</h2>
-                          <div className='h-10 w-32 border-[1px] border-orange-200 bg-neutral-700 flex gap-2'>
-                          <input placeholder='Min' className='w-20 px-4 text-white font-bold h-9.7 focus:outline-none bg-neutral-700 border-b-[1px] border-b-orange-200'/>
-                          <h2 className='text-white font-bold mt-1'>m2</h2>
-                          </div>
-                        </div>
-                        <div className='flex flex-col gap-1'>
-                        <h2 className='font-bold text-white'>Max</h2>
-                          <div className='h-10 w-32 border-[1px] border-orange-200 bg-neutral-700 flex gap-2'>
-                          <input placeholder='Max' className='w-20 px-4 text-white font-bold h-9.7 focus:outline-none bg-neutral-700 border-b-[1px] border-b-orange-200'/>
-                          <h2 className='text-white font-bold mt-1'>m2</h2>
-                          </div>
-                        </div>
-                      </div>
-                      <div className='w-full h-10 mt-1.5 bg-pink-800 text-center text-white font-bold py-2'>Apply</div>
-                      </div>
+                      <AreaFilter setLivingArea={setLivingArea} livingArea={livingArea}/>
                       </div>
 
                      <div className='w-32  hidden md:block'>

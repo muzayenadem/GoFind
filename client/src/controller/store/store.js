@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import homeSlice from "../data/HomeSlice/homeSlice.js";
 import Renters from "../Real/Renters.js";
 import landlord from "../Real/landlord.js";
 import SearchedHome from "../data/SearchedHome/SearchedHome.js";
@@ -15,9 +14,11 @@ import renterProfileSlice from "../data/RenterSlice/renterProfileSlice.js";
 import landlordProfileSlice from "../data/LandLordSlice/landlordProfileSlice.js";
 import landlordToken from "../tokens/landlordToken.js";
 import landlordPropertySlice from "../data/LandlordProperty/landlordPropertySlice.js";
+import allPropertySlice from "../data/AllPropertySlice/allPropertySlice.js";
 const store = configureStore({
     reducer:{
-        homesReducer:homeSlice,
+        // properties
+        allProperties:allPropertySlice,
         searchedHomeReducer:SearchedHome,
 
         // buttons

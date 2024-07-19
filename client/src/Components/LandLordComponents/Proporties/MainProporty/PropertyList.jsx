@@ -58,7 +58,7 @@ function PropertyList() {
     setAll(true)
    }
    const ForApartment = () =>{
-    const onlyApartmants = list.filter(single => single.property.category == 'apartment')
+    const onlyApartmants = list.filter(single => single.category == 'apartment')
     setListOfProperty(onlyApartmants)
     setApartment(true)
     setHome(false)
@@ -67,7 +67,7 @@ function PropertyList() {
     setAll(false)
    }
    const ForHome = () =>{
-    const onlyHome = list.filter(single => single.property.category == 'homes')
+    const onlyHome = list.filter(single => single.category == 'homes')
     setListOfProperty(onlyHome)
     setApartment(false)
     setHome(true)
@@ -76,7 +76,7 @@ function PropertyList() {
     setAll(false)
    }
    const ForHotels = () =>{
-    const onlyHotels = list.filter(single => single.property.category == 'hotels')
+    const onlyHotels = list.filter(single => single.category == 'hotels')
     setListOfProperty(onlyHotels)
     setApartment(false)
     setHome(false)
@@ -85,7 +85,7 @@ function PropertyList() {
     setAll(false)
    }
    const ForOther = () =>{
-    const onlyOthers = list.filter(single => single.property.category == 'alternative')
+    const onlyOthers = list.filter(single => single.category == 'alternative')
     setListOfProperty(onlyOthers)
     setApartment(false)
     setHome(false)
