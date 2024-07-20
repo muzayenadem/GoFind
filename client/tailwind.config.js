@@ -14,6 +14,7 @@ export default {
         'xs5': {'min': '412px', 'max':'429px'},
         'xs6': {'min': '430px', 'max':'538px'},
         'xs7': {'min': '539px', 'max':'649px'},
+        'forPr':{'min':'900px','max':'1095px'},
         'ipad':{'min' : '760px', 'max':'1280px'},
         'tablet':{'min' :  '900px','max': '1400px'},
       },

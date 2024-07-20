@@ -5,8 +5,8 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { MdOutlineChildCare } from "react-icons/md";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { PiBathtub } from "react-icons/pi";
-function GuestandRoomsFilter() {
-    const [value,setValue] = useState(1)
+function GuestandRoomsFilter({adult,setAdult,bedroom,setBedroom,bathroom,setBathroom,Children,setChildern}) {
+
 
   return (
     <div className='py-6 px-3 flex flex-col gap-8 border-b-[1px] border-b-neutral-300 ' >
@@ -24,11 +24,11 @@ function GuestandRoomsFilter() {
                 </div>
                 <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev - 1)
+                        setAdult(prev => prev > 0 ? prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{value}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{adult}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setAdult(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
                 </div>
             </div>
@@ -44,11 +44,11 @@ function GuestandRoomsFilter() {
                 </div>
                 <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev - 1)
+                        setChildern(prev => prev > 0 ? prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{value}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{Children}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setChildern(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
                 </div>
             </div>
@@ -65,11 +65,11 @@ function GuestandRoomsFilter() {
                 </div>
                 <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setBedroom(prev => prev > 0 ? prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{value}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{bedroom}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev - 1)
+                        setBedroom(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
                 </div>
             </div>
@@ -84,11 +84,11 @@ function GuestandRoomsFilter() {
                 </div>
                 <div className='flex justify-between gap-3'>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setBathroom(prev => prev > 0 ?  prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='text-neutral-500 text-2xl'>{value}</h2></div>
+                    <div><h2 className='text-neutral-500 text-2xl'>{bathroom}</h2></div>
                     <div onClick={()=>{
-                        setValue(prev => prev = prev + 1)
+                        setBathroom(prev => prev = prev + 1)
                     }}><span className='   text-fuchsia-700  text-3xl'><FaRegPlusSquare/></span></div>
                 </div>
             </div>

@@ -7,8 +7,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import ImageSlider from './ImageSlider';
 import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice';
 function RentalHousesCard() {
-     const [homeData, setHomeData] = useState([])
-     const [dotActive, setDotActive] = useState()
+    const [data,setData] = useState(0)
      const dispatch = useDispatch()
      useEffect(()=>{
       dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
@@ -17,12 +16,25 @@ function RentalHousesCard() {
      const searchedHome = useSelector(state => state.searchedHomeReducer.searched)
      let homes = []
      searchedHome.length != 0 ? homes = searchedHome : homes =  houses
+
+     const datas = () =>{
+      if(houses.length > 1){
+        return `there are ${houses.length} properties here`
+      }
+      if(houses.length == 1){
+        return `there is only ${houses.length} property`
+      }
+      if(houses.length < 1 ){
+        return `there is no property in this requirement`
+      }
+     }
   return (
     <>
     {
       
-        <div className='container mx-auto py-20'>
-    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4'>
+        <div className='container mx-auto pt-6 pb-14 '>
+          <h3 className='text-md text-neutral-500 py-3 font-bold'>{datas()}</h3>
+    <div className='grid grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'>
     {   
      homes.length < 0  ? 
      [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
@@ -61,8 +73,8 @@ function RentalHousesCard() {
     }
     <div>
     </div>
-    <Pagination/>
     </div>
+    <Pagination/>
     </div>
 }
     </>

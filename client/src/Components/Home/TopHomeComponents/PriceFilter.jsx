@@ -16,8 +16,8 @@ function PriceFilter({setPrice,price}) {
       setPrice(false)
   }
   return (
-    <div onMouseLeave={()=>setPrice(false)} className={`w-80 h-52 bg-neutral-700 shadow-md shadow-black  ${!price && 'hidden'} rounded-md mt-4 z-10 absolute `}>
-    <div className='w-5 h-5 rotate-45 -mt-2  bg-neutral-700 ml-[10%]'></div>
+    <div onMouseLeave={()=>setPrice(false)} className={`w-80 h-52 bg-neutral-700 shadow-md shadow-black forPr:right-2 ${!price && 'hidden'} rounded-md mt-4 z-10 absolute `}>
+    <div className='w-5 h-5 rotate-45 -mt-2 ml-[10%] bg-neutral-700  forPr:ml-[53%] '></div>
     <div className='flex justify-center items-start flex-col border-b-[2px] border-b-orange-400 p-2'>
       <h1 className=' text-white text-center ml-[30%] font-bold'>Price Range</h1>
     </div>

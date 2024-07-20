@@ -4,7 +4,7 @@ import RentalHousesCard from './RentalHousesCard'
 import HomeTop from './HomeTop'
 import { Outlet } from 'react-router-dom'
 import Crousel from './Crousel'
-
+import { useSelector } from 'react-redux'
 function Home() {
   return (
     <section className='pb-10'>

@@ -14,6 +14,8 @@ const allPropertylist = async(req,res) =>{
         
         const category = params.category ? params.category : null
 
+        const room = params.room ? params.room : null
+
         let homes = []
             if(params.value == 'default'){
                 homes = await propertyModel.find({})
@@ -35,11 +37,14 @@ const allPropertylist = async(req,res) =>{
             homes = await propertyModel.find({$and:[{"area.min":{$gte:minArea}},{"area.max":{$lte:maxArea}}]})
             console.log('Area data')
             }
+            if(room !== null){
+                homes = await propertyModel.find({"details.bedroom":room})
+                console.log('rooms data')
+            }
             if(!homes.length){
-            console.log('do data')
+            console.log('no data')
             return res.status(402).send('there is no an product with this id')
             }
-
             return res.status(200).send(homes)
     } catch (error) {
         console.log({error:error.message})
