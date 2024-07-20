@@ -37,17 +37,13 @@ function Navbar() {
  
   return (
     <>
-    {/* <dialog open={open} className='w-[90%] h-[50vh] bg-slate-700'>
-        <div>
-            <h1>Smething</h1>
-        </div>
-    </dialog> */}
        <div className=' sticky z-10 top-0 h-14 bg-slate-100 rounded-xl m-2 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
             <div className='flex flex-row justify-center items-center gap-2'>
-              {landlordToken && 
+              {landlordToken == true ? 
               !state ? 
               <button className='text-2xl md:hidden' onClick={()=> dispatch(openLandlordSidebarToggle())}><BsBlockquoteRight/></button>:
               <button className='text-2xl md:hidden' onClick={()=> dispatch(closeLandlordSidebarToggle())}><MdOutlineClear/></button>
+              : null
             }
                 <h2>GoFind</h2>
             </div> 

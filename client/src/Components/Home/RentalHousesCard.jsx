@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Slider from 'react-slick'
-import { img1,img2,img3 } from '../Data/Images';
-import { FaAngleLeft,FaAngleRight } from "react-icons/fa6";
+import { MdClear } from "react-icons/md";
 import Pagination from './Pagination';
 import { useSelector,useDispatch } from 'react-redux';
 import ImageSlider from './ImageSlider';
@@ -19,13 +17,23 @@ function RentalHousesCard() {
 
      const datas = () =>{
       if(houses.length > 1){
-        return `there are ${houses.length} properties here`
+        return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>`there are {houses.length} properties here`</h3>
       }
       if(houses.length == 1){
-        return `there is only ${houses.length} property`
+        return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>`there is only {houses.length} property`</h3>
+        return 
       }
       if(houses.length < 1 ){
-        return `there is no property in this requirement`
+        return <div className=' justify-center items-center py-20 px-6 min-h-[30vh]'>
+        <div className="flex px-5 justify-between w-[80%] ml-[10%] bg-white animate-bounce shadow-md shadow-neutral-600 rounded-md ">
+        <h1 className={`py-3 text-xl font-bold text-2x text-center text-orange-700  mb-4 `}>there is no property  in this requirement</h1>
+        <button 
+        className='font-bold text-2xl'
+        onClick={()=>  dispatch( fetchAllProperties(JSON.stringify({value:'default'}))) }>
+          <MdClear/>
+          </button>
+        </div>
+        </div>
       }
      }
   return (
@@ -33,8 +41,8 @@ function RentalHousesCard() {
     {
       
         <div className='container mx-auto pt-6 pb-14 '>
-          <h3 className='text-md text-neutral-500 py-3 font-bold'>{datas()}</h3>
-    <div className='grid grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'>
+         {datas()}
+    <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'>
     {   
      homes.length < 0  ? 
      [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
@@ -51,7 +59,7 @@ function RentalHousesCard() {
             return (
                 <div style={{width:"100%" ,height:'auto'}} key={i} className=' h-auto mt-2 bg-white shadow-lg   shadow-neutral-300'>
               
-                  <div style={{width:'100%', height:'auto' , height:'250px' ,margin:''}}>
+                  <div style={{width:'100%', height:'auto' , height:'250px' }}>
                   <ImageSlider slide={images}/>
                   </div>
                           <div className='flex flex-col gap-1 px-5 py-2'>
@@ -60,9 +68,6 @@ function RentalHousesCard() {
                             <h2 className=' text-neutral-900 font-medium text-md'>{subCategory}</h2>
                           </div>
                           <div className='flex justify-end px-5 py-2'>
-                            {/* <div className='w-[48%] bg-purple-400 px-4 items-center py-2'>
-                             <p className='text-white font-bold text-lg text-center'>Email Property</p>
-                            </div> */}
                               <div className='w-[48%] bg-fuchsia-700 px-3 hover:bg-fuchsia-900 rounded-md items-center py-2'>
                              <p className='text-white font-bold text-sm text-center'>Detail</p>
                             </div>
