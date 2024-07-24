@@ -12,7 +12,7 @@ function RenterPopUp({}) {
     const close = () =>{
         dispatch(closeForRenter())
     }
-    const {fname,lname,email,phone,password} = renterProfileData()
+    const {fname,lname,email,phone} = renterProfileData()
     console.log({fname})
     const renterLogout = async ()=>{
       await axios.get(`${mainLink}/logout-renter`)
@@ -25,7 +25,7 @@ function RenterPopUp({}) {
       })
      }
   return (
-    <div onMouseLeave={close} className={`w-56 bg-white mt-1 shadow-lg shadow-neutral-800  rounded-md absolute ${!renterButton && "hidden"}`}>
+    <div onMouseLeave={close} className={`w-80 right-0 bg-white mt-1 shadow-lg shadow-neutral-800  rounded-md absolute ${!renterButton && "hidden"}`}>
                                 <div className='w-5 h-5 rotate-45 -mt-2 bg-white ml-[10%]'></div>
                                 <Link to={'/renter-dashboard'} onClick={close}>
                                 <div className='flex justify-start gap-2 p-3 border-b-[1px] border-b-neutral-400'>

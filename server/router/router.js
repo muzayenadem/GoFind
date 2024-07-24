@@ -19,6 +19,7 @@ const renterSignup = require('../controller/Renter/renterSingup')
 const landLordAuthanticate = require('../middleware/landLordAuthanticate')
 const renterAuthanticate = require('../middleware/renterAuthanticate')
 const allPropertyList = require('../controller/property/AllPropertyList')
+const singlePropertyDetail = require('../controller/property/singlePropertyDetail')
 
 const  router = require('express').Router()
 
@@ -32,6 +33,9 @@ router.route('/api-renter-profile').get(renterAuthanticate,renterProfile)
 router.route('/api-landlord-profile').get(landLordAuthanticate,landLordProfile)
 router.route('/searched-home:id').get(searchedHome)
 router.route('/api-list-landlord-property').get(landLordAuthanticate,listLandlordProperty)
+router.route('/api-property-detail:id').get(singlePropertyDetail)
+
+
 //loginned asure api
 router.route('/isrenterloggined').get(isRenterLoggenned)
 router.route('/islandlordloggined').get(isLandlordLoggenned)

@@ -222,7 +222,7 @@ function PropertyList() {
                                         <div className="flex flex-col gap-2">
                                         <p className='text-base text-neutral-400'>something</p>
                                          <div className="flex gap-4">
-                                         <h2 className='text-xl  '>{'$2240'}</h2>
+                                         <h2 className='text-xl  '>${price + 234}</h2>
                                          <i className='text-base text-neutral-400'>4 payments</i>
                                          </div>
                                         </div>

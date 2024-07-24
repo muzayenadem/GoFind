@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { br1, log } from '../../Components/Data/Images'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa6'
+import renterProfileData from '../componentsData/renterProfileData'
 
 function RenterProfileEdiit() {
     const [img,setImage] = useState(true)
+    const {id,fname,lname,email,phone} = renterProfileData()
   return (
     <div className="flex bg-white shadow-md shadow-slate-700 w-full md:w-[70%] py-10 px-6 flex-col gap-5">
     <div className="w-full h-12 border-b-[1px] border-b-neutral-400 py-2">
@@ -12,7 +14,7 @@ function RenterProfileEdiit() {
 
     <div className="flex flex-col gap-4 w-full  py-10 px-6">
      <div className="flex flex-col gap-2 items-center">
-         <h2 className='font-bold text-center'>Muzayen Adem</h2>
+         <h2 className='font-bold text-center capitalize'>{fname} {lname}</h2>
          <p className='text-neutral-500 text-sm'>@developer</p>
      </div>
      <div className=' justify-center mx-auto'>
@@ -69,7 +71,7 @@ function RenterProfileEdiit() {
      <h1 className='ml-[30%]'>Facebook</h1>
    </div>
  </div>
- <div className='w-72 h-12 bg-fuchsia-800 text-white font-semibold text-center py-2'>Update</div>
+ <button className='w-72 h-12 hover:bg-fuchsia-800 rounded-md bg-fuchsia-700 text-white font-semibold text-center py-2'>Update</button>
      </form>
  </div>
   )

@@ -5,7 +5,7 @@ function Notification() {
     <div className="flex bg-white shadow-md shadow-slate-700 w-full h-[60%] md:w-[70%] py-6 flex-col gap-5">
     <h2 className='font-bold px-6 text-neutral-400'>Notification settings</h2>
     <div className='gap-2 flex px-6'>
-      <input type='checkbox' id='checkbox'/>
+      <input type='checkbox' id='checkbox' className='size-5'/>
       <label htmlFor='checkbox'>Enable SMS notifications</label>
     </div>
     <div className='px-6'>

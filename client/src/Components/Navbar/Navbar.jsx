@@ -15,6 +15,8 @@ import { landlordTokenReducer } from '../../controller/tokens/landlordToken'
 import axios from 'axios'
 import { mainLink } from '../../controller/commonLink/mainLInk'
 import landlordProfileData from '../componentsData/landlordProfileData'
+import isRenterLogginned from '../componentsData/isRenterLogginned'
+import isLandlordLoginned from '../componentsData/isLandlordLoginned'
 function Navbar() {
     const [landlordTokee,setLandlordToken] = useState(false)
     const [loginOpen,setLoginOPen] = useState(false)
@@ -22,14 +24,11 @@ function Navbar() {
     const state = useSelector(state => state.landlordToggle.open)
     // for buttons 
    const dispatch = useDispatch()
-   useEffect(()=>{
-    dispatch(renterTokenReducer())
-    dispatch(landlordTokenReducer())
-   },[])
-   const renterToken = useSelector(state => state.renterToken.token)
-   const landlordToken = useSelector(state => state.landlordToken.token)
-   const {fname} = renterProfileData()
-   const landlordName = landlordProfileData().fname
+  
+  const renterToken = isRenterLogginned()
+  const landlordToken = isLandlordLoginned()
+  const {fname} = renterProfileData()
+  const landlordName = landlordProfileData().fname
    console.log({landlordToken})
    console.log({renterToken})
 
@@ -37,7 +36,7 @@ function Navbar() {
  
   return (
     <>
-       <div className=' sticky z-10 top-0 h-14 bg-slate-100 rounded-xl m-2 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
+       <div className=' sticky z-10 top-0 h-14 bg-slate-100 left-0 rounded-xl py-1 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
             <div className='flex flex-row justify-center items-center gap-2'>
               {landlordToken == true ? 
               !state ? 
@@ -84,9 +83,9 @@ function Navbar() {
                </div> 
                  :
                     <div className='mt-2'>
-                        <ul className='flex gap-4'>
+                        <ul className='flex gap-1 md:gap-4'>
                           <div>
-                          <li onMouseOver={() => setLoginOPen(!loginOpen) & setSignUpOPen(false)} className=' bg-violet-300 px-6 py-1 font-bold hover:bg-violet-400 text-white rounded-3xl'>
+                          <li onMouseOver={() => setLoginOPen(!loginOpen) & setSignUpOPen(false)} className=' bg-violet-400 md:px-6 px-2 py-1 font-bold hover:bg-violet-700 text-white rounded-md'>
                             Login
                                 </li>
                                  <div onMouseLeave={()=>setLoginOPen(false)} className={`w-32 h-32 bg-gray-800 mt-4  rounded-md absolute ${!loginOpen && "hidden"}`}>
@@ -103,7 +102,7 @@ function Navbar() {
                             </div>
                           </div>
                           <div>
-                          <li onMouseOver={() => setSignUpOPen(!signUpOpen) & setLoginOPen(false)}  className=' bg-blue-600 px-6 py-1 font-bold hover:bg-blue-700 text-white rounded-3xl'>
+                          <li onMouseOver={() => setSignUpOPen(!signUpOpen) & setLoginOPen(false)}  className=' bg-blue-600 md:px-6 px-2 py-1 font-bold hover:bg-blue-800 text-white rounded-md'>
                             Sign Up
                                </li>
                                  <div onMouseLeave={()=> setSignUpOPen(false)} className={`w-32 h-32 bg-gray-800 mt-4 -ml-16 rounded-md absolute ${!signUpOpen && "hidden"}`}>

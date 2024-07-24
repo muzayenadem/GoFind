@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+import renterProfileData from '../componentsData/renterProfileData';
 function ContactDetail() {
-  const [value, setValue] = useState('muzynadem@gmail.com')
-  
+  const {email,phone} = renterProfileData()
+  const [value, setValue] = useState(email)
+  const ph = phone
   return (
     <div className="flex bg-white shadow-md shadow-slate-700 w-full md:w-[70%] py-10 px-6 flex-col gap-5">
         <h2 className='font-bold text-neutral-400'>Contact information</h2>
@@ -20,7 +22,7 @@ function ContactDetail() {
                 />
             </div>
             <div className='flex gap-1 pt-2'>
-              <span className='text-2xl text-neutral-500 '><IoIosCheckmarkCircleOutline/></span>
+              <span className='text-2xl text-green-700  '><IoIosCheckmarkCircleOutline/></span>
               <p className='text-md text-neutral-500'>Email verified</p>
             </div>
         </div>
@@ -31,7 +33,7 @@ function ContactDetail() {
         country={'et'}
         value={'0936591302'}
         enableAreaCodes={true}
-        onChange={phone => this.setState({ phone })}
+      onChange={phone => this.setState({phone })}
 />
         </div>
         <div>

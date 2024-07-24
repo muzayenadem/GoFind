@@ -39,8 +39,8 @@ function HomeTop() {
     }
   return (
     <>
-    <div className=' py-3 px-2 border-b-[1px]'>
-            <div className='container mx-auto py-15  flex flex-col gap-5 border-b-black '>
+    <div className=' py-3 pt-16 px-2 border-b-[1px]'>
+            <div className='container mx-auto py-15 bg-white flex flex-col gap-5 border-b-black '>
             <h1 className=' text-2xl text-neutral-300 font-bold '> FIND YOUR NEXT HOME</h1>
            <h2 className=' text-2xl font-bold '>Rent a place, stay safe</h2>
                  <div className='w-[100%] bg-white  flex md:flex-wrap rounded-lg shadow-md gap-2'>

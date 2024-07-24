@@ -17,7 +17,7 @@ function CategoryFilter({setType,type}) {
       <button onClick={()=> searchHandler('apartment')} className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Appartment</button>
       <button onClick={()=> searchHandler('homes')} className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Home</button>
       <button onClick={()=> searchHandler('hotels')} className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Hotel</button>
-      <button onClick={()=> searchHandler('others')} className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Other</button>
+      <button onClick={()=> searchHandler('alternative')} className='font-bold hover:bg-pink-700 w-[98%] h-8 py-1 px-10 bg-neutral-700'>Other</button>
     </div>
     </div>
   )

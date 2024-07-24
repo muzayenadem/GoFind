@@ -26,7 +26,7 @@ function GuestandRoomsFilter({adult,setAdult,bedroom,setBedroom,bathroom,setBath
                     <div onClick={()=>{
                         setAdult(prev => prev > 0 ? prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{adult}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{adult == 0 ? <span className=' text-red-700 font-bold'>__</span> : adult}</h2></div>
                     <div onClick={()=>{
                         setAdult(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
@@ -46,7 +46,7 @@ function GuestandRoomsFilter({adult,setAdult,bedroom,setBedroom,bathroom,setBath
                     <div onClick={()=>{
                         setChildern(prev => prev > 0 ? prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{Children}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{Children == 0 ? <span className=' text-red-700 font-bold'>__</span> : Children}</h2></div>
                     <div onClick={()=>{
                         setChildern(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
@@ -67,7 +67,7 @@ function GuestandRoomsFilter({adult,setAdult,bedroom,setBedroom,bathroom,setBath
                     <div onClick={()=>{
                         setBedroom(prev => prev > 0 ? prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='  text-neutral-500 text-2xl'>{bedroom}</h2></div>
+                    <div><h2 className='  text-neutral-500 text-2xl'>{bedroom == 0 ? <span className=' text-red-700 font-bold'>__</span> : bedroom}</h2></div>
                     <div onClick={()=>{
                         setBedroom(prev => prev = prev + 1)
                     }}><span className=' text-fuchsia-700 text-3xl'><FaRegPlusSquare/></span></div>
@@ -86,7 +86,7 @@ function GuestandRoomsFilter({adult,setAdult,bedroom,setBedroom,bathroom,setBath
                     <div onClick={()=>{
                         setBathroom(prev => prev > 0 ?  prev = prev - 1 : prev)
                     }}><span className=' text-neutral-500 text-3xl'><FaRegMinusSquare/></span></div>
-                    <div><h2 className='text-neutral-500 text-2xl'>{bathroom}</h2></div>
+                    <div><h2 className='text-neutral-500 text-2xl'>{bathroom == 0 ? <span className=' text-red-700 font-bold'>__</span> : bathroom}</h2></div>
                     <div onClick={()=>{
                         setBathroom(prev => prev = prev + 1)
                     }}><span className='   text-fuchsia-700  text-3xl'><FaRegPlusSquare/></span></div>

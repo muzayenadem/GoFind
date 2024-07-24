@@ -16,6 +16,21 @@ const allPropertylist = async(req,res) =>{
 
         const room = params.room ? params.room : null
 
+        const filter = params.filter ? params.filter : null
+
+        const {wifi,pool,balcony,kitchen,parking,tv,airCondition,petFriendly,washingMachine,
+            chimney,terrace,minibar,swimmingPool,electricVehicleCharge,garden,all
+        }  = filter !== null && filter.amenities 
+
+        const {hotel,apartment,house,chalet,camping,holidayPark,farmHouse,bedAndBreackfast,other} = filter !== null && filter.accomodation
+        
+        const isThereAmenities = !wifi&!pool&!balcony&!kitchen&!parking&!tv&!airCondition&!petFriendly&!washingMachine&
+        !chimney&!terrace&!minibar&!swimmingPool&!electricVehicleCharge&!garden&!all
+
+        const isThereAccomodation = !hotel&!apartment&!house&!chalet&!camping&!holidayPark&!farmHouse&!bedAndBreackfast&!other
+        console.log({isThereAmenities})
+        console.log({isThereAccomodation})
+        
         let homes = []
             if(params.value == 'default'){
                 homes = await propertyModel.find({})
@@ -40,6 +55,45 @@ const allPropertylist = async(req,res) =>{
             if(room !== null){
                 homes = await propertyModel.find({"details.bedroom":room})
                 console.log('rooms data')
+            }
+            if(filter !== null){
+                homes = await propertyModel.find({$and:[
+                    //guest
+                 filter.bathroom !== 0 ? {'details.bathroom':filter.bathroom }:{},
+                 filter.bedroom !== 0 ? {'details.bedroom':filter.bedroom}:{},
+                 filter.Children !== 0 ? {'details.livingRoom':filter.Children}:{},
+                 filter.adult !== 0 ? {'details.guestCapability':filter.adult}:{},
+                   //amenities
+                    !isThereAmenities == 1 ? {$and:[
+                        {'amenities.tv':tv},{'amenities.balcony':balcony},{'amenities.washingMachine':washingMachine},{'amenities.kitchen':kitchen},
+                        {'amenities.wifi':wifi},{'amenities.terrace':terrace},{'amenities.garden':garden},{'amenities.swimmingPool':swimmingPool},
+                        {'amenities.pool':pool},{'amenities.minibar':minibar},{'amenities.electricVehicleCharge':electricVehicleCharge},{'amenities.parking':parking},
+                        {'amenities.chimney':chimney},{'amenities.airCondition':airCondition},{'amenities.petFriendly':petFriendly},{'amenities.all':all},
+
+                    ]} : {},
+                            
+                 // accomodation
+                !isThereAccomodation == 1 ? {$or:[
+                    {category:{$in:[
+                        house == true && 'homes',
+                        apartment == true && 'apartment',
+                        hotel == true && 'hotels',
+                        other == true && 'alternative'
+                       ]}},
+                       {subCategory:{$in:[
+                        apartment == true && 'apartment',
+                        camping == true && 'Campsite',
+                        farmHouse == true && 'Farm stay',
+                        bedAndBreackfast == true && 'Bed and breakfast',
+                        chalet == true && 'Chalet',
+                        holidayPark == true && 'Holiday park',
+                       ]}}
+                    ]} : {},
+                    //something other
+                ]})
+                console.log({filter})
+                console.log({hotel})
+                console.log('filter data')
             }
             if(!homes.length){
             console.log('no data')

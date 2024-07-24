@@ -15,6 +15,7 @@ import landlordProfileSlice from "../data/LandLordSlice/landlordProfileSlice.js"
 import landlordToken from "../tokens/landlordToken.js";
 import landlordPropertySlice from "../data/LandlordProperty/landlordPropertySlice.js";
 import allPropertySlice from "../data/AllPropertySlice/allPropertySlice.js";
+import singlePropertySlice from "../data/singleProperty/singlePropertySlice.js";
 const store = configureStore({
     reducer:{
         // properties
@@ -41,6 +42,8 @@ const store = configureStore({
 
         //property datas
         landlordProperty:landlordPropertySlice,
+        //single property detail
+        singleProperty:singlePropertySlice,
 
         //for next and previous page
         NextPrev,
