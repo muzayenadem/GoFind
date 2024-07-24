@@ -12,7 +12,7 @@ function LandlordNotSignIned() {
                 </div>
             </div>
             )
-        }, 20);
+        }, 3000);
     },[])
   return (
    space
