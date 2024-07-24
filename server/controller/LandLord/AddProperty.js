@@ -47,7 +47,7 @@ const addProperty = async (req,res) =>{
             ...property
         })
         const savedProperty = await addedProperty.save()
-        console.log({savedProperty})
+        console.log({savedProperty,data:"succed"})
     } catch (error) {
         console.log({error:error.message})
     }
