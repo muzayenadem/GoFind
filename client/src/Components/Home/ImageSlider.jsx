@@ -30,7 +30,7 @@ function ImageSlider({slide}) {
       <div onClick={next} style={{position:'absolute',top:'50%',transform:'translate(0,-50%',right:'18px',fontSize:'25px',color:'#fff',cursor:'pointer'}}><FaChevronRight/></div>
       {/* <div style={{backgroundImage:`url(${slide[currentIndex]})`,width:"100%",height:'100%',borderRadius:'10px',backgroundPosition:'center',backgroundSize:'cover'}}>
       </div> */}
-      <img src={samp[currentIndex]} style={{width:'100%', height:'100%', borderRadius:'12px'}}/>
+      <img src={slide[currentIndex]} style={{width:'100%', height:'100%', borderRadius:'12px'}}/>
       <div className="flex justify-center items-center gap-6 absolute bottom-8  left-[30%]">
         { slide.length >1 &&
         (
