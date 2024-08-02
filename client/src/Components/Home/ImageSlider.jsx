@@ -37,7 +37,7 @@ function ImageSlider({slide}) {
         (
           slide.map((slide,i) =>{
             return(
-              <button onClick={() =>onSlide(i)} key={i} className={`font-bold  ${i === active ? 'text-fuchsia-500 text-3xl':'text-neutral-300 text-xl'}`}>
+              <button onClick={() =>onSlide(i)} key={i} className={`font-bold bg-auto ${i === active ? 'text-fuchsia-500 text-3xl':'text-neutral-300 text-xl'}`}>
                 <GoDotFill/>
               </button>
             )
