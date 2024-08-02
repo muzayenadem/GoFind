@@ -57,7 +57,7 @@ function SingleProperty() {
     }
     if(errMessage){
       return (
-        <div className='p-40'>Something id error</div>
+        <div className='p-40'>Something is error</div>
       )
     }
   return (

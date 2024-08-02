@@ -9,7 +9,7 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) =>
     <img src={mainPhoto} className='h-96 w-full '/>
      <div className='  grid gap-5 grid-cols-2'> 
       {
-      samp.map((img,i)=>{
+      photos.map((img,i)=>{
           return (
             <div key={i}>
               <img  onClick={()=> setMainPhoto(photos[i])} src={img} className='w-full h-44 '/>
