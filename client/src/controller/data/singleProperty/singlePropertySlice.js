@@ -9,10 +9,10 @@ const initialState ={
     error:''
 }
 
-export const singlePropertyReducer = createAsyncThunk('singleProperty/singlePropertyReducer',(id)=>{
-    return  axios.get(`${mainLink}/api-property-detail`+id)
+export const singlePropertyReducer = createAsyncThunk('singleProperty/singlePropertyReducer',(value)=>{
+    return  axios.get(`${mainLink}/api-property-detail`+value)
     .then((result) => {
-        return result.data
+        return result.data.singleProperty
     })
 })
 

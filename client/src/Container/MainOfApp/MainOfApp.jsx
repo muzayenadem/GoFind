@@ -6,9 +6,7 @@ import { Outlet } from 'react-router-dom'
 function MainOfApp() {
   return (
     <div>
-        <div className=" fixed w-full top-0 left-0 z-10">
         <Navbar/>
-        </div>
         <Outlet/>
         <Footer/>
     </div>

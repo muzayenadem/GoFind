@@ -4,7 +4,7 @@ import { mainLink } from "../../commonLink/mainLInk";
 const initailState = {
     loading:false,
     properties:[],
-    error:''
+    error:'err'
 }
 
 export const fetchAllProperties = createAsyncThunk('properties/fetchAllProperties',(value)=>{
@@ -13,18 +13,18 @@ export const fetchAllProperties = createAsyncThunk('properties/fetchAllPropertie
         return result.data
     })
 })
-
 const allPrpertySlice = createSlice({
     name:"properties",
     initialState:initailState,
     extraReducers:(builder)=>{
         builder.addCase(fetchAllProperties.pending,(state,action)=>{
             state.loading = true
+            state.error =''
         })
         builder.addCase(fetchAllProperties.fulfilled,(state,action)=>{
             state.loading = false
             state.properties = action.payload
-            state.error = ''
+            state.error = 'succed'
         })
         builder.addCase(fetchAllProperties.rejected,(state,action)=>{
             state.loading = false
@@ -33,6 +33,5 @@ const allPrpertySlice = createSlice({
         })
     }
 })
-
 
 export default allPrpertySlice.reducer

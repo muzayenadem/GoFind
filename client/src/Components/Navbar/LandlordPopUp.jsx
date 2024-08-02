@@ -19,7 +19,7 @@ function LandlordPopUp({}) {
     const {fname, lname} = landlordProfileData()
     console.log({fname,lname})
   return (
-    <div onMouseLeave={close} className={`w-80 right-0 bg-white mt-1 shadow-lg shadow-neutral-800  rounded-md absolute ${!landlordButton && "hidden"}`}>
+    <div onMouseLeave={close} className={`w-80 right-0 bg-white mt-1 shadow-lg shadow-neutral-800 z-10  rounded-md absolute ${!landlordButton && "hidden"}`}>
                                 <div className='w-5 h-5 rotate-45 -mt-2 bg-white ml-[10%]'></div>
                                 <Link to={'/landloard-dashboard'} onClick={close}>
                                 <div className='flex justify-start gap-2 p-3 border-b-[1px] border-b-neutral-400'>

@@ -11,8 +11,10 @@ function singlePropertyData() {
     },[])
     console.log({proptyIdFromData:propertyId})
     const property = useSelector(state=> state.singleProperty.property)
+    console.log({property})
+    //const property = propert.singleProperty
     console.log({proprtyFromRedux:property})
-  return property
+  return {...property}
 }
 
 export default singlePropertyData

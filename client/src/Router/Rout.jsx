@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainOfApp from '../Container/MainOfApp/MainOfApp'
 import {BrowserRouter as  Router,Route,Link, Routes, useParams } from 'react-router-dom'
 import RenterLogin from '../Components/Login/RenterLogin'
@@ -22,24 +22,40 @@ import Homes from '../Components/LandLordComponents/Proporties/AddProperty/Homes
 import Map3 from '../Components/LandLordComponents/Proporties/AddProperty/Common/Maps/Map3'
 import Map4 from '../Components/LandLordComponents/Proporties/AddProperty/Common/Maps/Map'
 import LocationOfProperty from '../Components/LandLordComponents/Proporties/AddProperty/Common/CreateProperty/LocationOfProperty'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import LandLordLogin from '../Components/Login/LandLordLogin'
 import LandlordSignup from '../Components/Signup/LanLordSignup'
-import DetailOfProperty from '../Components/detailOfProperty/DetailOfProperty'
 import isLandlordLoginned from '../Components/componentsData/isLandlordLoginned'
 import LandlordNotSignIned from '../Components/ErrorPages/LandlordNotSignIned'
+import SingleProperty from '../Components/SingleProperty/SingleProperty'
 function Rout() {
-  const params = useParams()
+  const [isloading,setIsLoading] = useState(false)
+  const isloading2 = useSelector(state => state.allProperties.loading)
+  useEffect(()=>{
+    setIsLoading(isloading2)
+  },[])
   const propertyType = useSelector(state => state.propertyType.subCategory)
-  const landlordToken = isLandlordLoginned()
-  console.log({landLordTokenFromRouter:landlordToken})
+   const landlordToken = isLandlordLoginned()
+   console.log({landLordTokenFromRouter:landlordToken,isloading})
+  if (isloading2 == 'u'){
+    return (
+    <div className="flex items-center justify-center px-32 py-60  md:p-32 md:py-60 min-h-[65vh] space-x-2">
+
+      <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-800"></div>
+      <div className="w-3.5 h-3.5 rounded-full animate-pulse dark:bg-violet-700"></div>
+      <div className="w-3 h-3 rounded-full animate-pulse dark:bg-violet-600"></div>
+      <div className="w-2 h-2 rounded-full animate-pulse dark:bg-violet-500"></div>
+      <div className="w-1.5 h-1.5 rounded-full animate-pulse dark:bg-violet-400"></div>
+    </div>
+    )
+  } else
   return (
     <Router>
         <Routes>
             <Route path='map' element={<Map4/>}/>
             <Route path='/' element={<MainOfApp/>}>
               <Route path='' element={<Home/>}/>
-              <Route path='detail-of-property/:propertyId' element={<DetailOfProperty/>}/>
+              <Route path='detail-of-property/:propertyId' element={<SingleProperty/>}/>
               <Route path='renter-signup' element={<RenterSignup/>}/>
               <Route path='renter-login' element={<RenterLogin/>}/>
               <Route path='landlord-login' element={<LandLordLogin/>}/>

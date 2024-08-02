@@ -10,13 +10,13 @@ function Home() {
     <section className='pb-10'>
      <div className='grid grid-cols-1 m-0'>
       <div>
-      <div style={{position:'sticky',top:'0px',left:'0px',width:'100%',zIndex:1}}>
-      <HomeTop/>
+      <div  style={{position:'sticky',top:'-61px',left:'0px',width:'100%',zIndex:1}}>
+          <HomeTop/>
       </div>
-            <div>
-                <RentalHousesCard/>
-                {/* <Crousel/> */}
-            </div>
+      <div>
+          <RentalHousesCard/>
+          {/* <Crousel/> */}
+      </div>
       </div>
      </div>
     </section>

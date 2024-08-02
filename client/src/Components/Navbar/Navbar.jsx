@@ -36,7 +36,7 @@ function Navbar() {
  
   return (
     <>
-       <div className=' sticky z-10 top-0 h-14 bg-slate-100 left-0 rounded-xl py-1 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
+       <div className='sticky w-full z-10 top-0 h-14 bg-slate-100 left-0 rounded-xl py-1 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
             <div className='flex flex-row justify-center items-center gap-2'>
               {landlordToken == true ? 
               !state ? 

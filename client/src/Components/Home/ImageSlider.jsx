@@ -7,6 +7,7 @@ import findIp from '../Data/findIp';
 function ImageSlider({slide}) {
   const [currentIndex , setCurrentIdex] = useState(0)
   const [active,setActive] = useState(0)
+  const [hide, setHide] = useState(true)
   const next = () =>{
     const isLastIndex = currentIndex === slide.length - 1
     const newIndex = isLastIndex ? 0 : currentIndex + 1
@@ -25,9 +26,9 @@ function ImageSlider({slide}) {
   }
   const samp = [img1,img2,img3,samp1,samp2]
   return (
-    <div style={{height:'100%', position:'relative',}}>
-      <div onClick={previous} style={{position:'absolute',top:'50%',transform:'translate(0,-50%',left:'18px',fontSize:'25px',color:'#fff',cursor:'pointer'}}><FaChevronLeft/></div>
-      <div onClick={next} style={{position:'absolute',top:'50%',transform:'translate(0,-50%',right:'18px',fontSize:'25px',color:'#fff',cursor:'pointer'}}><FaChevronRight/></div>
+    <div style={{height:'100%', position:'relative',}} onMouseOver={()=> setHide(false)} onMouseLeave={()=> setHide(true)}>
+      <div onClick={previous} className={`w-10 h-10 hover:rounded-3xl hover:bg-black/50 text-center flex items-center justify-center ${hide == true ? 'hidden' : ''}`} style={{position:'absolute',top:'50%',transform:'translate(0,-50%',left:'18px',fontSize:'25px',color:'#fff',cursor:'pointer'}}><FaChevronLeft/></div>
+      <div onClick={next} className={`w-10 h-10 hover:rounded-3xl hover:bg-black/50 text-center flex items-center justify-center ${hide == true ? 'hidden' : ''}`} style={{position:'absolute',top:'50%',transform:'translate(0,-50%',right:'18px',fontSize:'25px',color:'#fff',cursor:'pointer'}}><FaChevronRight/></div>
       {/* <div style={{backgroundImage:`url(${slide[currentIndex]})`,width:"100%",height:'100%',borderRadius:'10px',backgroundPosition:'center',backgroundSize:'cover'}}>
       </div> */}
       <img src={slide[currentIndex]} style={{width:'100%', height:'100%', borderRadius:'12px'}}/>
