@@ -65,7 +65,7 @@ const singlePropertyDetail = async(req,res)=>{
        }
        const result = await main()
        console.log({result})
-       const views = result.views / 4
+       const views = result.views / 2
        console.log({views})
        const data = {singleProperty,views}
        res.status(200).send({singleProperty,views:Math.round(views)}) 
