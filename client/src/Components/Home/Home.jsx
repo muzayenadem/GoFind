@@ -5,6 +5,8 @@ import HomeTop from './HomeTop'
 import { Outlet } from 'react-router-dom'
 import Crousel from './Crousel'
 import { useSelector } from 'react-redux'
+import Question from './Question'
+import Feutures from './Feutures'
 function Home() {
   return (
     <section className='pb-10'>
@@ -15,6 +17,8 @@ function Home() {
       </div>
       <div>
           <RentalHousesCard/>
+          <Question/>
+          <Feutures/>
           {/* <Crousel/> */}
       </div>
       </div>

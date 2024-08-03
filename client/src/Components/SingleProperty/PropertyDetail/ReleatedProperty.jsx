@@ -31,8 +31,8 @@ function ReleatedProperty({id,category}) {
    }
  },[homes])
   return (
-    <div className='border-y-[1px] border-y-neutral-500 py-10 gap-6 font-serif'>
-      ReleatedProperty
+    <div className='border-y-[1px] border-y-neutral-300 py-10 gap-6 font-serif'>
+     <h3 className=' py-5 text-xl font-semibold'> Releated Property</h3>
       <div className="container grid grid-cols-1 md:grid-cols-3  xl:grid-cols-4 gap-4">
         {
           arr.map(({name,price,subCategory,images,category,details,_id},i) => {    

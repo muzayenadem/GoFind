@@ -6,13 +6,13 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) =>
     <div className=' container mx-auto px-2 border-b-[1px] border-b-neutral-200 py-3'>
        <h2 className='text-3xl font-bold py-4'>{name}</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6" >
-    <img src={mainPhoto} className='h-96 w-full '/>
+    <img src={mainPhoto} className='h-96 rounded-lg w-full '/>
      <div className='  grid gap-5 grid-cols-2'> 
       {
       photos.map((img,i)=>{
           return (
             <div key={i}>
-              <img  onClick={()=> setMainPhoto(photos[i])} src={img} className='w-full h-44 '/>
+              <img  onClick={()=> setMainPhoto(photos[i])} src={img} className='w-full rounded-md h-44 '/>
             </div>
           )
         })
