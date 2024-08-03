@@ -12,7 +12,7 @@ import DescriptionOfProperty from './PropertyDetail/DescriptionOfProperty'
 import LocationOfProprty from './PropertyDetail/LocationOfProprty'
 import ReleatedProperty from './PropertyDetail/ReleatedProperty'
 function SingleProperty() {
-  const {amenities,name,images,details,permissions} = singlePropertyData()
+  const {amenities,name,images,details,permissions,_id,category} = singlePropertyData()
   const [photos,setPhotos] = useState([])
   const  [mainPhoto ,setMainPhoto] = useState(null)
   const [loading,setLoading] = useState(true)
@@ -75,7 +75,7 @@ function SingleProperty() {
         <div className="w-full shadow-md shadow-neutral-400 rounded-md h-96 my-10 p-5 sticky top-16">hh</div>
       </div>
     </div>
-    <ReleatedProperty/>
+    <ReleatedProperty id={_id} category={category}/>
     </div>
   )
 }
