@@ -6,6 +6,7 @@ import ImageSlider from './ImageSlider';
 import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice';
 import { Link } from 'react-router-dom';
 import NoProperty from './TopHomeComponents/NoProperty';
+import MainMap from './MainMap';
 function RentalHousesCard() {
     const [data,setData] = useState(null)
      const dispatch = useDispatch()
@@ -74,6 +75,7 @@ function RentalHousesCard() {
     </div>
     </div>
     <Pagination/>
+    <MainMap homes={homes}/>
     </div>
 }
     </>

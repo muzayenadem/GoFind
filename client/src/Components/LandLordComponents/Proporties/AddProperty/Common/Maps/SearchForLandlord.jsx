@@ -21,6 +21,7 @@ const SearchLocation = ({ onLocationSelect }) => {
           format: 'json',
           addressdetails: 1,
         },
+        withCredentials:false
       });
       setResults(response.data);
     } catch (error) {
