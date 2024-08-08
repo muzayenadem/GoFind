@@ -8,18 +8,16 @@ import SelectedPropertyCard from './SelectedPropertyCard'
 import singlePropertyData from '../../componentsData/singlePropertyData'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllProperties } from '../../../controller/data/AllPropertySlice/allPropertySlice'
-
 function PropertiesWithMap() {
     const {propertyId} = useParams()
     const property = singlePropertyData()
     const {images} = property
     console.log({selectedImages:images})
     console.log({propertyFromWithMap:property})
-
     const dispatch = useDispatch()
-    useEffect(()=>{
-     dispatch( fetchAllProperties(JSON.stringify({category:property.category})))
-    },[])
+    // useEffect(()=>{
+    //  dispatch( fetchAllProperties(JSON.stringify({category:property.category})))
+    // },[])
     const houses = useSelector((state)=> state.allProperties.properties)
     const searchedHome = useSelector(state => state.searchedHomeReducer.searched)
     let homes = null
@@ -65,8 +63,8 @@ function PropertiesWithMap() {
           < PropertyCard property={property} homes={list}/>
         </div>
         <div className='w-[40%] hidden lg:block ' >
-       <div style={{position:'sticky',top:'120px',left:'0px',width:'100%'}}>
-             <Mee property={property}/>
+       <div className=' sticky top-[180px] xl:top-[120px] left-0 w-[100%]'>
+             <Mee property={property} homes={homes}/>
           </div>
        </div>
       </div>

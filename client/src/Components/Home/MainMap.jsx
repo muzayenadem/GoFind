@@ -11,17 +11,15 @@ import { setLongitudeAndLatitudeOFProperty } from '../../controller/AddProperty/
 import { popup } from 'leaflet';
 import axios from 'axios';
 import { mainLink } from '../../controller/commonLink/mainLInk';
-const MainMap = ({homes}) => {
+const MainMap = ({homes,property}) => {
   const mapRef = useRef();
   const [markers, setMarkers] = useState([]);
   const [latitudinal,setLatitudinal]= useState('');
   const [longitudinal,setLongitudinal] = useState('')
-
-  const category = useSelector(state=> state.propertyType.category)
-  const dispatch = useDispatch()
-  const navigate = useNavigate('') 
+  const [loading,setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const isMultiple = useSelector(state => state.propertyType.multiple)
-  console.log({longitudinal,latitudinal})
+  //console.log({lat,lon})
 
   const handleLocationSelect = (location) => {
     const { lat, lon } = location;
@@ -55,10 +53,10 @@ const MainMap = ({homes}) => {
   };
 
 
-  const setLocationHandler = () =>{
-    dispatch(setLongitudeAndLatitudeOFProperty(markers))
-    navigate(`/landloard-dashboard/property/types-of-property/${category}`)
-  }
+  // const setLocationHandler = () =>{
+  //   dispatch(setLongitudeAndLatitudeOFProperty(markers))
+  //   navigate(`/landloard-dashboard/property/types-of-property/${category}`)
+  // }
 
   const {propertyId} = useParams()
   useEffect(()=>{
@@ -67,15 +65,17 @@ const MainMap = ({homes}) => {
       if(res.data.property.locationWithName.marker){
         setLatitudinal(res.data.property.locationWithName.marker[0].lat)
         setLongitudinal(res.data.property.locationWithName.marker[0].lon)
-      }else{
-        setLatitudinal(9.048)
-        setLongitudinal(39.032)
+        setLoading(false)
       }
+        setLoading(false)
     })
     .catch((err)=>{
        console.log({error:err.message})
+       setLoading(false)
+       setError(err.message)
     })
   },[])
+  console.log({latitudinal,longitudinal})
 
 const createCustomIcon = (imageUrl) => {
   return L.icon({
@@ -87,10 +87,31 @@ const createCustomIcon = (imageUrl) => {
     className: 'custom-marker' // Add a custom class for further styling if needed
   });
 };
+
+    if(loading){
+     return(
+      <div className="flex flex-col rounded-2xl shadow-md w-[100%] animate-pulse h-[85vh]">
+      <div className="h-full w-full rounded-2xl dark:bg-gray-300"></div>
+      {/* <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
+        <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+        <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+        <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
+      </div> */}
+    </div>
+     )
+    }
+
+   if(error){
+      return(
+       <div>{error}</div>
+      )
+   }
+
+
   return (
     <div className=''>
       {/* <SearchForLandlord onLocationSelect={handleLocationSelect} /> */}
-      <MapContainer center={['','']} zoom={5} style={{ height: "85vh", width: "100%",borderRadius:'20px',}} ref={mapRef}>
+      <MapContainer center={ latitudinal !== '' & longitudinal !== '' ?  [latitudinal,longitudinal] : [9.048,39.023]} zoom={5} style={{ height: "85vh", width: "100%",borderRadius:'20px',}} ref={mapRef}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'>
         <img src="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" ></img>
         </TileLayer>
@@ -101,7 +122,7 @@ const createCustomIcon = (imageUrl) => {
                return home.locationWithName.marker.some(m => m.lat === marker.lat && m.lon === marker.lon)
               }
             });
-            const customIcon = createCustomIcon(<div>jjjk</div>); // Assuming the first image is the one to use for the marker  
+            const customIcon = createCustomIcon(home.images[0]); // Assuming the first image is the one to use for the marker  
           return (
              <Marker key={index} position={[marker.lat, marker.lon]} icon={customIcon}   >
             <Popup >
@@ -114,9 +135,9 @@ const createCustomIcon = (imageUrl) => {
                           console.log('maaliif garuu qoy')
                           if(find){
                             return (
-                              <Link to={`detail-of-property/${sing._id}`} >
+                              <button onClick={()=> window.location.href=`/detail-of-property-open/${sing._id}`}>
                                   <div >{sing.name}  <img src={sing.images[0]}/></div>
-                              </Link>
+                              </button>
                             )
                           }
                       }
@@ -126,7 +147,7 @@ const createCustomIcon = (imageUrl) => {
                           if(find){
                             console.log('maaliif garuu qoy')
                             return (
-                              <Link to={`detail-of-property/${sing._id}`} >
+                              <Link to={`/detail-of-property-open/${sing._id}`} >
                                   <div >{sing.name} <img src={sing.images[0]}/></div>
                               </Link>
                             )

@@ -8,23 +8,10 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { mainLink } from '../../controller/commonLink/mainLInk';
 import { useParams } from 'react-router-dom';
-function SelectedPropertyImageSlider() {
+function SelectedPropertyImageSlider({images}) {
   const [currentIndex , setCurrentIdex] = useState(0)
   const [active,setActive] = useState(0)
   const [hide, setHide] = useState(true)
-  const [images,setImages] = useState([])
-
-  const {propertyId} = useParams()
-  useEffect(()=>{
-    axios.get(`${mainLink}/api-single-property`+propertyId)
-    .then((res) =>{
-       setImages(res.data.images)
-    })
-    .catch((err)=>{
-       console.log({error:err.message})
-    })
-  },[])
-  //console.log({imsgesFromSlide:images})
 
   const next = () =>{
     const isLastIndex = currentIndex === images.length - 1
@@ -43,6 +30,7 @@ function SelectedPropertyImageSlider() {
     setActive(i)
   }
   const samp = [img1,img2,img3,samp1,samp2]
+ 
   return (
     <div style={{height:'100%', position:'relative',}} onMouseOver={()=> setHide(false)} onMouseLeave={()=> setHide(true)}>
       <div onClick={previous} className={`w-8 h-8 rounded-3xl bg-white/80 hover:bg-black/50 text-center hover:text-white/80 flex items-center justify-center ${hide == true ? 'hidden' : ''}`} style={{position:'absolute',top:'50%',transform:'translate(0,-50%',left:'18px',fontSize:'18px',cursor:'pointer'}} ><FaChevronLeft/></div>
