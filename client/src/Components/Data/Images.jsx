@@ -13,4 +13,5 @@ import br1 from './br1.jpg'
 import samp1 from './samp1.jpg'
 import map from './map.jpeg'
 import samp2 from './samp2.jpg'
-export {img1,img2,img3,bg,bg1,log,bg3,bg4,bg5,bg6,bg7,br1,samp1,samp2,map}
+import logo  from './logo.png'
+export {img1,img2,img3,bg,bg1,log,bg3,bg4,bg5,bg6,bg7,br1,samp1,samp2,map,logo}

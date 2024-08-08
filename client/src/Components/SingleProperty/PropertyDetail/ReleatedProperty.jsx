@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllProperties } from '../../../controller/data/AllPropertySlice/allPropertySlice'
 import { img1 } from '../../Data/Images'
-import ImageSlider from '../../Home/ImageSlider'
+import ImageSlider from '../../Slides/ImageSlider'
 import { Link } from 'react-router-dom'
 import singlePropertyData from '../../componentsData/singlePropertyData'
 

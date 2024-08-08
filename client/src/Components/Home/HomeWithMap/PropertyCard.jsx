@@ -1,47 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { MdClear } from "react-icons/md";
-import Pagination from './Pagination';
 import { useSelector,useDispatch } from 'react-redux';
-import ImageSlider from '../Slides/ImageSlider';
-import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice';
-import { Link } from 'react-router-dom';
-import NoProperty from './TopHomeComponents/NoProperty';
-import MainMap from './MainMap';
-function RentalHousesCard() {
-    const [data,setData] = useState(null)
-     const dispatch = useDispatch()
-     useEffect(()=>{
-      dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
-     },[])
-     const houses = useSelector((state)=> state.allProperties.properties)
-     const searchedHome = useSelector(state => state.searchedHomeReducer.searched)
-     let homes = null
-     searchedHome.length != 0 ? homes = searchedHome : homes =  houses
 
-     const datas = () =>{
-      if(homes.length > 1){
-        return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>there are {houses.length} properties here</h3>
-      }
-      if(homes.length == 1){
-        return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>there is only {houses.length} property</h3>
-      }
-      if(homes.length == 0){
-        return <NoProperty/>
-      }
-      if(homes.length < 1){
-        return <div>Loading................</div>
-      }
-     }
-     let space = datas()
+import { Link } from 'react-router-dom';
+import NoProperty from '../TopHomeComponents/NoProperty';
+import { fetchAllProperties } from '../../../controller/data/AllPropertySlice/allPropertySlice';
+import ImageSlider from '../../Slides/ImageSlider';
+import Pagination from '../Pagination';
+
+function PropertyCard({property,homes}) {
+
+  // if(0 == 0){
+  //   return (
+  //     <div>
+  //       {
+  //             homes.map((i)=>{
+  //               return (
+  //                <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-3 gap-4'>
+  //               <div className="h-48 rounded-t dark:bg-gray-300"></div>
+  //               <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
+  //                 <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+  //                 <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+  //                 <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
+  //               </div>
+  //             </div>
+  //             )
+  //           }) 
+  //       }
+  //     </div>
+  //   )
+  // }
   return (
     <>
     {
-      
         <div className='container mx-auto pt-6 pb-14  '>
-         {space}
-    <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'>
+    <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-3 gap-4'>
     {   
-     homes.length < 0  ? 
+     homes.length == 0  ? 
      [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
           return   <div key={i} className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
           <div className="h-48 rounded-t dark:bg-gray-300"></div>
@@ -81,4 +76,4 @@ function RentalHousesCard() {
   )
 }
 
-export default RentalHousesCard
+export default PropertyCard

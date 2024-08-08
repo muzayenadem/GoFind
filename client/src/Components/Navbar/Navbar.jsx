@@ -17,6 +17,7 @@ import { mainLink } from '../../controller/commonLink/mainLInk'
 import landlordProfileData from '../componentsData/landlordProfileData'
 import isRenterLogginned from '../componentsData/isRenterLogginned'
 import isLandlordLoginned from '../componentsData/isLandlordLoginned'
+import { logo } from '../Data/Images'
 function Navbar() {
     const [landlordTokee,setLandlordToken] = useState(false)
     const [loginOpen,setLoginOPen] = useState(false)
@@ -36,7 +37,7 @@ function Navbar() {
  
   return (
     <>
-       <div className='sticky w-full z-10 top-0 h-14 bg-slate-100 left-0 rounded-xl py-1 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
+       <div className='sticky w-full z-10 top-0 h-14 bg-white border-b-[1px] border-b-neutral-100 shadow-sm shadow-neutral-300 left-0 rounded-xl py-1 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
             <div className='flex flex-row justify-center items-center gap-2'>
               {landlordToken == true ? 
               !state ? 
@@ -44,7 +45,8 @@ function Navbar() {
               <button className='text-2xl md:hidden' onClick={()=> dispatch(closeLandlordSidebarToggle())}><MdOutlineClear/></button>
               : null
             }
-                <h2>GoFind</h2>
+                {/* <h2>GoFind</h2> */}
+                <img src={logo} className='w-20 rounded-md h-10'/>
             </div> 
         <div className=' items-center'>
             <ul className='hidden  md:flex gap-5 mt-2 '> 

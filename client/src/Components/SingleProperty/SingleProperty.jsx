@@ -12,8 +12,12 @@ import DescriptionOfProperty from './PropertyDetail/DescriptionOfProperty'
 import LocationOfProprty from './PropertyDetail/LocationOfProprty'
 import ReleatedProperty from './PropertyDetail/ReleatedProperty'
 import ReviewsOfProperty from './PropertyDetail/ReviewsOfProperty'
+import RentalHousesCard from '../Home/RentalHousesCard'
+import MainMap from '../Home/MainMap'
 function SingleProperty() {
-  const {amenities,name,images,details,permissions,_id,category} = singlePropertyData()
+  const property = singlePropertyData()
+
+  const {amenities,name,images,details,permissions,_id,category} = property
   const [photos,setPhotos] = useState([])
   const  [mainPhoto ,setMainPhoto] = useState(null)
   const [loading,setLoading] = useState(true)
@@ -70,11 +74,13 @@ function SingleProperty() {
       <AmenityOfProperty amenities={amenities}/>
       <PermitionOfProperty permissions={permissions}/>
       <DescriptionOfProperty/>
-      <LocationOfProprty/>
+      <LocationOfProprty homes={property}/>
       </div>
-      <div className='py-10 w-[24%] hidden lg:block ' >
-        <div className="w-full shadow-md shadow-neutral-400 rounded-md h-96 my-10 p-5 sticky top-16">hh</div>
-      </div>
+        <div className='py-10 w-[24%] hidden lg:block ' >
+          <div className="w-full shadow-md shadow-neutral-400 rounded-md h-96 my-10 p-5 sticky top-16">hh</div>
+        </div>
+        {/* <RentalHousesCard/> */}
+        {/* <Mee/> */}
     </div>
     <ReviewsOfProperty/>
     <ReleatedProperty id={_id} category={category}/>

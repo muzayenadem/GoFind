@@ -17,6 +17,7 @@ import RoomsFilter from './TopHomeComponents/RoomsFilter';
 import DistanceFilter from './TopHomeComponents/DistanceFilter';
 import MultipleFilters from './TopHomeComponents/MultipleFilters';
 import TypeFilter from './TopHomeComponents/TypeFilter';
+import Mee from './Mee';
 function HomeTop() {
     const [searchValue, setSearchValue] = useState("")
     const [type, setType] = useState(false)
@@ -40,7 +41,7 @@ function HomeTop() {
   return (
     <>
     <div className='  py-3  px-2' >
-            <div className='container mx-auto py-15 bg-white flex flex-col gap-5'>
+            <div className=' py-15 bg-white flex flex-col gap-5'>
             <h1 className=' text-2xl text-neutral-300 font-bold '> FIND YOUR NEXT HOME</h1>
            <h2 className=' text-2xl font-bold '>Rent a place, stay safe</h2>
                  <div className='w-[100%] bg-white  flex md:flex-wrap rounded-lg shadow-md gap-2'>
@@ -151,6 +152,7 @@ function HomeTop() {
                       </div>
                       <RoomsFilter setRoom={setRoom} room={room}/>
                      </div>
+
                      <div className='w-32 '>
                       <div onMouseOver={()=> {
                            setRent(false)

@@ -28,6 +28,7 @@ import LandlordSignup from '../Components/Signup/LanLordSignup'
 import isLandlordLoginned from '../Components/componentsData/isLandlordLoginned'
 import LandlordNotSignIned from '../Components/ErrorPages/LandlordNotSignIned'
 import SingleProperty from '../Components/SingleProperty/SingleProperty'
+import PropertiesWithMap from '../Components/Home/HomeWithMap/PropertiesWithMap'
 function Rout() {
   const [isloading,setIsLoading] = useState(false)
   const isloading2 = useSelector(state => state.allProperties.loading)
@@ -55,7 +56,8 @@ function Rout() {
             <Route path='map' element={<Map4/>}/>
             <Route path='/' element={<MainOfApp/>}>
               <Route path='' element={<Home/>}/>
-              <Route path='detail-of-property/:propertyId' element={<SingleProperty/>}/>
+              <Route path='detail-of-property/:propertyId' element={<PropertiesWithMap/>}/>
+              <Route path='detail-of-property-open/:propertyId' element={<SingleProperty/>}/>
               <Route path='renter-signup' element={<RenterSignup/>}/>
               <Route path='renter-login' element={<RenterLogin/>}/>
               <Route path='landlord-login' element={<LandLordLogin/>}/>
