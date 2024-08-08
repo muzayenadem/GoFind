@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import {img1} from '../Data/Images'
 import 'leaflet/dist/leaflet.css';
+import './MainMap.css'
 //import SearchForLandlord from './SearchForLandlord';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link, useNavigate, useParams} from 'react-router-dom'
@@ -77,20 +78,31 @@ const MainMap = ({homes,property}) => {
   },[])
   console.log({latitudinal,longitudinal})
 
-const createCustomIcon = (imageUrl) => {
-  return L.icon({
-    iconUrl: imageUrl,
+  const custom = {
+    paddingLeft:'5px',
+    paddingRight:'5px',
+    paddingTop:'2px',
+    paddingBottom:'2px',
+    backgroundColor:'white',
+    textColor:'red'
+  }
+const createCustomIcon = (home) => {
+  return L.divIcon({
+    html:`<div>
+    <div>$${home.price}</div>
+  </div>`,
     iconSize: [36, 36], // Adjust the size as needed
     iconAnchor: [20, 40], // Adjust the anchor point
     borderRadius:['20px'],
     popupAnchor: [0, -40], // Adjust the popup anchor
-    className: 'custom-marker' // Add a custom class for further styling if needed
+    className: ' flex justify-center items-center font-bold shadow-md shadow-neutral-500 bg-white px-8 py-2 rounded-xl text-center w-96' // Add a custom class for further styling if needed
   });
 };
 
+
     if(loading){
      return(
-      <div className="flex flex-col rounded-2xl shadow-md w-[100%] animate-pulse h-[85vh]">
+      <div className="flex  flex-col rounded-2xl shadow-md w-[100%] animate-pulse h-[85vh]">
       <div className="h-full w-full rounded-2xl dark:bg-gray-300"></div>
       {/* <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
         <div className="w-full h-6 rounded dark:bg-gray-300"></div>
@@ -124,7 +136,7 @@ const createCustomIcon = (imageUrl) => {
             });
             const customIcon = createCustomIcon(home.images[0]); // Assuming the first image is the one to use for the marker  
           return (
-             <Marker key={index} position={[marker.lat, marker.lon]} icon={customIcon}   >
+             <Marker key={index} position={[marker.lat, marker.lon]} icon={createCustomIcon(home)}   >
             <Popup >
              <div >
                 {
