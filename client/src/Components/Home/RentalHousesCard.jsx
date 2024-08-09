@@ -22,21 +22,21 @@ function RentalHousesCard() {
      let homes = null
      searchedHome.length != 0 ? homes = searchedHome : homes =  houses
 
-     const datas = () =>{
-      if(homes.length > 1){
-        return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>there are {houses.length} properties here</h3>
-      }
-      if(homes.length == 1){
-        return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>there is only {houses.length} property</h3>
-      }
-      if(homes.length == 0){
-        return <NoProperty/>
-      }
-      if(homes.length < 1){
-        return <div>Loading................</div>
-      }
-     }
-     let space = datas()
+    //  const datas = () =>{
+    //   if(homes.length > 1){
+    //     return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>there are {houses.length} properties here</h3>
+    //   }
+    //   if(homes.length == 1){
+    //     return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>there is only {houses.length} property</h3>
+    //   }
+    //   if(homes.length == 0){
+    //     return <NoProperty/>
+    //   }
+    //   if(homes.length < 1){
+    //     return <div>Loading................</div>
+    //   }
+    //  }
+    //  let space = datas()
 
     //  if(error == 'pending'){
     //   return (
@@ -69,7 +69,7 @@ function RentalHousesCard() {
     {
       
         <div className='container mx-auto pt-6 pb-14  '>
-         {space}
+         {/* {space} */}
     <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'>
     {   
         homes.map(({name,price,subCategory,images,category,details,_id},i) => {    
