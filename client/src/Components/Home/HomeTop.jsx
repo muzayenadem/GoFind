@@ -38,6 +38,39 @@ function HomeTop() {
         dispatch(fetchAllProperties(JSON.stringify({value:searchValue})))
         }
     }
+
+
+    const error = useSelector((state)=> state.allProperties.error)
+ 
+    console.log({erorNavbar:error})
+  
+    if(error == 'pending'){
+      return (
+       <div className='animate-pulse flex gap-5 container mx-auto py-25 bg-white px-10 flex-col'>
+
+        <div className="flex flex-col py-6 gap-4">
+          <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
+          <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
+        </div>
+         <div className="flex gap-5">
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className="w-96 h-12 bg-gray-300"></div>
+         <div className="flex gap-3">
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+         </div>
+         </div>
+       </div>
+       )}
+       if(error != 'succed' & error != 'pending'){
+        return (
+          <div className='text-center font-bold text-3xl py-40'>{error}</div>
+        )
+       }
   return (
     <>
     <div className='  py-3  px-2' >

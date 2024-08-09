@@ -14,6 +14,10 @@ function RentalHousesCard() {
       dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
      },[])
      const houses = useSelector((state)=> state.allProperties.properties)
+     const error = useSelector((state)=> state.allProperties.error)
+     console.log({expestedError:error})
+     
+
      const searchedHome = useSelector(state => state.searchedHomeReducer.searched)
      let homes = null
      searchedHome.length != 0 ? homes = searchedHome : homes =  houses
@@ -33,6 +37,33 @@ function RentalHousesCard() {
       }
      }
      let space = datas()
+
+     if(error == 'pending'){
+      return (
+        <div className='container mx-auto pt-6 pb-14  '>
+          <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'> 
+            {
+              [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
+                  return(
+                  <div key={i} className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
+                  <div className="h-48 rounded-t dark:bg-gray-300"></div>
+                  <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
+                    <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+                    <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+                    <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
+                  </div>
+                </div>)
+
+                })
+              }
+            </div>
+          </div> 
+       )}
+       if(error != 'succed' & error != 'pending'){
+        return (
+          null
+        )
+       }
   return (
     <>
     {
@@ -41,17 +72,6 @@ function RentalHousesCard() {
          {space}
     <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'>
     {   
-     homes.length < 0  ? 
-     [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
-          return   <div key={i} className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
-          <div className="h-48 rounded-t dark:bg-gray-300"></div>
-          <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
-            <div className="w-full h-6 rounded dark:bg-gray-300"></div>
-            <div className="w-full h-6 rounded dark:bg-gray-300"></div>
-            <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
-          </div>
-        </div>
-        }) :
         homes.map(({name,price,subCategory,images,category,details,_id},i) => {    
             return (
                 <div style={{width:"100%" ,height:'auto'}} key={i} className=' h-auto mt-2 bg-white shadow-lg   shadow-neutral-300'>
