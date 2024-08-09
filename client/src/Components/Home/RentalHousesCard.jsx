@@ -10,9 +10,9 @@ import MainMap from './MainMap';
 function RentalHousesCard() {
     const [data,setData] = useState(null)
      const dispatch = useDispatch()
-    //  useEffect(()=>{
-    //   dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
-    //  },[])
+     useEffect(()=>{
+      dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
+     },[])
      const houses = useSelector((state)=> state.allProperties.properties)
      const error = useSelector((state)=> state.allProperties.error)
      console.log({expestedError:error})
