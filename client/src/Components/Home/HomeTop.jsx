@@ -41,14 +41,6 @@ function HomeTop() {
         }
     }
 
-
-    // useEffect(()=>{
-    //   dispatch(renterTokenReducer())
-    //  },[])
-    //  useEffect(()=>{
-    //   dispatch(landlordTokenReducer())
-    //  },[])
-    const error = useSelector((state)=> state.allProperties.error)
     const renterError = useSelector(state => state.renterToken.error)
     const landlordError = useSelector(state => state.landlordToken.error)
 

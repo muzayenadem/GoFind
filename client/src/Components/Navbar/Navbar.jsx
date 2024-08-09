@@ -33,13 +33,12 @@ function Navbar() {
   const landlordName = landlordProfileData().fname
    console.log({landlordToken})
    console.log({renterToken})
-   useEffect(()=>{
-     dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
-    },[])
     const renterError = useSelector(state => state.renterToken.error)
     const landlordError = useSelector(state => state.landlordToken.error)
 
- 
+    useEffect(()=>{
+      dispatch( fetchAllProperties(JSON.stringify({value:'default'})))
+     },[])
    if(renterError == 'pending' & landlordError == 'pending'){
      return (
       <div className='sticky container mx-auto w-full z-10 top-0 h-14 bg-white animate-pulse border-b-[1px] border-b-neutral-100 shadow-sm shadow-neutral-300 left-0 rounded-xl py-1 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
