@@ -41,38 +41,38 @@ function HomeTop() {
         }
     }
 
-    // const renterError = useSelector(state => state.renterToken.error)
-    // const landlordError = useSelector(state => state.landlordToken.error)
+    const renterError = useSelector(state => state.renterToken.error)
+    const landlordError = useSelector(state => state.landlordToken.error)
 
-    // console.log({renterError,landlordError})
+    console.log({renterError,landlordError})
   
-    // if(renterError == 'pending' & landlordError == 'pending'){
-    //   return (
-    //    <div className='animate-pulse flex gap-5 container mx-auto py-25 bg-white px-10 flex-col'>
+    if(renterError == 'pending' & landlordError == 'pending'){
+      return (
+       <div className='animate-pulse flex gap-5 container mx-auto py-25 bg-white px-10 flex-col'>
 
-    //     <div className="flex flex-col py-6 gap-4">
-    //       <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
-    //       <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
-    //     </div>
-    //      <div className="flex gap-5">
-    //        <div className='w-32 h-12 rounded-md bg-gray-300'></div>
-    //        <div className="w-96 h-12 bg-gray-300"></div>
-    //      <div className="flex gap-3">
-    //        <div className='w-32 h-12 rounded-md bg-gray-300'></div>
-    //        <div className='w-32 h-12 rounded-md bg-gray-300'></div>
-    //        <div className='w-32 h-12 rounded-md bg-gray-300'></div>
-    //        <div className='w-32 h-12 rounded-md bg-gray-300'></div>
-    //        <div className='w-32 h-12 rounded-md bg-gray-300'></div>
-    //        <div className='w-32 h-12 rounded-md bg-gray-300'></div>
-    //      </div>
-    //      </div>
-    //    </div>
-    //    )}
-    //    if(renterError != 'succed' & renterError != 'pending' & landlordError != 'succed' & landlordError != 'pending'){
-    //     return (
-    //       <div className='text-center font-bold text-3xl py-40'>{renterError}</div>
-    //     )
-    //    }
+        <div className="flex flex-col py-6 gap-4">
+          <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
+          <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
+        </div>
+         <div className="flex gap-5">
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className="w-96 h-12 bg-gray-300"></div>
+         <div className="flex gap-3">
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+         </div>
+         </div>
+       </div>
+       )}
+       if(renterError != 'succed' & renterError != 'pending' & landlordError != 'succed' & landlordError != 'pending'){
+        return (
+          <div className='text-center font-bold text-3xl py-40'>{renterError}</div>
+        )
+       }
   return (
     <>
     <div className='  py-3  px-2' >
