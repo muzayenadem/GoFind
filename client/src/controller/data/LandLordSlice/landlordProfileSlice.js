@@ -23,11 +23,12 @@ const landlordProfileSlice = createSlice({
     extraReducers:(builder) =>{
         builder.addCase(landlordProfileReducer.pending,(state,action)=>{
             state.loading = true
+            state.error =  'pending'
         })
         builder.addCase(landlordProfileReducer.fulfilled,(state,action)=>{
             state.loading = false
             state.data = action.payload
-            state.error = ''
+            state.error = 'succed'
         })
         builder.addCase(landlordProfileReducer.rejected,(state,action)=>{
             state.loading = false

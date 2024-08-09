@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdArrowDropUp } from "react-icons/md";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { GoSearch } from "react-icons/go";
@@ -18,6 +18,8 @@ import DistanceFilter from './TopHomeComponents/DistanceFilter';
 import MultipleFilters from './TopHomeComponents/MultipleFilters';
 import TypeFilter from './TopHomeComponents/TypeFilter';
 import Mee from './Mee';
+import { renterTokenReducer } from '../../controller/tokens/renterToken';
+import { landlordTokenReducer } from '../../controller/tokens/landlordToken';
 function HomeTop() {
     const [searchValue, setSearchValue] = useState("")
     const [type, setType] = useState(false)
@@ -40,11 +42,19 @@ function HomeTop() {
     }
 
 
+    // useEffect(()=>{
+    //   dispatch(renterTokenReducer())
+    //  },[])
+    //  useEffect(()=>{
+    //   dispatch(landlordTokenReducer())
+    //  },[])
     const error = useSelector((state)=> state.allProperties.error)
- 
-    console.log({erorNavbar:error})
+    const renterError = useSelector(state => state.renterToken.error)
+    const landlordError = useSelector(state => state.landlordToken.error)
+
+    console.log({renterError,landlordError})
   
-    if(error == 'pending'){
+    if(renterError == 'pending' & landlordError == 'pending'){
       return (
        <div className='animate-pulse flex gap-5 container mx-auto py-25 bg-white px-10 flex-col'>
 
@@ -66,9 +76,9 @@ function HomeTop() {
          </div>
        </div>
        )}
-       if(error != 'succed' & error != 'pending'){
+       if(renterError != 'succed' & renterError != 'pending' & landlordError != 'succed' & landlordError != 'pending'){
         return (
-          <div className='text-center font-bold text-3xl py-40'>{error}</div>
+          <div className='text-center font-bold text-3xl py-40'>{renterError}</div>
         )
        }
   return (

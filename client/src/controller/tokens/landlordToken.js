@@ -24,9 +24,11 @@ const landlordTokenSlice = createSlice({
     extraReducers:(builder) =>{
         builder.addCase(landlordTokenReducer.pending,(state,action)=>{
             state.loading = true
+            state.error = 'pending'
         })
         builder.addCase(landlordTokenReducer.fulfilled,(state,action)=>{
             state.loading = false
+            state.error = 'succed'
             state.token = action.payload
         })
         builder.addCase(landlordTokenReducer.rejected,(state,action)=>{
