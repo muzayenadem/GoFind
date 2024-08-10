@@ -41,6 +41,7 @@ function RentalHousesCard() {
      if(error == 'pending'){
       return (
         <div className='container mx-auto pt-6 pb-14  '>
+          {space}
           <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'> 
             {
               [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{

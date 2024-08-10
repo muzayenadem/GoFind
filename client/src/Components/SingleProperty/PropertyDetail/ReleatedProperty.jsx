@@ -20,7 +20,6 @@ function ReleatedProperty({id,category}) {
       if (home != find){
         arr.push(home)
       }
-      //console.log({arr})
     }
   }
  }

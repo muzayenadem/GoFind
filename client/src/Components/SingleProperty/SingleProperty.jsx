@@ -30,7 +30,7 @@ function SingleProperty() {
   const {propertyId} = useParams()
     useEffect(()=>{
      try {
-      axios.get(`${mainLink}/api-property-detail`+propertyId)
+      axios.get(`${mainLink}/api-single-property`+propertyId)
      .then (res => {
        setMainPhoto(res.data.singleProperty.images[0])
        setPhotos(res.data.singleProperty.images)
