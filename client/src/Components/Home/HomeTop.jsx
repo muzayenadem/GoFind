@@ -51,13 +51,14 @@ function HomeTop() {
        <div className='animate-pulse flex gap-5 container mx-auto py-25 bg-white px-10 flex-col'>
 
         <div className="flex flex-col py-6 gap-4">
-          <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
-          <div className="flex w-96 h-8 bg-gray-300 rounded-md"></div>
+          <div className="flex w-64 h-8 bg-gray-300 rounded-md"></div>
+          <div className="flex w-52 h-6 bg-gray-300 rounded-md"></div>
         </div>
          <div className="flex gap-5">
            <div className='w-32 h-12 rounded-md bg-gray-300'></div>
            <div className="w-96 h-12 bg-gray-300"></div>
-         <div className="flex gap-3">
+           <div className="w-36 md:hidden h-12 bg-gray-300 "></div>
+         <div className="hidden md:flex gap-3">
            <div className='w-32 h-12 rounded-md bg-gray-300'></div>
            <div className='w-32 h-12 rounded-md bg-gray-300'></div>
            <div className='w-32 h-12 rounded-md bg-gray-300'></div>

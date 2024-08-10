@@ -29,11 +29,8 @@ function RentalHousesCard() {
       if(homes.length == 1){
         return <h3 className='text-md text-neutral-500 px-3 py-3 font-bold'>there is only {houses.length} property</h3>
       }
-      if(homes.length == 0){
+      if(error !== 'pending' & homes.length == 0){
         return <NoProperty/>
-      }
-      if(homes.length < 1){
-        return <div>Loading................</div>
       }
      }
      let space = datas()
@@ -41,17 +38,18 @@ function RentalHousesCard() {
      if(error == 'pending'){
       return (
         <div className='container mx-auto pt-6 pb-14  '>
-          {space}
           <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'> 
             {
               [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
                   return(
-                  <div key={i} className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
-                  <div className="h-48 rounded-t dark:bg-gray-300"></div>
+                  <div key={i} className="flex flex-col m-8 rounded shadow-md  animate-pulse h-96">
+                  <div className="h-48 w-full rounded-t dark:bg-gray-300"></div>
                   <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
                     <div className="w-full h-6 rounded dark:bg-gray-300"></div>
                     <div className="w-full h-6 rounded dark:bg-gray-300"></div>
-                    <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
+                    <div className="flex justify-end items-end self-end">
+                    <div className="flex w-1/2 h-6 rounded dark:bg-gray-300"></div>
+                    </div>
                   </div>
                 </div>)
 
@@ -60,11 +58,11 @@ function RentalHousesCard() {
             </div>
           </div> 
        )}
-       if(error != 'succed' & error != 'pending'){
-        return (
-          null
-        )
-       }
+      //  if(error != 'succed' & error != 'pending'){
+      //   return (
+      //     null
+      //   )
+      //  }
   return (
     <>
     {

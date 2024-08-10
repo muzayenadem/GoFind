@@ -44,9 +44,9 @@ function Navbar() {
       <div className='sticky container mx-auto w-full z-10 top-0 h-14 bg-white animate-pulse border-b-[1px] border-b-neutral-100 shadow-sm shadow-neutral-300 left-0 rounded-xl py-1 rounded-b-[1px] rounded-b-black px-6 flex justify-between md:justify-around  flex-wrap'>
     
         <div className="flex">
-          <div className='w-32 h-10 rounded-md bg-gray-300'></div>
+          <div className='w-16 md:w-32  h-10 rounded-md bg-gray-300'></div>
         </div>
-        <div className="flex gap-3">
+        <div className="hidden md:flex gap-3">
           <div className='w-32 h-10 rounded-md bg-gray-300'></div>
           <div className='w-32 h-10 rounded-md bg-gray-300'></div>
           <div className='w-32 h-10 rounded-md bg-gray-300'></div>
@@ -55,8 +55,8 @@ function Navbar() {
           <div className='w-32 h-10 rounded-md bg-gray-300'></div>
         </div>
         <div className="flex gap-2">
-          <div className='w-32 h-10 rounded-md bg-gray-300'></div>
-          <div className='w-32 h-10 rounded-md bg-gray-300'></div>
+          <div className='w-16 md:w-32 h-10 rounded-md bg-gray-300'></div>
+          <div className='w-16 md:w-32  h-10 rounded-md bg-gray-300'></div>
         </div>
       </div>
       )}
