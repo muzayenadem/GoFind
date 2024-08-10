@@ -14,6 +14,8 @@ import ReleatedProperty from './PropertyDetail/ReleatedProperty'
 import ReviewsOfProperty from './PropertyDetail/ReviewsOfProperty'
 import RentalHousesCard from '../Home/RentalHousesCard'
 import MainMap from '../Home/MainMap'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchViews } from '../../controller/specialFunctions/viewsSlice'
 function SingleProperty() {
   const property = singlePropertyData()
 
@@ -22,19 +24,17 @@ function SingleProperty() {
   const  [mainPhoto ,setMainPhoto] = useState(null)
   const [loading,setLoading] = useState(true)
   const [errMessage,setErrMessage] = useState(null)
-  const [views,setViews] = useState(0)
   const samp = [img1,img2,img3]
 
 
-
+  const dispatch = useDispatch()
   const {propertyId} = useParams()
     useEffect(()=>{
      try {
       axios.get(`${mainLink}/api-single-property`+propertyId)
      .then (res => {
-       setMainPhoto(res.data.singleProperty.images[0])
-       setPhotos(res.data.singleProperty.images)
-       setViews(res.data.views)
+       setMainPhoto(res.data.images[0])
+       setPhotos(res.data.images)
        setLoading(false)
      })
      .catch((err) =>{
@@ -47,7 +47,15 @@ function SingleProperty() {
       setErrMessage(error.message)
       console.log({error})
      }
+
     },[])
+
+    useEffect(()=>{
+      dispatch(fetchViews(propertyId))
+    },[])
+    
+    const views = useSelector(state => state.viewsReducer.views)
+
     if (loading == true ){
       return (
       <div className="flex items-center justify-center px-32 py-60  md:p-32 md:py-60 min-h-[65vh] space-x-2">

@@ -16,6 +16,7 @@ import landlordToken from "../tokens/landlordToken.js";
 import landlordPropertySlice from "../data/LandlordProperty/landlordPropertySlice.js";
 import allPropertySlice from "../data/AllPropertySlice/allPropertySlice.js";
 import singlePropertySlice from "../data/singleProperty/singlePropertySlice.js";
+import viewsSlice from "../specialFunctions/viewsSlice.js";
 const store = configureStore({
     reducer:{
         // properties
@@ -27,6 +28,8 @@ const store = configureStore({
         landlordProfileButtons,
         landlordToggle,
         locationForLandlord,
+        viewsReducer:viewsSlice,
+        //special functions
 
 
         // login and sign up

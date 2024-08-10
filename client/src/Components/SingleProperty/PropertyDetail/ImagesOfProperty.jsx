@@ -1,7 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { bg3, img1, img2, img3 } from '../../Data/Images'
+import axios from 'axios'
+import { mainLink } from '../../../controller/commonLink/mainLInk'
+import { useParams } from 'react-router-dom'
 const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) => {
-    const samp = [img1,img2,img3,bg3]
+  // const [views,setViews] = useState(0)
+  //   const {propertyId} = useParams()
+  //   useEffect(()=>{
+  //     try {
+  //       axios.get(`${mainLink}/api-property-views`+propertyId)
+  //     .then(res =>{
+  //       setViews(res.data.views)
+  //     })
+  //     .catch((err) =>{
+  //       setViews(err.message)
+  //       console.log({errorOfViews:err.message})
+  //     })
+  //     } catch (error) {
+  //       console.log({error:error.message})
+  //     }
+  //   },[])
+
+  //   console.log({ViewsOfProperty:views})
+    
   return (
     <div className=' container mx-auto px-2 border-b-[1px] border-b-neutral-200 py-3'>
        <h2 className='text-3xl font-bold py-4'>{name}</h2>

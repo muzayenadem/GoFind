@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true
 function App() {
   return (
     <>
-    <div className='w-full min-h-screen  h-auto bg-white'>
+    <div className='w-full min-h-screen overflow-clip h-auto bg-white'>
       {/* <MainOfApp/> */}
       <Rout/>
     </div>

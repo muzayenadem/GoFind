@@ -21,6 +21,8 @@ const renterAuthanticate = require('../middleware/renterAuthanticate')
 const allPropertyList = require('../controller/property/AllPropertyList')
 const singlePropertyDetail = require('../controller/property/singlePropertyDetail')
 const singleProperty = require('../controller/property/singleProperty')
+const addViews = require('../controller/specialFunctions/views/addViews')
+const readViews = require('../controller/specialFunctions/views/readViews')
 
 const  router = require('express').Router()
 
@@ -36,6 +38,11 @@ router.route('/searched-home:id').get(searchedHome)
 router.route('/api-list-landlord-property').get(landLordAuthanticate,listLandlordProperty)
 router.route('/api-property-detail:id').get(singlePropertyDetail)
 router.route('/api-single-property:id').get(singleProperty)
+
+//special api
+router.route('/api-add-views:id').get(addViews)
+router.route('/api-property-views:id').get(readViews)
+
 
 
 //loginned asure api

@@ -4,6 +4,8 @@ import SelectedPropertyImageSlider from '../../Slides/SelectedPropertyImageSlide
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { mainLink } from '../../../controller/commonLink/mainLInk'
+import { fetchViews } from '../../../controller/specialFunctions/viewsSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 function SelectedPropertyCard({property}) {
  //   const images = property.images
@@ -14,6 +16,7 @@ function SelectedPropertyCard({property}) {
     console.log({imagesFomSelected:images})
     console.log({PropertyFromSelectedProperty:property})
 
+    const dispatch = useDispatch()
     useEffect(()=>{
       axios.get(`${mainLink}/api-single-property`+propertyId)
       .then((res) =>{
@@ -27,6 +30,25 @@ function SelectedPropertyCard({property}) {
          setError(err.message)
       })
     },[])
+  
+    const seeViews = async()=>{
+      try {
+        axios.get(`${mainLink}/api-add-views`+propertyId)
+      .then(res =>{
+      })
+      .catch((err) =>{
+        console.log({errorOfViews:err.message})
+      })
+      } catch (error) {
+        console.log({error:error.message})
+      }
+    }
+    useEffect(()=>{
+      dispatch(fetchViews(propertyId))
+    },[])
+    
+    const views = useSelector(state => state.viewsReducer.views)
+      
 
     if(loading){
       return(
@@ -46,17 +68,18 @@ function SelectedPropertyCard({property}) {
       )
     }
   return (
-          <div className='py- 5 px-4'>
-        <h1 className=' font-serif font-bold text-xl px-2 py-4 '>The home you selected</h1>
+          <div className='container mx-auto px-2'>
+        <h1 className=' font-serif font-bold text-xl px-2 py-4 '>The {property.category} you selected</h1>
         <div className='flex gap-3 rounded-md'>
 
             <div style={{width:'50%', height:'auto' , height:'270px' }}>
               <SelectedPropertyImageSlider images={images}/>
             </div>
-            <Link to={`/detail-of-property-open/${propertyId}`}>
+            <Link onClick={seeViews} to={`/detail-of-property-open/${propertyId}`}>
             <div className="gap-5 p-1">
                 <p className='text-xl font-semibold'>{property.name}</p>
                 <p>{property.subCategory}</p>
+                <p>{views} views</p>
             </div> 
             </Link>
         </div>

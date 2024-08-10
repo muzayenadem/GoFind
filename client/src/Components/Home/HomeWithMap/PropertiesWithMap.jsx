@@ -57,7 +57,7 @@ function PropertiesWithMap() {
         <div  style={{position:'sticky',marginTop:'-105px', top:'-61px',left:'0px',width:'100%',zIndex:1}}>
           <HomeTop/>
       </div>
-      <div className=" flex relative px-5 gap-3">
+      <div className="min-w-[100%] flex relative  gap-3">
         <div className="">
           <SelectedPropertyCard property={property} images={images}/>
           < PropertyCard property={property} homes={list}/>
