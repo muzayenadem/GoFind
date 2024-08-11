@@ -48,7 +48,7 @@ function HomeTop() {
   
     if(renterError == 'pending' & landlordError == 'pending'){
       return (
-       <div className='animate-pulse flex gap-5 container mx-auto py-25 bg-white px-10 flex-col'>
+       <div className='animate-pulse flex gap-5 container mx-auto py-25 bg-white  flex-col'>
 
         <div className="flex flex-col py-6 gap-4">
           <div className="flex w-64 h-8 bg-gray-300 rounded-md"></div>
