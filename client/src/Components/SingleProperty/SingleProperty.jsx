@@ -13,7 +13,7 @@ import LocationOfProprty from './PropertyDetail/LocationOfProprty'
 import ReleatedProperty from './PropertyDetail/ReleatedProperty'
 import ReviewsOfProperty from './PropertyDetail/ReviewsOfProperty'
 import RentalHousesCard from '../Home/RentalHousesCard'
-import MainMap from '../Home/MainMap'
+import MainMap from '../Home/HomeWithMap/MainMap'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchViews } from '../../controller/specialFunctions/viewsSlice'
 function SingleProperty() {

@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import {img1} from '../Data/Images'
+import {img1} from '../../Data/Images'
 import 'leaflet/dist/leaflet.css';
 import './MainMap.css'
 //import SearchForLandlord from './SearchForLandlord';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import L from 'leaflet';
-import { setLongitudeAndLatitudeOFProperty } from '../../controller/AddProperty/propertyType';
+import { setLongitudeAndLatitudeOFProperty } from '../../../controller/AddProperty/propertyType';
 import { popup } from 'leaflet';
 import axios from 'axios';
-import { mainLink } from '../../controller/commonLink/mainLInk';
+import { mainLink } from '../../../controller/commonLink/mainLInk';
 const MainMap = ({homes,property}) => {
   const mapRef = useRef();
   const [markers, setMarkers] = useState([]);
@@ -147,7 +147,7 @@ const createCustomIcon = (home) => {
                           console.log('maaliif garuu qoy')
                           if(find){
                             return (
-                              <button onClick={()=> window.location.href=`/detail-of-property-open/${sing._id}`}>
+                              <button key={i} onClick={()=> window.location.href=`/detail-of-property-open/${sing._id}`}>
                                   <div >{sing.name}  <img src={sing.images[0]}/></div>
                               </button>
                             )
@@ -159,7 +159,7 @@ const createCustomIcon = (home) => {
                           if(find){
                             console.log('maaliif garuu qoy')
                             return (
-                              <Link to={`/detail-of-property-open/${sing._id}`} >
+                              <Link key={i} to={`/detail-of-property-open/${sing._id}`} >
                                   <div >{sing.name} <img src={sing.images[0]}/></div>
                               </Link>
                             )

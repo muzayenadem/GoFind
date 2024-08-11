@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Mee from '../Mee'
+import Mee from './Mee'
 import HomeTop from '../HomeTop'
 import RentalHousesCard from '../RentalHousesCard'
 import PropertyCard from './PropertyCard'
@@ -27,7 +27,7 @@ function PropertiesWithMap() {
      if(homes.length == 0){
        dispatch( fetchAllProperties(JSON.stringify({category:property.category})))
      }
-    },[homes])
+    },[])
     let list = []
     if(homes.length){
      const find = homes.find(property => property._id == propertyId)
@@ -40,7 +40,9 @@ function PropertiesWithMap() {
      }
     }
 
-    if(homes.length == 0){
+    const error = useSelector(state => state.allProperties.error)
+
+    if(error == 'pending'){
       return(
         <div className="flex items-center justify-center px-32 py-60  md:p-32 md:py-60 min-h-[65vh] space-x-2">
 

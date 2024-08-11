@@ -17,7 +17,7 @@ import RoomsFilter from './TopHomeComponents/RoomsFilter';
 import DistanceFilter from './TopHomeComponents/DistanceFilter';
 import MultipleFilters from './TopHomeComponents/MultipleFilters';
 import TypeFilter from './TopHomeComponents/TypeFilter';
-import Mee from './Mee';
+import Mee from './HomeWithMap/Mee';
 import { renterTokenReducer } from '../../controller/tokens/renterToken';
 import { landlordTokenReducer } from '../../controller/tokens/landlordToken';
 function HomeTop() {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice'
+import { fetchAllProperties } from '../../../controller/data/AllPropertySlice/allPropertySlice'
 import MainMap from './MainMap'
 
 function Mee({property,homes}) {

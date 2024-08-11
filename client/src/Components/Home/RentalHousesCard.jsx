@@ -6,7 +6,7 @@ import ImageSlider from '../Slides/ImageSlider';
 import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice';
 import { Link } from 'react-router-dom';
 import NoProperty from './TopHomeComponents/NoProperty';
-import MainMap from './MainMap';
+import MainMap from './HomeWithMap/MainMap';
 function RentalHousesCard() {
     const [data,setData] = useState(null)
      const dispatch = useDispatch()

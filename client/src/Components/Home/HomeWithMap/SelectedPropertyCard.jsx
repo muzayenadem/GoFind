@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function SelectedPropertyCard({property}) {
  //   const images = property.images
+ const samp =[img1,img2,img3]
     const [images,setImages] = useState([])
     const [loading,setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -18,17 +19,21 @@ function SelectedPropertyCard({property}) {
 
     const dispatch = useDispatch()
     useEffect(()=>{
-      axios.get(`${mainLink}/api-single-property`+propertyId)
-      .then((res) =>{
-         setImages(res.data.images)
-         setLoading(false)
-         setError(false)
-      })
-      .catch((err)=>{
-         console.log({error:err.message})
-         setLoading(false)
-         setError(err.message)
-      })
+      const h = ()=>{
+         axios.get(`${mainLink}/api-single-property`+propertyId)
+        .then((res) =>{
+           setImages(res.data.images)
+           setLoading(false)
+           setError(false)
+        })
+        .catch((err)=>{
+           console.log({error:err.message})
+           setLoading(false)
+           setError(err.message)
+        })
+      }
+     h()
+      dispatch(fetchViews(propertyId))
     },[])
   
     const seeViews = async()=>{
@@ -43,25 +48,25 @@ function SelectedPropertyCard({property}) {
         console.log({error:error.message})
       }
     }
-    useEffect(()=>{
-      dispatch(fetchViews(propertyId))
-    },[])
+    // useEffect(()=>{
+     
+    // },[])
     
     const views = useSelector(state => state.viewsReducer.views)
       
 
-    if(loading){
-      return(
-        <div  className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
-            <div className="h-48 rounded-t dark:bg-gray-300"></div>
-            <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
-              <div className="w-full h-6 rounded dark:bg-gray-300"></div>
-              <div className="w-full h-6 rounded dark:bg-gray-300"></div>
-              <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
-            </div>
-          </div>
-      )
-    }
+    // if(loading){
+    //   return(
+    //     <div  className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
+    //         <div className="h-48 rounded-t dark:bg-gray-300"></div>
+    //         <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
+    //           <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+    //           <div className="w-full h-6 rounded dark:bg-gray-300"></div>
+    //           <div className="w-3/4 h-6 rounded dark:bg-gray-300"></div>
+    //         </div>
+    //       </div>
+    //   )
+    // }
     if(error){
       return(
         <div>{error}</div>

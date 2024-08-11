@@ -59,7 +59,7 @@ function PropertyCard({property,homes}) {
                             <h2 className=' text-neutral-900 font-medium text-md'>{subCategory}</h2>
                           </div>
                           <div className='flex justify-end px-5 py-2'>
-                              <butun onClick={()=> window.location.href = `/detail-of-property/${_id}`} className='w-[48%] text-white font-bold text-sm text-center bg-fuchsia-700 px-3 hover:bg-fuchsia-900 rounded-md items-center py-2'>Detail</butun>
+                              <button onClick={()=> window.location.href = `/detail-of-property/${_id}`} className='w-[48%] text-white font-bold text-sm text-center bg-fuchsia-700 px-3 hover:bg-fuchsia-900 rounded-md items-center py-2'>Detail</button>
                           </div>
                 </div>
             )

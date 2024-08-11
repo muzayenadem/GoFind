@@ -9,6 +9,7 @@ const singleProperty = async(req,res) =>{
         return res.status(200).send('there is no property with this data')
 
         res.status(200).send({property,images:property.images})
+        console.log({ImagesOfProperty:property.images})
     } catch (error) {
         console.log({error:error.message})
     }
