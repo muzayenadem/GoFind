@@ -52,7 +52,6 @@ function Navbar() {
           <div className='w-32 h-10 rounded-md bg-gray-300'></div>
           <div className='w-32 h-10 rounded-md bg-gray-300'></div>
           <div className='w-32 h-10 rounded-md bg-gray-300'></div>
-          <div className='w-32 h-10 rounded-md bg-gray-300'></div>
         </div>
         <div className="flex gap-2">
           <div className='w-16 md:w-32 h-10 rounded-md bg-gray-300'></div>

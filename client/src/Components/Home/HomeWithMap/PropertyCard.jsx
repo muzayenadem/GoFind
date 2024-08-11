@@ -2,26 +2,39 @@ import React, { useEffect, useState } from 'react'
 import { MdClear } from "react-icons/md";
 import { useSelector,useDispatch } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import NoProperty from '../TopHomeComponents/NoProperty';
 import { fetchAllProperties } from '../../../controller/data/AllPropertySlice/allPropertySlice';
 import ImageSlider from '../../Slides/ImageSlider';
 import Pagination from '../Pagination';
 
 function PropertyCard({property,homes}) {
+const {propertyId} = useParams()
+  let list = []
+  if(homes.length){
+   const find = homes.find(property => property._id == propertyId)
+   if(find){ 
+     for(let home of homes){
+       if (home != find){
+         list.push(home)
+       }
+     }
+   }
+  }
 
   const error = useSelector((state)=> state.allProperties.error)
+  console.log({errrrrroooooooor:error})
   if(error == 'pending'){
     return (
-      <div className='container mx-auto pt-6 pb-14  '>
-        <div className="flex flex-col">
-        <div className='flex w-52 md:w-80 bg-slate-300 h-6 ml-8'></div>
-        <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-3 xl:grid-cols-4 gap-4'> 
+      <div className='container w-full mx-auto  pb-14  '>
+        <div className="flex gap-3 py-6  flex-col">
+        <div className='flex rounded-sm w-52 md:w-80 bg-slate-300 h-6 ml-2 '></div>
+        <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-2 xl:grid-cols-3 gap-4'> 
           {
-            [1,2,3,4,5,6,7,8,9,1,23,3,4,5,6,7].map((i)=>{
+            [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map((index)=>{
                 return(
-                <div key={i} className="flex flex-col m-8 rounded shadow-md  animate-pulse h-96">
-                <div className="h-48 w-full rounded-t dark:bg-gray-300"></div>
+                <div key={index} className="flex flex-col  rounded shadow-md  animate-pulse h-96">
+                <div className="w-full h-64 rounded-2xl dark:bg-gray-300"></div>
                 <div className="flex-1 px-4 py-8 space-y-4 p-1 dark:bg-gray-50">
                   <div className="w-full h-6 rounded dark:bg-gray-300"></div>
                   <div className="w-full h-6 rounded dark:bg-gray-300"></div>
@@ -46,7 +59,8 @@ function PropertyCard({property,homes}) {
           )}
     <div className='grid px-2 grid-cols-1 sm:grid-cols-2 pb-10 md:grid-cols-2 xl:grid-cols-3 gap-4'>
     {   
-        homes.map(({name,price,subCategory,images,category,details,_id},i) => {    
+        homes.map(({name,price,subCategory,images,category,details,_id},i) => { 
+          if(_id != propertyId){   
             return (
                 <div style={{width:"100%" ,height:'auto'}} key={i} className=' h-auto mt-2 bg-white shadow-lg   shadow-neutral-300'>
               
@@ -63,6 +77,7 @@ function PropertyCard({property,homes}) {
                           </div>
                 </div>
             )
+          }
         })
     }
     <div>

@@ -102,7 +102,7 @@ const createCustomIcon = (home) => {
 
     if(loading){
      return(
-      <div className="flex  flex-col rounded-2xl shadow-md w-[100%] animate-pulse h-[85vh]">
+      <div className="flex  flex-col py-2 rounded-2xl shadow-md w-[100%] animate-pulse h-[85vh]">
       <div className="h-full w-full rounded-2xl dark:bg-gray-300"></div>
       {/* <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-50">
         <div className="w-full h-6 rounded dark:bg-gray-300"></div>
