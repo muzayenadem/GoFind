@@ -29,8 +29,6 @@ function SelectedPropertyImageSlider({images}) {
     setCurrentIdex(i)
     setActive(i)
   }
-  const samp = [img1,img2,img3,samp1,samp2]
- 
   return (
     <div style={{height:'100%', position:'relative',}} onMouseOver={()=> setHide(false)} onMouseLeave={()=> setHide(true)}>
       <div onClick={previous} className={`w-8 h-8 rounded-3xl bg-white/80 hover:bg-black/50 text-center hover:text-white/80 flex items-center justify-center ${hide == true ? 'hidden' : ''}`} style={{position:'absolute',top:'50%',transform:'translate(0,-50%',left:'18px',fontSize:'18px',cursor:'pointer'}} ><FaChevronLeft/></div>

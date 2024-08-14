@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import landlordProperty from '../../../componentsData/landlordProperty'
 import { bg6 } from '../../../Data/Images'
 import { IoMdMore } from "react-icons/io";
@@ -18,6 +18,9 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import DeletePopup from './popupsOfPropertyList/DeletePopup';
 import UnPublishPopup from './popupsOfPropertyList/UnPublishPopup';
 import EmptyPage from './EmptyPage';
+import { useDispatch, useSelector } from 'react-redux';
+import viewsData from '../../../componentsData/viewsData';
+import { fetchViews } from '../../../../controller/specialFunctions/viewsSlice';
 
 function PropertyList() {
    const list = landlordProperty()
@@ -33,6 +36,18 @@ function PropertyList() {
    const [other, setOther] = useState(false)
    console.log({listOfProperty})
    console.log({isOpen})
+
+
+   const dispatch= useDispatch()
+   const visitors = viewsData()
+//    useEffect(()=>{
+//     dispatch(fetchViews())
+// },[])
+// const visitor = useSelector(state => state.viewsReducer.views)
+
+// let  visitors = []
+//    visitor.length != 0 ? visitors = listOfProperty :visitors = []
+    console.log({visitors})
    const openHandler = (id) =>{
     if(id  & id != openId){
         setIsOpen(false)
@@ -144,6 +159,10 @@ function PropertyList() {
                     // const price = single.price
                     // const id = single._id
                     // const images = single.images
+                  
+                        let views = visitors ? visitors.find(view => view.propertyId == _id):null
+                        let people = views ? views.people: 0
+                   
                     return(
                         <div key={i} className='bg-white mt-2 relative flex-wrap xl:flex-nowrap flex gap-5 rounded-md p-2 w-full'>
                              <div className="flex justify-between w-full  lg:hidden">
@@ -207,14 +226,14 @@ function PropertyList() {
                                         <span className='text-2xl mt-5'><FaRegHeart/></span>
                                         <div className="flex flex-col gap-2">
                                             <p className='text-base text-neutral-400'>something</p>
-                                            <h2 className='text-xl underline text-blue-400 '>54 visitors</h2>
+                                            <h2 className='text-xl underline text-blue-400 '>{visitors ? views ? views.views : 0:null} visitors</h2>
                                         </div>
                                     </div>
                                     <div className="flex gap-5">
                                         <span className='text-2xl mt-5'><BsPeopleFill/></span>
                                         <div className="flex flex-col gap-2">
                                             <p className='text-base text-neutral-400'>used by</p>
-                                            <h2 className='text-xl font-bold'>7 people</h2>
+                                            <h2 className='text-xl font-bold'>{visitors ? people ? people.length : 0 : null} people</h2>
                                         </div>
                                     </div>
                                     <div className="flex gap-5">

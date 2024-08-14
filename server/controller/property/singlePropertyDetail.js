@@ -1,6 +1,4 @@
 const propertyModel = require('../../models/propertyModel')
-const jwt = require('jsonwebtoken')
-const viewsModel = require('../../models/viewsModel')
 const singlePropertyDetail = async(req,res)=>{
     
     try {

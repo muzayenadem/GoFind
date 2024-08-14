@@ -41,7 +41,7 @@ router.route('/api-single-property:id').get(singleProperty)
 
 //special api
 router.route('/api-add-views:id').get(addViews)
-router.route('/api-property-views:id').get(readViews)
+router.route('/api-property-views').get(readViews)
 
 
 

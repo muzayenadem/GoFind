@@ -7,10 +7,10 @@ const initailState = {
     error:''
 }
 
-export const fetchViews = createAsyncThunk('views/fetchViews',(value)=>{
-    return axios.get(`${mainLink}/api-property-views`+value)
+export const fetchViews = createAsyncThunk('views/fetchViews',()=>{
+    return axios.get(`${mainLink}/api-property-views`)
     .then(result =>{
-        return result.data.views
+        return result.data
     })
 })
 const viewsSlice = createSlice({
