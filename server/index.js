@@ -22,6 +22,7 @@ mongoose.connect(process.env.DATABASE)
 const router = require('./router/router')
 
 const app = express()
+const PORT = process.env.PORT || 3000;
 app.use(cors({ 
     origin:['https://gofind.vercel.app','http://localhost:5173','https://gofind-git-ecommerce-muzayen.vercel.app','https://gofind-muzayen.vercel.app','https://gofind-git-gofind-muzayen.vercel.app'],
      credentials:true,
@@ -38,6 +39,6 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
 app.use(router)
-app.listen(3500,()=>{
-    console.log('the server is started')
-})
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
