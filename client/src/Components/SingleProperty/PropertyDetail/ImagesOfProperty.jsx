@@ -3,8 +3,21 @@ import { bg3, img1, img2, img3 } from '../../Data/Images'
 import axios from 'axios'
 import { mainLink } from '../../../controller/commonLink/mainLInk'
 import { useParams } from 'react-router-dom'
-const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) => {
+import viewsData from '../../componentsData/viewsData'
+import { useSelector } from 'react-redux'
+const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details}) => {
     const {propertyId} = useParams()
+
+    const views = viewsData()
+    const error = useSelector(state => state.viewsReducer.error)
+    let view = null
+    if(error != 'pending'){
+      if(views){
+         view = views.find((single)=> single.propertyId == propertyId)
+      }
+    }
+  
+   
   //   useEffect(()=>{
   //     try {
   //       axios.get(`${mainLink}/api-property-views`+propertyId)
@@ -21,7 +34,6 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) =>
   //   },[])
 
   //   console.log({ViewsOfProperty:views})
- const view = views.find((single)=> single.propertyId == propertyId)
     
   return (
     <div className=' container mx-auto px-2 border-b-[1px] border-b-neutral-200 py-3'>
@@ -41,10 +53,10 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) =>
       </div>
     </div>
     <div className="flex gap-9 pt-7 ">
-      <p className='font-serif '>{view.views} Views</p>
+      <p className='font-serif '>{view && view.views} Views</p>
       <p className='font-serif'>{name}</p>
-      <p className='font-serif'>Bedroom {details.bedroom} </p>
-      <p>Bathroom {details.bathroom}</p>
+      <p className='font-serif'>Bedroom {details.bedroom && details.bedroom} </p>
+      <p>Bathroom {details.bathroom && details.bathroom}</p>
     </div>
     </div>
   )

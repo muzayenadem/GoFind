@@ -6,6 +6,7 @@ import axios from 'axios'
 import { mainLink } from '../../../controller/commonLink/mainLInk'
 import { fetchViews } from '../../../controller/specialFunctions/viewsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import viewsData from '../../componentsData/viewsData'
 
 function SelectedPropertyCard({property}) {
  //   const images = property.images
@@ -48,10 +49,15 @@ function SelectedPropertyCard({property}) {
         console.log({error:error.message})
       }
     }
-    
-    const views = useSelector(state => state.viewsReducer.views)
-
-    const view = views.find((single)=> single.propertyId == propertyId)
+    const views = viewsData()
+    const ViewsError = useSelector(state => state.viewsReducer.error)
+    let view = null
+    if(ViewsError != 'pending'){
+      if(views){
+         view = views.find((single)=> single.propertyId == propertyId)
+      }
+    }
+  
     if(loading){
       return(
         <div  className="flex gap-4 mt-8 ml-8 rounded shadow-md animate-pulse h-96">
@@ -81,7 +87,7 @@ function SelectedPropertyCard({property}) {
             <div className="gap-5 p-1">
                 <p className='text-xl font-semibold'>{property.name}</p>
                 <p>{property.subCategory}</p>
-                <p>{view.views} views</p>
+                <p>{view && view.views} views</p>
             </div> 
             </Link>
         </div>
