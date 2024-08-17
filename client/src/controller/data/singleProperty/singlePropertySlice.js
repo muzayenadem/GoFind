@@ -22,9 +22,11 @@ const singlePropertySlice = createSlice({
     extraReducers:(builder)=>{
         builder.addCase(singlePropertyReducer.pending,(state)=>{
             state.loading = true
+            state.error = 'pending'
         })
         builder.addCase(singlePropertyReducer.fulfilled,(state,action)=>{
             state.loading = false
+            state.error = 'succes'
             state.property = action.payload
         })
         builder.addCase(singlePropertyReducer.rejected,(state,action)=>{

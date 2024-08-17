@@ -5,7 +5,7 @@ import { mainLink } from '../../../controller/commonLink/mainLInk'
 import { useParams } from 'react-router-dom'
 import viewsData from '../../componentsData/viewsData'
 import { useSelector } from 'react-redux'
-const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details}) => {
+const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,property}) => {
     const {propertyId} = useParams()
 
     const views = viewsData()
@@ -34,6 +34,7 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details}) => {
   //   },[])
 
   //   console.log({ViewsOfProperty:views})
+  const {details} = property
     
   return (
     <div className=' container mx-auto px-2 border-b-[1px] border-b-neutral-200 py-3'>
@@ -55,8 +56,8 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details}) => {
     <div className="flex gap-9 pt-7 ">
       <p className='font-serif '>{view && view.views} Views</p>
       <p className='font-serif'>{name}</p>
-      <p className='font-serif'>Bedroom {details.bedroom && details.bedroom} </p>
-      <p>Bathroom {details.bathroom && details.bathroom}</p>
+      <p className='font-serif'>Bedroom  {details.bedroom}</p>
+      <p>Bathroom {details.bathroom} </p>
     </div>
     </div>
   )

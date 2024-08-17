@@ -16,10 +16,16 @@ import RentalHousesCard from '../Home/RentalHousesCard'
 import MainMap from '../Home/HomeWithMap/MainMap'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchViews } from '../../controller/specialFunctions/viewsSlice'
-function SingleProperty() {
+function SingleProperty () {
+  // const [property,setProperty] = useState({})
+  // useEffect(()=>{
+  //   const propert = singlePropertyData()
+  //   setProperty(propert)
+  // })
   const property = singlePropertyData()
-
   const {amenities,name,images,details,permissions,_id,category} = property
+  
+
   const [photos,setPhotos] = useState([])
   const  [mainPhoto ,setMainPhoto] = useState(null)
   const [loading,setLoading] = useState(true)
@@ -55,8 +61,9 @@ function SingleProperty() {
     },[])
     
     const views = useSelector(state => state.viewsReducer.views)
+    const error = useSelector(state=> state.singleProperty.error)
 
-    if (loading == true ){
+    if (loading == true || error == 'pending'){
       return (
       <div className="flex items-center justify-center px-32 py-60  md:p-32 md:py-60 min-h-[65vh] space-x-2">
 
@@ -77,7 +84,7 @@ function SingleProperty() {
     <div className="container mx-auto p-2 md:px-16">
          <div className='container mx-auto  flex justify-around' >
       <div className="lg:w-[74%]">
-      <ImagesOfProperty photos={photos} views={views} mainPhoto={mainPhoto} setMainPhoto={setMainPhoto} name={name} details={details} />
+      <ImagesOfProperty photos={photos} views={views} property={property} mainPhoto={mainPhoto} setMainPhoto={setMainPhoto} name={name} details={details} />
       <DetailOfProperty details={details}/>
       <AmenityOfProperty amenities={amenities}/>
       <PermitionOfProperty permissions={permissions}/>
