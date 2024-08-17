@@ -1,6 +1,6 @@
 const landLordModel = require('../../models/landLordModel')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const landLordLogin = async (req,res) =>{
    try {
        const {email,password} = req.body

@@ -1,5 +1,5 @@
 const renterModel = require('../../models/renterModel')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const renterSignup = async (req,res) =>{
     

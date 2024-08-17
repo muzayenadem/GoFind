@@ -1,6 +1,6 @@
  const renterModel = require('../../models/renterModel')
  const jwt = require('jsonwebtoken')
- const bcrypt = require('bcrypt')
+ const bcrypt = require('bcryptjs')
  const renterLogin = async (req,res) =>{
     try {
         const {email,password} = req.body
