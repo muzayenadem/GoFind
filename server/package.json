@@ -4,6 +4,8 @@
   "description": "house for rental",
   "main": "index.js",
   "scripts": {
+    "clear_cache": "rm -rf node_modules && npm cache clean --force",
+    "postinstall": "npm install",
     "start": "nodemon index.js",
     "dev": "nodemon index.js"
   },
