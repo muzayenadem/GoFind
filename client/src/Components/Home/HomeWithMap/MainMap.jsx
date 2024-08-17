@@ -91,7 +91,7 @@ const createCustomIcon = (home) => {
     html:`<div>
     <div>$${home.price}</div>
   </div>`,
-    iconSize: [36, 36], // Adjust the size as needed
+    iconSize: [36, 36], //  Adjust the size as needed
     iconAnchor: [20, 40], // Adjust the anchor point
     borderRadius:['20px'],
     popupAnchor: [0, -40], // Adjust the popup anchor
