@@ -50,8 +50,8 @@ function SelectedPropertyCard({property}) {
     }
     
     const views = useSelector(state => state.viewsReducer.views)
-      
 
+    const view = views.find((single)=> single.propertyId == propertyId)
     if(loading){
       return(
         <div  className="flex gap-4 mt-8 ml-8 rounded shadow-md animate-pulse h-96">
@@ -81,7 +81,7 @@ function SelectedPropertyCard({property}) {
             <div className="gap-5 p-1">
                 <p className='text-xl font-semibold'>{property.name}</p>
                 <p>{property.subCategory}</p>
-                <p>{views} views</p>
+                <p>{view.views} views</p>
             </div> 
             </Link>
         </div>

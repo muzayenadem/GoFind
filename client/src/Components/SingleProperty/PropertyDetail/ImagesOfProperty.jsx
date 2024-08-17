@@ -4,8 +4,7 @@ import axios from 'axios'
 import { mainLink } from '../../../controller/commonLink/mainLInk'
 import { useParams } from 'react-router-dom'
 const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) => {
-  // const [views,setViews] = useState(0)
-  //   const {propertyId} = useParams()
+    const {propertyId} = useParams()
   //   useEffect(()=>{
   //     try {
   //       axios.get(`${mainLink}/api-property-views`+propertyId)
@@ -22,6 +21,7 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) =>
   //   },[])
 
   //   console.log({ViewsOfProperty:views})
+ const view = views.find((single)=> single.propertyId == propertyId)
     
   return (
     <div className=' container mx-auto px-2 border-b-[1px] border-b-neutral-200 py-3'>
@@ -41,7 +41,7 @@ const ImagesOfProperty = ({photos,mainPhoto,setMainPhoto,name,details,views}) =>
       </div>
     </div>
     <div className="flex gap-9 pt-7 ">
-      <p className='font-serif '>{views} Views</p>
+      <p className='font-serif '>{view.views} Views</p>
       <p className='font-serif'>{name}</p>
       <p className='font-serif'>Bedroom {details.bedroom} </p>
       <p>Bathroom {details.bathroom}</p>
