@@ -4,9 +4,8 @@
   "description": "house for rental",
   "main": "index.js",
   "scripts": {
-    "clear_cache": "rm -rf node_modules && npm cache clean --force",
-    "dev": "nodemon index.js",
-    "start": "NODE_ENV=development node index.js"
+    "dev": "node index.js",
+    "start": "node index.js"
   },
   "author": "Muzayen Adem",
   "license": "ISC",
