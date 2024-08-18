@@ -55,7 +55,7 @@ function HomeTop() {
           <div className="flex w-52 h-6 bg-gray-300 rounded-md"></div>
         </div>
          <div className="flex gap-5">
-           <div className='w-32 h-12 rounded-md bg-gray-300'></div>
+           <div className='hidden md:block w-32 h-12 rounded-md bg-gray-300'></div>
            <div className="w-96 h-12 bg-gray-300"></div>
            <div className="w-36 md:hidden h-12 bg-gray-300 "></div>
          <div className="hidden md:flex gap-3">
