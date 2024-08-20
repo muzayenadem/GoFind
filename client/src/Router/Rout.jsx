@@ -29,6 +29,8 @@ import isLandlordLoginned from '../Components/componentsData/isLandlordLoginned'
 import LandlordNotSignIned from '../Components/ErrorPages/LandlordNotSignIned'
 import SingleProperty from '../Components/SingleProperty/SingleProperty'
 import PropertiesWithMap from '../Components/Home/HomeWithMap/PropertiesWithMap'
+import BookingProperty from '../Components/SingleProperty/BookingProperty/BookingProperty'
+import isRenterLogginned from '../Components/componentsData/isRenterLogginned'
 function Rout() {
   const [isloading,setIsLoading] = useState(false)
   const isloading2 = useSelector(state => state.allProperties.loading)
@@ -36,7 +38,9 @@ function Rout() {
     setIsLoading(isloading2)
   },[])
   const propertyType = useSelector(state => state.propertyType.subCategory)
+  const error = useSelector(state => state.renterToken.error)
    const landlordToken = isLandlordLoginned()
+   const renterToken = isRenterLogginned()
    console.log({landLordTokenFromRouter:landlordToken,isloading})
   if (isloading2 == 'u'){
     return (
@@ -56,8 +60,23 @@ function Rout() {
             <Route path='map' element={<Map4/>}/>
             <Route path='/' element={<MainOfApp/>}>
               <Route path='' element={<Home/>}/>
+              <Route path='/:propertyId' element={<Home/>}/>
               <Route path='detail-of-property/:propertyId' element={<PropertiesWithMap/>}/>
               <Route path='detail-of-property-open/:propertyId' element={<SingleProperty/>}/>
+              <Route path='renter-login/:propertyId' element={<RenterLogin/>}/>
+              <Route path='renter-signup/:propertyId' element={<RenterSignup/>}/>
+              <Route path='property-booking/:propertyId' element={
+                error == 'pending' || error == '' ? 
+                  <div className="flex items-center justify-center px-32 py-60  md:p-32 md:py-60 min-h-[65vh] space-x-2">
+                  <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-800"></div>
+                  <div className="w-3.5 h-3.5 rounded-full animate-pulse dark:bg-violet-700"></div>
+                  <div className="w-3 h-3 rounded-full animate-pulse dark:bg-violet-600"></div>
+                  <div className="w-2 h-2 rounded-full animate-pulse dark:bg-violet-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full animate-pulse dark:bg-violet-400"></div>
+                </div> :
+                renterToken == true ?
+                <BookingProperty/> : <RenterLogin/>
+                }/>
               <Route path='renter-signup' element={<RenterSignup/>}/>
               <Route path='renter-login' element={<RenterLogin/>}/>
               <Route path='landlord-login' element={<LandLordLogin/>}/>

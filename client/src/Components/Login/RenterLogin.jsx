@@ -5,19 +5,26 @@ import { LuMailQuestion } from "react-icons/lu";
 import { FiPhoneForwarded } from "react-icons/fi";
 import { TbPasswordUser } from "react-icons/tb";
 import { FaFacebookF, FaGoogle, FaMessage,FaPerson,FaPhone } from 'react-icons/fa6'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { mainLink } from '../../controller/commonLink/mainLInk';
 function RenterLogin() {
   const [email,setEmail]= useState('')
   const [password, setPassword] = useState('')
   const [errMessage,setErressage] = useState('')
+  const {propertyId} = useParams()
+  console.log({propertyIdAtLoginPage:propertyId})
   const loginHandler = async (e) =>{
     e.preventDefault()
     const response = await axios.post(`${mainLink}/api-renter-login`,{email,password})
     .then(res =>{
       setTimeout(()=>{
+         if(propertyId){
+           window.location.href = `/property-booking/${propertyId}`
+         }
+         if(!propertyId) {
          window.location.href = '/'
+         }
       },1000)
       return res.data
     })
@@ -29,6 +36,16 @@ function RenterLogin() {
     setTimeout(()=>{
       setErressage('')
     },4000)
+  }
+
+  const navigate = useNavigate('')
+  const haveAccountHandler = ()=>{
+    if(propertyId){
+      navigate(`/renter-signup/${propertyId}`)
+    }
+    if(!propertyId) {
+     navigate('/renter-signup')
+    }
   }
   return ( 
     <div className='container py:10 md:py-20 mx-auto'>
@@ -78,9 +95,8 @@ function RenterLogin() {
               </div>
             </div>
             <div className="flex mt-2 gap-2"><p>I have no account! </p>
-            <Link to='/renter-signup'>
-            <span className='text-blue-800'>create account</span>
-              </Link></div>
+               <span onClick={haveAccountHandler} className='text-blue-800'>create account</span>
+            </div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { LuMailQuestion } from "react-icons/lu";
 import { FiPhoneForwarded } from "react-icons/fi";
 import { TbPasswordUser } from "react-icons/tb";
 import { FaFacebookF, FaGoogle, FaMessage,FaPerson,FaPhone } from 'react-icons/fa6'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { mainLink } from '../../controller/commonLink/mainLInk';
 function RenterSignup() {
@@ -18,6 +18,7 @@ function RenterSignup() {
   const [Message, setMessage] = useState("")
   const [errMessage, setErrMessage] = useState('')
 
+  const {propertyId} = useParams()
   const loginHandler = (e) =>{
     e.preventDefault()
     if(firstName == ""){
@@ -67,7 +68,22 @@ function RenterSignup() {
     setErrMessage(response)
     setTimeout(() => {
       setErrMessage('')
+      if(propertyId){
+        window.location.href = `/property-booking/${propertyId}`
+      }
+      if(!propertyId) {
+      window.location.href = '/'
+      }
     }, 2000);
+  }
+  const navigate = useNavigate('')
+  const haveNoAccountHandler = ()=>{
+    if(propertyId){
+      navigate(`/renter-login/${propertyId}`)
+    }
+    if(!propertyId) {
+     navigate('/renter-login')
+    }
   }
   return ( 
     <div className='container py:10 md:py-20 mx-auto'>
@@ -156,9 +172,7 @@ function RenterSignup() {
               </div>
             </div>
             <div className="flex mt-2 gap-2"><p>I have an account already! </p>
-            <Link to='/renter-login' >
-            <span className='text-blue-800'>Login</span>
-            </Link>
+              <span onClick={haveNoAccountHandler} className='text-blue-800'>Login</span>
             </div>
         </div>
       </div>

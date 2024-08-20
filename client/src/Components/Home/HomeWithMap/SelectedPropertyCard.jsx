@@ -95,7 +95,7 @@ function SelectedPropertyCard({property}) {
             </div>
             
 
-            <div className="gap-5 flex flex-col px-4 py-4 w-[100%] md:w-[40%] ">
+            <div className="gap-5 flex flex-col px-4 py-4 w-[100%] md:w-[60%] ">
             <div className="flex justify-between w-full">
                 <div className="flex gap-2 text-base font-bold flex-wrap">
                   <p>{property.area.max && `${property.area.max}-M2 ${property.category}`}</p>
