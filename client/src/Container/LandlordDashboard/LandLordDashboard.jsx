@@ -18,10 +18,9 @@ function LandLordDashboard() {
                 <div className="flex fixed top-0 md:top-0 z-10 left-0">
                 <LandlordSidebar/>
                 </div>
-                {/* <Outlet/> */}
-                {/* <MainProperty/> */}
-                {/* <LandLordMainDashboard/> */}
-                {/* <ListingMain/> */}
+                {/* <MainProperty/>
+                    <LandLordMainDashboard/> 
+                    <ListingMain/> */}
 
                 <Outlet/>
             </div>

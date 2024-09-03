@@ -74,7 +74,7 @@ if(!homes.locationWithName.marker){
   return (
     <div className='py-20 rounded-lg ipad:ml-[20%]  sticky top-0 left-0 tablet:ml-[25%] px-10 gap-5 flex flex-col '>
       <h3>Location of this property</h3>
-      <MapContainer center={homes.locationWithName.marker != null ? [homes.locationWithName.marker[0].lat, homes.locationWithName.marker[0].lon] : [9.048, 39.023]} zoom={ homes.locationWithName.marker != null ? 15 : 5} style={{ height: "65vh", width: "100%", zIndex:'1',borderRadius:'20px'}} ref={mapRef}>
+      <MapContainer center={homes.locationWithName.marker != null && homes.locationWithName.marker.length ? [homes.locationWithName.marker[0].lat, homes.locationWithName.marker[0].lon] : [9.048, 39.023]} zoom={ homes.locationWithName.marker != null ? 15 : 5} style={{ height: "65vh", width: "100%", zIndex:'1',borderRadius:'20px'}} ref={mapRef}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'>
         <img src="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></img>
         </TileLayer>
