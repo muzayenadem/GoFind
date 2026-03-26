@@ -20,6 +20,9 @@ const schema = mongoose.Schema({
     },
     phone:{
         type:Number
+    },
+    img:{
+        type:Array
     }
 })
 

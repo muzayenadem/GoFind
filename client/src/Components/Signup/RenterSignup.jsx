@@ -4,13 +4,16 @@ import { IoMdPerson } from "react-icons/io";
 import { LuMailQuestion } from "react-icons/lu";
 import { FiPhoneForwarded } from "react-icons/fi";
 import { TbPasswordUser } from "react-icons/tb";
+import { BiHide } from "react-icons/bi";
 import { FaFacebookF, FaGoogle, FaMessage,FaPerson,FaPhone } from 'react-icons/fa6'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { mainLink } from '../../controller/commonLink/mainLInk';
 function RenterSignup() {
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastname] = useState('')
+  const [signin,setSignIn] = useState(false)
+  const [hide,SetHide] = useState(false)
   const [email,setEmail] = useState('')
   const [phone,setPhone] = useState('')
   const [password,setPassword] = useState('')
@@ -18,6 +21,7 @@ function RenterSignup() {
   const [Message, setMessage] = useState("")
   const [errMessage, setErrMessage] = useState('')
 
+  const {propertyId} = useParams()
   const loginHandler = (e) =>{
     e.preventDefault()
     if(firstName == ""){
@@ -56,7 +60,7 @@ function RenterSignup() {
     }
   }
   const signupHandler = async () =>{
-
+    setSignIn(true)
     const response = await axios.post(`${mainLink}/api-renter-signup`,{firstName,lastName,email,phone,password,confirmPassword})
     .then(res =>{
      return res.data
@@ -64,10 +68,29 @@ function RenterSignup() {
     .catch(err => {
       return err.response.data
     })
+    setSignIn(false)
     setErrMessage(response)
     setTimeout(() => {
       setErrMessage('')
+      if(propertyId){
+        window.location.href = `/property-booking/${propertyId}`
+      }
+      if(!propertyId) {
+      window.location.href = '/'
+      }
     }, 2000);
+  }
+  const navigate = useNavigate('')
+  const haveNoAccountHandler = ()=>{
+    if(propertyId){
+      navigate(`/renter-login/${propertyId}`)
+    }
+    if(!propertyId) {
+     navigate('/renter-login')
+    }
+  }
+   const show = () =>{
+    SetHide(!hide)
   }
   return ( 
     <div className='container py:10 md:py-20 mx-auto'>
@@ -118,16 +141,18 @@ function RenterSignup() {
               />
               </div>
             
-              <div className="flex border-blue-300 border-b-[2px] ">
+              <div className="flex justify-between border-blue-300 border-b-[2px] ">
+                <div className="flex px-3  xl:px-6">
                 <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
-              <input
-              type='password'
-              className='focus:outline-none h-10 px-3'
-              placeholder='Password'
-              onChange={(e)=> setPassword(e.target.value)}
-
-              />
-              </div>
+                <input
+                type={hide ? 'text' : 'password'}
+                onChange={(e)=> setPassword(e.target.value)}
+                className='focus:outline-none h-10 px-3 xl:px-9'
+                placeholder='Password'
+                />
+                </div>
+              <div onClick={show} className="text-xl px-5 ml-[-24px] content-center"><BiHide/></div>
+            </div>
               <div className="flex  border-blue-300 border-b-[2px] ">
                 <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
               <input
@@ -139,7 +164,7 @@ function RenterSignup() {
               </div>
          
             <div onClick={loginHandler} className="flex items-center justify-center font-bold h-10 bg-blue-500 text-white rounded-md border-[2px] ">
-                <button>Sign Up</button>
+                 <button>{signin ? 'Signing....' : 'Sign Up'}</button>
               </div>
           </form>
           <div className="flex py-5 text-center ">
@@ -156,9 +181,7 @@ function RenterSignup() {
               </div>
             </div>
             <div className="flex mt-2 gap-2"><p>I have an account already! </p>
-            <Link to='/renter-login' >
-            <span className='text-blue-800'>Login</span>
-            </Link>
+              <span onClick={haveNoAccountHandler} className='text-blue-800'>Login</span>
             </div>
         </div>
       </div>

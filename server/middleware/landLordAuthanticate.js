@@ -11,7 +11,7 @@ const landLordAuthanticate = async(req,res,next) =>{
         if(!verify)
         return res.status(404).send("this cookie is not authanticated")
 
-        req.user = verify.user
+        req.landlord = verify
         next()
     } catch (error) {
         res.status(500).send(error.message)

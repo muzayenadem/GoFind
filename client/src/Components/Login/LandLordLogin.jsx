@@ -6,14 +6,18 @@ import { FiPhoneForwarded } from "react-icons/fi";
 import { TbPasswordUser } from "react-icons/tb";
 import { FaFacebookF, FaGoogle, FaMessage,FaPerson,FaPhone } from 'react-icons/fa6'
 import { Link } from 'react-router-dom';
+import { BiHide } from "react-icons/bi";
 import axios from 'axios';
 import { mainLink } from '../../controller/commonLink/mainLInk';
 function LandLordLogin() {
   const [email,setEmail]= useState('')
+  const [logginin,setLoggingin] = useState(false)
+  const [hide,SetHide] = useState(false)
   const [password, setPassword] = useState('')
   const [errMessage,setErressage] = useState('')
   const loginHandler = async (e) =>{
     e.preventDefault()
+    setLoggingin(true)
     const response = await axios.post(`${mainLink}/api-landlord-login`,{email,password})
     .then(res =>{
       setTimeout(()=>{
@@ -24,11 +28,17 @@ function LandLordLogin() {
     .catch(err => {
       return err.response.data
     })
+    .finally(()=>{
+      setLoggingin(false)
+    })
     // console.log({response})
     setErressage(response)
     setTimeout(()=>{
       setErressage('')
     },4000)
+  }
+  const show = () =>{
+    SetHide(!hide)
   }
   return ( 
     <div className='container py:10 md:py-20 mx-auto'>
@@ -51,17 +61,20 @@ function LandLordLogin() {
               type='email'
               />
               </div>
-              <div className="flex border-blue-300 border-b-[2px] ">
-                <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
-              <input
-              type='password'
-              onChange={(e)=> setPassword(e.target.value)}
-              className='focus:outline-none h-10 px-3'
-              placeholder='Password'
-              />
+              <div className="flex justify-between border-blue-300 border-b-[2px] ">
+                 <div className="flex px-3  xl:px-6">
+                  <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
+                  <input
+                  type={hide ? 'text' : 'password'}
+                  onChange={(e)=> setPassword(e.target.value)}
+                  className='focus:outline-none h-10 px-3 xl:px-9'
+                  placeholder='Password'
+                  />
+                 </div>
+               <div onClick={show} className="text-xl px-5 ml-[-24px] content-center"><BiHide/></div>
               </div>
             <div className="flex items-center justify-center font-bold h-10 bg-blue-500 text-white rounded-md border-[2px] ">
-                <button onClick={loginHandler}>Login</button>
+                <button onClick={loginHandler}>{logginin ? 'Loging in...' : 'Login'}</button>
               </div>
           </form>
           <div className="flex py-5 text-center ">

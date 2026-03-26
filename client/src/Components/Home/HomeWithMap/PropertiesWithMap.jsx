@@ -58,7 +58,7 @@ function PropertiesWithMap() {
           </div>
        </div>
       </div>
-      <div className=" sticky bottom-0 left-0"
+      <div className=" sticky bottom-0 left-0 lg:hidden"
        style={{ height: `${height}px` }}
        onTouchMove={resize}
        onTouchEnd={stopResize}

@@ -23,6 +23,9 @@ const singlePropertyDetail = require('../controller/property/singlePropertyDetai
 const singleProperty = require('../controller/property/singleProperty')
 const addViews = require('../controller/specialFunctions/views/addViews')
 const readViews = require('../controller/specialFunctions/views/readViews')
+const { changeRenterPassword } = require('../controller/Renter/changeRenterPassword')
+const { changeLandlordPassword } = require('../controller/LandLord/changeLandlordPassword')
+const { updateProfile } = require('../controller/Renter/updateProfile')
 
 const  router = require('express').Router()
 
@@ -52,7 +55,9 @@ router.route('/islandlordloggined').get(isLandlordLoggenned)
 // logout api
 router.route('/logout-renter').get(logoutRenter)
 router.route('/logout-landlord').get(logoutLandlord)
-
+// change password api for all
+router.route('/renter/change_password').put(renterAuthanticate,changeRenterPassword)
+router.route('/landlord/change_password').put(landLordAuthanticate,changeLandlordPassword)
 // post method
 router.route('/api-renter-signup').post(renterSignup)
 router.route('/api-renter-login').post(renterLogin)
@@ -65,7 +70,8 @@ router.route('/api-delete-property').post(landLordAuthanticate,deleteProperty)
 router.route('/add-home').post(AddHome)
 
 
-
+// updating apis
+router.route('/renter/profile').put(upload.any('image'),renterAuthanticate,updateProfile)
 
 
 module.exports = router

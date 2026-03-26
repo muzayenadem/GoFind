@@ -63,7 +63,7 @@ const MainMap = ({homes,property}) => {
   useEffect(()=>{
    axios.get(`${mainLink}/api-single-property`+propertyId)
     .then((res) =>{
-      if(res.data.property.locationWithName.marker){
+      if(res.data.property.locationWithName.marker && res.data.property.locationWithName.marker.length){
         setLatitudinal(res.data.property.locationWithName.marker[0].lat)
         setLongitudinal(res.data.property.locationWithName.marker[0].lon)
         setLoading(false)
@@ -130,7 +130,7 @@ const createCustomIcon = (home) => {
         <AddMarker />
         {list.map((marker, index) => { 
             const home = homes.find(home => {
-              if(home.locationWithName.marker){
+              if(home.locationWithName.marker ){
                return home.locationWithName.marker.some(m => m.lat === marker.lat && m.lon === marker.lon)
               }
             });

@@ -3,6 +3,7 @@ import { log } from '../Data/Images'
 import { IoMdPerson } from "react-icons/io";
 import { LuMailQuestion } from "react-icons/lu";
 import { FiPhoneForwarded } from "react-icons/fi";
+import { BiHide } from "react-icons/bi";
 import { TbPasswordUser } from "react-icons/tb";
 import { FaFacebookF, FaGoogle, FaMessage,FaPerson,FaPhone } from 'react-icons/fa6'
 import { Link } from 'react-router-dom';
@@ -11,6 +12,8 @@ import { mainLink } from '../../controller/commonLink/mainLInk';
 function LandlordSignup() {
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastname] = useState('')
+  const [signin,setSignIn] = useState(false)
+  const [hide,SetHide] = useState(false)
   const [email,setEmail] = useState('')
   const [phone,setPhone] = useState('')
   const [password,setPassword] = useState('')
@@ -45,7 +48,6 @@ function LandlordSignup() {
     }
     else{
       // dispatch(landlordSignupReducer({firstName,lastName,email,phone,password,confirmPassword}))
-        
      signupHandler()
       setEmail('')
       setFirstName('')
@@ -61,7 +63,7 @@ function LandlordSignup() {
 
 
   const signupHandler = async () =>{
-
+    setSignIn(true)
     const response = await axios.post(`${mainLink}/api-landlord-signup`,{firstName,lastName,email,phone,password,confirmPassword})
     .then(res =>{
      return res.data
@@ -69,10 +71,14 @@ function LandlordSignup() {
     .catch(err => {
       return err.response.data
     })
+    setSignIn(false)
     setErrMessage(response)
     setTimeout(() => {
       setErrMessage('')
     }, 2000);
+  }
+   const show = () =>{
+    SetHide(!hide)
   }
   return ( 
     <div className='container py:10 md:py-20 mx-auto'>
@@ -123,15 +129,17 @@ function LandlordSignup() {
               />
               </div>
             
-              <div className="flex border-blue-300 border-b-[2px] ">
-                <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
-              <input
-              type='password'
-              className='focus:outline-none h-10 px-3'
-              placeholder='Password'
-              onChange={(e)=> setPassword(e.target.value)}
-
-              />
+               <div className="flex justify-between border-blue-300 border-b-[2px] ">
+                  <div className="flex px-3  xl:px-6">
+                  <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
+                  <input
+                  type={hide ? 'text' : 'password'}
+                  onChange={(e)=> setPassword(e.target.value)}
+                  className='focus:outline-none h-10 px-3 xl:px-9'
+                  placeholder='Password'
+                  />
+                  </div>
+                <div onClick={show} className="text-xl px-5 ml-[-24px] content-center"><BiHide/></div>
               </div>
               <div className="flex  border-blue-300 border-b-[2px] ">
                 <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
@@ -144,7 +152,7 @@ function LandlordSignup() {
               </div>
          
             <div onClick={loginHandler} className="flex items-center justify-center font-bold h-10 bg-blue-500 text-white rounded-md border-[2px] ">
-                <button>Sign Up</button>
+                <button>{signin ? 'Signing....' : 'Sign Up'}</button>
               </div>
           </form>
           <div className="flex py-5 text-center ">

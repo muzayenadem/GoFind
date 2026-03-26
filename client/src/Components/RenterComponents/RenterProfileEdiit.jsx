@@ -2,10 +2,54 @@ import React, { useState } from 'react'
 import { br1, log } from '../../Components/Data/Images'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa6'
 import renterProfileData from '../componentsData/renterProfileData'
+import axios from 'axios'
+import { mainLink } from '../../controller/commonLink/mainLInk'
 
 function RenterProfileEdiit() {
-    const [img,setImage] = useState(true)
-    const {id,fname,lname,email,phone} = renterProfileData()
+    // const [img,setImage] = useState(true)
+    const [updating , setUpdating] = useState(false)
+    const {id,fname,lname,email,phone,img} = renterProfileData()
+    const [data,setData] = useState({
+        fname : '',
+        lname : '',
+        email : '',
+        phone : '',
+        image:''
+    })
+
+    const username = email?.split('@')[0]
+
+    async function UpdateProfile(e){
+        e.preventDefault()
+        setUpdating(true)
+        const formData = new FormData();
+        const updatedData = {
+            fname: data.fname ? data.fname.trim() : fname,
+            lname: data.lname ? data.lname.trim() : lname,
+            email: data.email ? data.email.trim() : email,
+            phone: data.phone ? data.phone.trim() : phone,
+        };
+       formData.append('data',JSON.stringify(updatedData));
+      
+        formData.append('profileImg',data.image[0])  
+        // formData.append('cover','jghgjhghj') 
+   
+        console.log({formData,updatedData,data})
+        try {
+            e.preventDefault()
+            const response = await axios.put(`${mainLink}/renter/profile`,formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                withCredentials: true, // This is important for sending credentials
+                })
+            console.log({response})
+        } catch (error) {
+            console.log(error.message)
+        } finally{
+            setUpdating(false)
+        }
+    }
   return (
     <div className="flex bg-white shadow-md shadow-slate-700 w-full md:w-[70%] py-10 px-6 flex-col gap-5">
     <div className="w-full h-12 border-b-[1px] border-b-neutral-400 py-2">
@@ -19,11 +63,15 @@ function RenterProfileEdiit() {
      </div>
      <div className=' justify-center mx-auto'>
      {
-         !img ?  <img src={log} className='w-32 rounded-md'/>:
+        data.image?.length ? <img src={URL.createObjectURL(data.image[0])} className='w-32 rounded-md'/>:  
+        !img ?  <img src={log} className='w-32 rounded-md'/>:
          <img src={br1} className='w-32 rounded-md' />
+        //  !img ?  <img src={log} className='w-32 rounded-md'/>:
+        //  <img src={br1} className='w-32 rounded-md' />
      }
     </div>
-    <div className='w-[70%] ml-[15%] bg-fuchsia-700 py-2 rounded-md text-white font-semibold text-center'>Upload new photo</div>
+    <input onChange={(e)=>setData({...data,image:e.target.files})} type="file" name="profile" id="upload_profile" hidden />
+    <label for="upload_profile"><div className='w-[70%] ml-[15%] bg-fuchsia-700 py-2 rounded-md text-white font-semibold text-center'>Upload new photo</div></label>
     <div className='bg-neutral-200 p-5'>
      <p className='text-sm text-neutral-700 text-center'>
          Upload a new avater. Larger image will de resizable automatically.
@@ -32,30 +80,44 @@ function RenterProfileEdiit() {
     </div>
  </div>
 
-    <form className=' flex gap-5 flex-col'>
+    <form className=' flex gap-5 flex-col' onSubmit={UpdateProfile}>
      <div className="flex gap-5 flex-col py-2 border-b-[1px] border-b-neutral-400 pb-16">
      <div className="flex flex-col w-[86%] gap-1">
              <label>Username</label>
-             <input className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Username'/>
+             <input 
+             value={username}
+             className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Username'/>
          </div>
      <div className='flex gap-10 '>
          <div className="flex flex-col w-[40%] gap-1">
              <label>Frist Name</label>
-             <input className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Frist Name'/>
+             <input 
+             value={data?.fname ? data.fname : ` ${fname}`}
+             onChange={(e) => setData({...data,fname : e.target.value})}
+             className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Frist Name'/>
          </div>
          <div className="flex flex-col w-[40%] gap-1">
              <label>Last Name</label>
-             <input className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Last Name'/>
+             <input 
+             value={data?.lname ? data.lname : ` ${lname}`}
+             onChange={(e) => setData({...data,lname : e.target.value})}
+             className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Last Name'/>
          </div>
      </div>
      <div className='flex gap-10 '>
          <div className="flex flex-col w-[40%] gap-1">
              <label>Email</label>
-             <input className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Email'/>
+             <input 
+             value={data?.email ? data.email : ` ${email}`}
+             onChange={(e) => setData({...data,email: e.target.value})}
+             className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Email'/>
          </div>
          <div className="flex flex-col w-[40%] gap-1">
              <label>Phone</label>
-             <input className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Phone'/>
+             <input
+             value={data?.phone ? data.phone : ` ${phone}`} 
+             onChange={(e) => setData({...data,phone : e.target.value})}
+             className=' h-10 text-neutral-600 border-[1px] border-neutral-600 px-6 focus:outline-none' placeholder='Phone'/>
          </div>
      </div>
      </div>
@@ -71,7 +133,7 @@ function RenterProfileEdiit() {
      <h1 className='ml-[30%]'>Facebook</h1>
    </div>
  </div>
- <button className='w-72 h-12 hover:bg-fuchsia-800 rounded-md bg-fuchsia-700 text-white font-semibold text-center py-2'>Update</button>
+ <button className='w-72 h-12 hover:bg-fuchsia-800 rounded-md bg-fuchsia-700 text-white font-semibold text-center py-2'>{updating ? 'Updating...' : ' Update' }</button>
      </form>
  </div>
   )
