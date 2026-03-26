@@ -1,6 +1,6 @@
-import bcrypt from "bcryptjs/dist/bcrypt.js"
-import renterModel  from "../../models/renterModel.js"
-export async function changeRenterPassword(req,res) {
+const bcrypt =  require("bcryptjs/dist/bcrypt.js")
+const renterModel = require("../../models/renterModel.js")
+async function changeRenterPassword(req,res) {
     try {
         const {oldPassword, newPassword, confirmPassword} = req.body.password
         console.log({oldPassword,newPassword,confirmPassword})
@@ -36,3 +36,4 @@ export async function changeRenterPassword(req,res) {
         res.status(500).json({error:error.message})
     }
 }
+module.exports = changeRenterPassword

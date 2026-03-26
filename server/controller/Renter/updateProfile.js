@@ -1,6 +1,6 @@
-import renterModel from "../../models/renterModel.js";
-import admin from '../../firebase/admin.js'
-export async function updateProfile(req,res) {
+const renterModel = require("../../models/renterModel.js");
+const admin = require('../../firebase/admin.js')
+async function updateProfile(req,res) {
     const bucket = admin.storage().bucket(); 
     try {
         let {data} = req.body
@@ -59,3 +59,4 @@ export async function updateProfile(req,res) {
         return res.status(500).json({"error":error.message})
     }    
 }
+module.exports = updateProfile
