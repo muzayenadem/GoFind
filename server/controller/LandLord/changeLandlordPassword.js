@@ -1,6 +1,6 @@
-import bcrypt from "bcryptjs/dist/bcrypt.js"
-import landLordModel from "../../models/landLordModel.js"
-export async function changeLandlordPassword(req,res) {
+const bcrypt = require("bcryptjs/dist/bcrypt.js")
+const landLordModel = require("../../models/landLordModel.js")
+async function changeLandlordPassword(req,res) {
     try {
         const {oldPassword, newPassword, confirmPassword} = req.body.password
         console.log({oldPassword,newPassword,confirmPassword})
@@ -36,3 +36,5 @@ export async function changeLandlordPassword(req,res) {
         res.status(500).json({error:error.message})
     }
 }
+
+module.exports = changeLandlordPassword

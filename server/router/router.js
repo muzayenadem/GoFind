@@ -23,9 +23,9 @@ const singlePropertyDetail = require('../controller/property/singlePropertyDetai
 const singleProperty = require('../controller/property/singleProperty')
 const addViews = require('../controller/specialFunctions/views/addViews')
 const readViews = require('../controller/specialFunctions/views/readViews')
-const { changeRenterPassword } = require('../controller/Renter/changeRenterPassword')
-const { changeLandlordPassword } = require('../controller/LandLord/changeLandlordPassword')
-const { updateProfile } = require('../controller/Renter/updateProfile')
+const  changeRenterPassword = require('../controller/Renter/changeRenterPassword')
+const  changeLandlordPassword  = require('../controller/LandLord/changeLandlordPassword')
+const updateProfile  = require('../controller/Renter/updateProfile')
 
 const  router = require('express').Router()
 
