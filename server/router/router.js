@@ -26,6 +26,7 @@ const readViews = require('../controller/specialFunctions/views/readViews')
 const  changeRenterPassword = require('../controller/Renter/changeRenterPassword')
 const  changeLandlordPassword  = require('../controller/LandLord/changeLandlordPassword')
 const updateProfile  = require('../controller/Renter/updateProfile')
+const upload_to_cloudinary = require('../middleware/upload')
 
 const  router = require('express').Router()
 
@@ -63,7 +64,7 @@ router.route('/api-renter-signup').post(renterSignup)
 router.route('/api-renter-login').post(renterLogin)
 router.route('/api-landlord-signup').post(landLordSignup)
 router.route('/api-landlord-login').post(landLordLogin)
-router.route('/api-landlord-add-property').post(landLordAuthanticate, upload.array('files'),addProperty)
+router.route('/api-landlord-add-property').post(landLordAuthanticate,upload_to_cloudinary('PropertyImages').array('files'),addProperty)
 router.route('/api-delete-property').post(landLordAuthanticate,deleteProperty)
 
 //examle
@@ -71,7 +72,28 @@ router.route('/add-home').post(AddHome)
 
 
 // updating apis
-router.route('/renter/profile').put(upload.any('image'),renterAuthanticate,updateProfile)
+router.route('/renter/profile').put(renterAuthanticate,upload_to_cloudinary('RentersProfilImages').single('profileImg'),updateProfile)
 
+
+// sample of uplading a file into cloudinary through multer
+router.route('/cloud').post(renterAuthanticate, upload_to_cloudinary('PropertyImage').single('profileImg'),(req,res)=>{
+    try {
+        const {renterId} = req.renter
+        if(!req.file){
+            console.log("there is no file")
+            return res.status(400).json({message:'file not uploaded'})
+        }
+
+        console.log({file : req.file.path,renterId})
+        return res.status(200).json({
+            message:'file uploaded',
+            iageUrl : req.file.path,
+            public_id: req.file.filename
+        })
+    } catch (error) {
+        console.log({err:error.message})
+        return res.status(500).json({error:error.message})
+    }
+})
 
 module.exports = router

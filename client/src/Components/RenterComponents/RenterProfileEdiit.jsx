@@ -9,6 +9,7 @@ function RenterProfileEdiit() {
     // const [img,setImage] = useState(true)
     const [updating , setUpdating] = useState(false)
     const {id,fname,lname,email,phone,img} = renterProfileData()
+    console.log({iiimmmggg:img})
     const [data,setData] = useState({
         fname : '',
         lname : '',
@@ -64,8 +65,8 @@ function RenterProfileEdiit() {
      <div className=' justify-center mx-auto'>
      {
         data.image?.length ? <img src={URL.createObjectURL(data.image[0])} className='w-32 rounded-md'/>:  
-        !img ?  <img src={log} className='w-32 rounded-md'/>:
-         <img src={br1} className='w-32 rounded-md' />
+        img?.length ?  <img src={img?.[0]} className='w-32 rounded-md'/>:
+         <img src={log} className='w-32 rounded-md' />
         //  !img ?  <img src={log} className='w-32 rounded-md'/>:
         //  <img src={br1} className='w-32 rounded-md' />
      }

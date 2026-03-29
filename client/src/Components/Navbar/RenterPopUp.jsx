@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom'
 import prof from './br1.jpg'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeForRenter } from '../../controller/Buttons/renterProfileButtons'
-import renterProfileData from '../componentsData/renterProfileData'
 import axios from 'axios'
 import { mainLink } from '../../controller/commonLink/mainLInk'
-function RenterPopUp({}) {
+import { log } from '../Data/Images'
+function RenterPopUp({fname,lname,img}) {
     const renterButton = useSelector(state => state.renterProfileButtons.open)
     const dispatch = useDispatch()
     const close = () =>{
         dispatch(closeForRenter())
     }
-    const {fname,lname,email,phone} = renterProfileData()
     console.log({fname})
     const renterLogout = async ()=>{
       await axios.get(`${mainLink}/logout-renter`)
@@ -29,7 +28,7 @@ function RenterPopUp({}) {
                                 <div className='w-5 h-5 rotate-45 -mt-2 bg-white ml-[10%]'></div>
                                 <Link to={'/renter-dashboard'} onClick={close}>
                                 <div className='flex justify-start gap-2 p-3 border-b-[1px] border-b-neutral-400'>
-                                  <img src={prof} className='w-10 h-10 rounded-full'/>
+                                  <img src={!img?.length  ?  log : img?.[0] } className='w-10 h-10 rounded-full'/>
                                   <h1 className='text-center capitalize mt-2' >{fname} {lname}</h1>
                                 </div>
                                 </Link>

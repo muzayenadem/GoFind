@@ -8,7 +8,6 @@ const deleteProperty = async (req,res) =>{
         if(!deletedProperty)
         return res.status(404).send('property not deleted')
 
-        console.log(deletedProperty)
         res.status(200).send('property succefully deleted')
     } catch (error) {
         console.log({error:error.message})

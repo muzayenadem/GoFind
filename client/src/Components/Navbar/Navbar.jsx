@@ -17,7 +17,7 @@ import { mainLink } from '../../controller/commonLink/mainLInk'
 import landlordProfileData from '../componentsData/landlordProfileData'
 import isRenterLogginned from '../componentsData/isRenterLogginned'
 import isLandlordLoginned from '../componentsData/isLandlordLoginned'
-import { logo } from '../Data/Images'
+import { log, logo } from '../Data/Images'
 import { fetchAllProperties } from '../../controller/data/AllPropertySlice/allPropertySlice'
 function Navbar() {
     const [landlordTokee,setLandlordToken] = useState(false)
@@ -28,8 +28,14 @@ function Navbar() {
    const dispatch = useDispatch()
   
   const renterToken = isRenterLogginned()
+  // let fname, lname , img;
+  // if(renterToken){
+  //    fname = renterProfileData().firstName
+  //    img = renterProfileData().img
+  //    lname = renterProfileData().lastName
+  // }
+  const {fname,lname,img} = renterProfileData()
   const landlordToken = isLandlordLoginned()
-  const {fname} = renterProfileData()
   const landlordName = landlordProfileData().fname
    console.log({landlordToken})
    console.log({renterToken})
@@ -95,13 +101,13 @@ function Navbar() {
                     renterToken == true ? 
                     <div>
                     <div onMouseOver={()=> dispatch(openForRenter())}  className='flex justify-start items-center gap-4'>
-                   <img src={prof} className='w-12 h-12 rounded-full'/>
+                   <img src={!img?.length  ?  log : img?.[0] } className='w-12 h-12 rounded-full'/>
                    <div className="flex flex-col">
                     <p className='text-sm text-neutral-400'>@Renter</p>
-                     <h3 className='text-lg font-semibold '>{fname}</h3>
+                     <h3 className='text-lg font-semibold '>{`${fname ? fname : null} ${lname ? lname : null}`}</h3>
                    </div>
                </div>
-               <RenterPopUp/>                   
+               <RenterPopUp fname={fname} lname={lname} img={img}/>                   
                </div> :
                     <div>
                     <div onMouseOver={()=> dispatch(openForLandlord())}  className='flex justify-start items-center gap-4'>

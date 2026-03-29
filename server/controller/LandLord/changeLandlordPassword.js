@@ -3,7 +3,6 @@ const landLordModel = require("../../models/landLordModel.js")
 async function changeLandlordPassword(req,res) {
     try {
         const {oldPassword, newPassword, confirmPassword} = req.body.password
-        console.log({oldPassword,newPassword,confirmPassword})
         if(!oldPassword) return res.status(203).send('please enter your old password')
 
         if(!newPassword) return res.status(203).send('plase enter your new password')

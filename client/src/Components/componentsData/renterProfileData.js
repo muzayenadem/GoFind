@@ -14,6 +14,7 @@ function renterProfileData() {
     lname:profile.lastName,
     email:profile.email,
     phone:profile.phone,
+    img:profile.img,
   }
 }
 
