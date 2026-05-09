@@ -9,7 +9,7 @@ function PriceSystem({page,next,previous}) {
     price = parseInt(price)
     const [value,setValue] = useState(price)
     const [open, setOpen] = useState(false)
-    const [enable,setEnable] = useState(price <= 0 ? true : false)
+    const [enable,setEnable] = useState(price <= 0 ? true : false || !price ? true : false)
     const propertyType = useSelector(state => state.propertyType.subCategory)
     const dispatch = useDispatch()
     const clickHndler = () =>{
@@ -23,10 +23,10 @@ function PriceSystem({page,next,previous}) {
     dispatch(setPrice(e.target.value))
   }
   const  enableHandler = () =>{
-    if (price == '' & price <= 0){
-     setEnable(true)
-    }else{
+    if (price != '' || price >= 0 || price || price != NaN){
      setEnable(false)
+    }else{
+     setEnable(true)
     }
     console.log(value)
    }

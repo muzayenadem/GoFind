@@ -12,13 +12,16 @@ const path = require('path');
 
 // Load environment variables
 require('dotenv').config();
-mongoose.connect(process.env.DATABASE)
-.then(()=>{
-    console.log('database successfully connected')
-})
-.catch((err)=>{
-    console.log(err.message)
-})
+
+(async()=>{
+  try {
+    const connect = await mongoose.connect(process.env.DATABASE)
+    if(connect) console.log('database connected successfully')
+  } catch (error) {
+    console.log(error.message)
+  }
+})()
+
 const router = require('./router/router')
 
 const app = express()
@@ -40,5 +43,5 @@ app.use(express.urlencoded({extended: true}))
 
 app.use(router) 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
+  console.log(`Server is running on port ${PORT}`);
+});

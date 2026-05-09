@@ -80,7 +80,7 @@ function RenterLogin() {
                 <div className="flex px-3  xl:px-6">
                   <span className='w-[15%] flex text-center items-center justify-center'><TbPasswordUser/></span>
                   <input
-                  type={hide ? 'text' : 'passsword'}
+                  type={hide ? 'text' : 'password'}
                   onChange={(e)=> setPassword(e.target.value)}
                   className='focus:outline-none h-10 px-3 xl:px-9'
                   placeholder='Password'

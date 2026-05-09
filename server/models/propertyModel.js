@@ -16,6 +16,7 @@ const propretySchema = mongoose.Schema({
         required:true,
         type:Number,
     },
+    Holder:Object,
     theSamePlace:Boolean,
     subCategory:String,
     multiple:Boolean,

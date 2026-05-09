@@ -9,7 +9,10 @@ const initailState ={
     multiple:false,
     name:'',
 
-
+    holder:{
+        hold_as:'',
+        country :'',
+    },
     permissions:{
         smoking:false,
         student:true,
@@ -116,6 +119,10 @@ const propertyType = createSlice({
             state.location.name = action.payload.name
         },
         //dispatchers for permissions
+        setPropertyHolder :(state,action) => {
+            state.holder.hold_as = action.payload.hold_as
+            state.holder.country = action.payload.country
+        },
         setSmoking:(state) =>{
             state.permissions.smoking = !state.permissions.smoking
         },
@@ -272,6 +279,8 @@ export const {
     setType,setQuantity,notTheSamePlace,
     setCategory,setSubCategory,setMultiple,
     setName,
+    // who hold it
+    setPropertyHolder,
     //details and area
     setDetails,setArea,
     // permission function

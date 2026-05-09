@@ -96,4 +96,21 @@ router.route('/cloud').post(renterAuthanticate, upload_to_cloudinary('PropertyIm
     }
 })
 
+// for other practice
+router.route('/datas').get( async (req,res)=>{
+    try {
+        const {page} = req.query
+
+        console.log(page)
+        let d = [1,4,2,5,2,6,9,8,7]
+        let data = []
+        for (let i = 0; i<5 ; i++){
+            data.push(d)
+        }
+        return res.status(200).send(data[page])
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+})
+
 module.exports = router

@@ -10,9 +10,10 @@ function PropertyDetails({next,page,previous}) {
     const [bathroom, setBathroom] = useState(details.bathroom =='' ? 1 : details.bathroom)
     const [livingRoom, setLivingroom] = useState(details.livingRoom == '' ? 1 : details.livingRoom)  
     const [guestCapability ,setGuestCapability] = useState(details.guestCapability == '' ? 1 : details.guestCapability)
-    const [minArea, setMinArea] = useState(area.min)
-    const [maxArea, setMaxArea] = useState(area.max)
-    
+    const [minArea, setMinArea] = useState(area.min ? area.min : 0)
+    const [maxArea, setMaxArea] = useState(area.max ? area.max : 0)
+    const [enable, setEnable] = useState(!area.min || area.min == 0 && !area.max || area.max == 0 ? false : true) 
+    console.log({minArea,maxArea})
     const propertyType = useSelector(state => state.propertyType.subCategory)
     const clickHndler = () =>{
         const detail = {
@@ -28,6 +29,53 @@ function PropertyDetails({next,page,previous}) {
     }
     const dispatch = useDispatch()
     console.log({area})
+
+
+
+
+
+    function check(minArooea,maxAreooa){
+        return new Promise((resolve,reject) =>{
+            if (minArea > 1 && minArea.length && maxArea > 1 && maxArea.length ){
+                resolve(true)
+            }
+            else {
+                if(!minArea || minArea == '') {
+                    setMinArea(0)
+                    
+                    return reject(new Error('Min Area is not defined'))
+                }
+                if(!maxArea || maxArea == '') {
+                    setMaxArea(0)
+                    return reject(new Error('Max Area is not defined'))
+                }
+            }
+        })
+    }
+    const  enableHandler = async() => {
+        try {
+            const areas = {
+                min:minArea,
+                max:maxArea,
+            }
+            dispatch(setArea(areas))
+            
+            console.log({areas})
+            const response = await check(minArea, maxArea)
+            console.log({response})
+            return setEnable(true)        
+        } catch (error) {
+            setEnable(false)
+            const areas = {
+                min:minArea,
+                max:maxArea,
+            }
+            console.log({areas,maxArea,minArea})
+            console.log({error:error.message})
+        }
+    }
+
+
   return (
     <section className='min-h-screen   w-[96%] md:w-[78%] md:ml-[7%] ipad:w-[70%] ipad:ml-[15%] tablet:w-[80%] tablet:ml-[20%] lg:w-[100%] xl:w-[130%] 2xl:w-[150%] lg:ml-[15%] xl:ml-[25%] 2xl:ml-[30%] ml-[2%] py-20 justify-center items-center'>
     <div className='  gap-6 flex flex-col md:w-[90%] '>
@@ -125,13 +173,13 @@ function PropertyDetails({next,page,previous}) {
             <div className=' w-full '>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Minimum area </h2>
-                <input type='number' onChange={(e)=> setMinArea(e.target.value)} defaultValue={area.min} placeholder='Min' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
+                <input type='number' onInput={enableHandler} onChange={(e)=> setMinArea(e.target.value)} defaultValue={area.min ? area.min : minArea} placeholder='Min' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
             </div>
             </div>
             <div className=' w-full md'>
             <div className='flex flex-col gap-2'>
                 <h2 className='des '>Maximum area</h2>
-                <input type='number' onChange={(e) => setMaxArea(e.target.value)} defaultValue={area.max} placeholder='Max' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
+                <input type='number' onInput={enableHandler} onChange={(e) => setMaxArea(e.target.value)} defaultValue={area.max ? area.max : maxArea } placeholder='Max' className='w-[60%] px-4 text-black font-bold h-10 focus:outline-none border-[1px] border-orange-200'/>
             </div>
             </div>
          </div>
@@ -146,7 +194,7 @@ function PropertyDetails({next,page,previous}) {
         <div  onClick={()=> dispatch(previous())} className='w-[25%] flex justify-center items-center py-3 bg-white border-[1px] border-fuchsia-200  '>
             <span className='font-bold text-2xl text-fuchsia-700 '><FaChevronLeft/></span>
         </div>
-        <button  onClick={clickHndler} className={`w-[73%]   bg-fuchsia-700  py-3 font-bold text-white text-center`}>Continue</button>
+        <button disabled={!enable}  onClick={clickHndler} className={`${!enable ? 'bg-slate-400  text-gray-800 text-center' : 'bg-fuchsia-700  text-white text-center'} w-[73%]    py-3 font-bold`}>Continue</button>
     </div>
     </div>
     </section>

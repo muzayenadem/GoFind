@@ -16,7 +16,7 @@ function PropertyName({page,next,previous}) {
     const [PropertyName,setPropertyName] = useState(location.name)
     const [locationName, setLocationName] = useState(locationStreat)
     const [country,setCountry] = useState(location.country)
-    const [enable,setEnable] = useState(true)
+    const [enable,setEnable] = useState(false)
     const [postNumber,setPostNumber] = useState(location.postCode)
     const [city,setCity] = useState(location.city)
     const inputRef = useRef()
@@ -36,8 +36,8 @@ function PropertyName({page,next,previous}) {
     //   mapRef.current.setView([lat, lon], 13);
     //   setMarkers([...markers, { lat: parseFloat(lat), lon: parseFloat(lon) }]);
     };
-    const dispatch = useDispatch()
 
+    const dispatch = useDispatch()
     const sender = () =>{
         const locat = {
             name:PropertyName,country,city,postCode:postNumber
@@ -50,20 +50,46 @@ function PropertyName({page,next,previous}) {
         dispatch(next())
     }
     const options = useMemo(() => countryList().getData(), [])
+
     const changeHandler = async value => {
-       await enableHandler()
         setCountry(value.label)
         console.log(country)
+        enableHandler()
       }
        
 
       const enableHandler = () =>{
-        if(PropertyName != '' && postNumber != '' && country != '' && city != '' && locationName != ''){
+        if(PropertyName.length  >= 3 && postNumber.length >=3  && country.length  >= 3 && city.length >= 3 && locationName.length  >= 3){
             setEnable(true)
+        }
+        else{
+            setEnable(false)
         }
         console.log({postNumber})  
       }
+
+
       console.log({location})
+
+      const changeName = async (e)=>{
+        setPropertyName(e.target.value)
+        enableHandler()
+      }
+      const changeCity = async (e)=>{
+        setCity(e.target.value)
+        enableHandler()
+      }
+      
+       const changePostCode = async (e)=>{
+        setPostNumber(e.target.value)
+        enableHandler()
+      }
+
+        const changeLocation = async (e)=>{
+        setLocationName(e.target.value)
+        enableHandler()
+    }
+      
   return (
     <>
        <section className='  min-h-screen w-[96%] md:w-[90%] ipad:w-[96%] ipad:ml-[15%] tablet:ml-[20%] md:ml-[10%] tablet:w-[110%] lg:w-[120%] xl:w-[160%] 2xl:w-[200%] lg:ml-[25%] xl:ml-[35%] 2xl:ml-[50%] ml-[2%] py-20 justify-center items-center'>
@@ -74,7 +100,7 @@ function PropertyName({page,next,previous}) {
             <div className="flex flex-col gap-6 border-b-[1px] border-b-neutral-300 py-3">
             <h1 className='title2'>What is the name of your {propertyType} ?</h1>
             <p className='des'>Property name</p>
-            <input onInput={enableHandler & sender }  defaultValue={location.name} onChange={(e)=> setPropertyName(e.target.value)} className='border-[1px] md:w-[40%] rounded-sm border-neutral-500 py-2 px-6 focus:outline-none '/>
+            <input onInput={enableHandler & sender }  defaultValue={location.name} onChange={changeName} className='border-[1px] md:w-[40%] rounded-sm border-neutral-500 py-2 px-6 focus:outline-none '/>
             </div>
 
 
@@ -85,14 +111,18 @@ function PropertyName({page,next,previous}) {
                 <div className="flex w-full justify-normal gap-5 flex-wrap" >
                     <div className="flex w-full md:w-[40%] flex-col gap-1">
                         <p className='des'>Country</p>
-                    <Select options={options} onInput={enableHandler & sender} defaultInputValue={location.country}  onChange={changeHandler} className=''/>
+                    <Select 
+                    options={options} 
+                    onInput={enableHandler & sender} 
+                    defaultInputValue={location.country}  
+                    onChange={changeHandler} className=''/>
                     </div>
                     <div className="flex  flex-col gap-1">
                         <p className='des'>Street name and house number</p>
                         <input
                             type="text"
-                            onInput={openSearch}
-                            onChange={(e)=> setLocationName(e.target.value) }
+                            onInput={openSearch & enableHandler}
+                            onChange={changeLocation}
                             defaultValue={locationStreat}
                             className='px-6 py-2 border-[1px]  border-neutral-400 focus:outline-none '
                             placeholder="Search by country, state, or zip code"
@@ -102,11 +132,11 @@ function PropertyName({page,next,previous}) {
                 <div className="flex w-full justify-normal gap-5 flex-wrap" >
                     <div className="flex md:w-[40%] flex-col gap-1">
                         <p className='des'>Post code</p>
-                        <input onInput={enableHandler & sender} defaultValue={location.postCode}  onChange={(e)=> setPostNumber(e.target.value)} placeholder='eg, 1000' className='px-4 py-2 border-[1px] w-40 border-neutral-400 focus:outline-none' />
+                        <input onInput={enableHandler & sender} defaultValue={location.postCode}  onChange={changePostCode} placeholder='eg, 1000' className='px-4 py-2 border-[1px] w-40 border-neutral-400 focus:outline-none' />
                     </div>
                     <div className="flex md:w-[40%] flex-col gap-1">
                         <p className='des'>city</p>
-                        <input onInput={enableHandler & sender} defaultValue={location.city} onChange={(e)=> setCity(e.target.value)} type='text'  placeholder='City' className='px-4 py-2 border-[1px] border-neutral-400 focus:outline-none' />
+                        <input onInput={enableHandler & sender} defaultValue={location.city} onChange={changeCity} type='text'  placeholder='City' className='px-4 py-2 border-[1px] border-neutral-400 focus:outline-none' />
                     </div>
                 </div>
             </div>
@@ -127,7 +157,7 @@ function PropertyName({page,next,previous}) {
             <div  onClick={()=> dispatch(previous())} className='w-[25%] flex justify-center items-center py-3 bg-white border-[1px] border-fuchsia-200  '>
                 <span className='font-bold text-2xl text-fuchsia-700 '><FaChevronLeft/></span>
             </div>
-            <button disabled={!enable} onClick={clickHndler} className={`w-[73%] ${enable ?  'bg-fuchsia-700 ': 'bg-neutral-300'} py-3 font-bold text-white text-center`}>Continue</button>
+            <button disabled={!enable} onClick={clickHndler} className={`w-[73%] ${enable ?  'bg-fuchsia-700 ': 'bg-neutral-300'} py-3 font-bold text-white text-center`}>Continuou</button>
         </div>
         </div>
         </section> 
