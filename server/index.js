@@ -26,11 +26,11 @@ const router = require('./router/router')
 const app = express() 
 const PORT = process.env.PORT || 3000;
 app.use(cors({ 
-     origin:['https://gofind.vercel.app', 'https://gofind-69aifn8u3-muzayen.vercel.app','http://localhost:5173','https://gofind-git-ecommerce-muzayen.vercel.app','https://gofind-muzayen.vercel.app','https://gofind-git-gofind-muzayen.vercel.app','https://gofind-om6x.onrender.com'],
-     credentials:true,
-     methods: 'GET,POST,PUT,DELETE',
-     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  }))
+  origin:['https://gofind.vercel.app', 'https://gofind-69aifn8u3-muzayen.vercel.app','http://localhost:5173','https://gofind-git-ecommerce-muzayen.vercel.app','https://gofind-muzayen.vercel.app','https://gofind-git-gofind-muzayen.vercel.app','https://gofind-om6x.onrender.com'],
+  credentials:true,
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+}))
 
   // app.options('/sendmessage', cors()); // enable pre-flight requests
 
