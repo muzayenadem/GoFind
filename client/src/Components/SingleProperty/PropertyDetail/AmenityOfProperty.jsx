@@ -5,7 +5,7 @@ import { LiaDogSolid } from "react-icons/lia";
 import { GiPoolTableCorner, GiWashingMachine } from "react-icons/gi";
 import { TbBrandSugarizer } from "react-icons/tb";
 import { MdBalcony, MdOutlineDirectionsCarFilled } from "react-icons/md";
-import { LuParkingSquare } from "react-icons/lu";
+import { LuParkingMeter } from "react-icons/lu";
 import { MdOutlinePool } from "react-icons/md";
 import { TbAirConditioning } from "react-icons/tb";
 import { FaHouseChimney, FaTv, FaWifi } from "react-icons/fa6";
